@@ -1,0 +1,10 @@
+var assert = require('assert');
+
+console.log('Init code outside of describe.');
+
+describe('describe', function() {
+    it('it and assert', function() {
+        console.log('asd');
+        assert.equal([1, 2, 3].indexOf(4), -1);
+    });
+});

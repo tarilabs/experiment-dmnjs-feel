@@ -1,0 +1,19 @@
+{
+  "name": "kie-dmnjs-feel",
+  "version": "0.0.1-SNAPSHOT",
+  "dependencies": {
+    "antlr4": "^4.7.2",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0",
+    "monaco-editor": "^0.17.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "mocha": {
+    "spec": "src/test/javascript/**/*.js"
+  }
+}
