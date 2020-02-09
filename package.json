@@ -3,6 +3,7 @@
   "version": "0.0.1-SNAPSHOT",
   "dependencies": {
     "antlr4": "^4.7.2",
+    "decimal.js": "^10.2.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7"
   },

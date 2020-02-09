@@ -13,7 +13,10 @@
 dependency-reduced-pom.xml
 /*.log
 
-# Node:
+# MM VSCode Antlr plugin:
+src/**/.antlr/
+
+# MM Node:
 # Logs
 logs
 *.log
