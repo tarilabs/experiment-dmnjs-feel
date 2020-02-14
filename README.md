@@ -1,6 +1,7 @@
 ```
 mvn clean compile
-npm test
+tsc
+tsc && npm test
 ```
 
 # Reminders about TypeScript
