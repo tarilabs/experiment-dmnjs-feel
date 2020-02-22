@@ -8,8 +8,9 @@ var MyGrammarParser = require('../../main-generated/javascript/FEEL_1_1Parser.js
 var MyVisitor = require('../../main-generated/javascript/FEEL_1_1Visitor.js').FEEL_1_1Visitor;
 
 var FEELValue = require('../../main-generated/javascript/FEELValue.js');
+var ASTNode = require('../../main-generated/javascript/ASTNode.js');
 
-var input = "47";
+var input = "1+2";
 var chars = new antlr4.InputStream(input);
 var lexer = new MyGrammarLexer(chars);
 var tokens = new antlr4.CommonTokenStream(lexer);
@@ -37,14 +38,26 @@ MyVisitor.prototype.visitCompilation_unit = function(ctx) {
     return this.visit(ctx.expression());
 };
 
+MyVisitor.prototype.visitAddExpression = function(ctx) {
+    console.log("I found a visitAddExpression: "+ctx.getText());
+    console.log("I found a visitAddExpression: "+ctx.op.text);
+    let left = this.visit(ctx.additiveExpression());
+    console.log("I found a visitAddExpression: "+left);
+    let right = this.visit(ctx.multiplicativeExpression());
+    console.log("I found a visitAddExpression: "+right);
+    return new ASTNode.SumNode(left, right);
+};
 
 MyVisitor.prototype.visitPrimaryLiteral = function(ctx) {
     console.log("I found a primary: "+ctx.getText());
     return this.visitChildren(ctx);
 };
 MyVisitor.prototype.visitNumberLiteral = function(ctx) {
-    return FEELValue.NumberValue.from(ctx.getText());
+    return new ASTNode.NumberNode(ctx.getText());
 };
 
 var cu = tree.accept(new MyVisitor());
 console.log(JSON.stringify(cu));
+
+var feelValue = cu.accept(new ASTNode.ValueVisitor());
+console.log(JSON.stringify(feelValue));

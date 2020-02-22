@@ -15,10 +15,14 @@ function greet() {
 }
 var NumberValue = (function () {
     function NumberValue(value) {
-        this.value = new Decimal.Decimal(value);
+        this.value = value;
     }
     NumberValue.from = function (value) {
-        return new NumberValue(value);
+        var d = new Decimal.Decimal(value);
+        return new NumberValue(d);
+    };
+    NumberValue.prototype.sum = function (value) {
+        return new NumberValue(this.value.add(value.value));
     };
     return NumberValue;
 }());

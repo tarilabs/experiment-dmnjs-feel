@@ -256,8 +256,8 @@ expressionList
 
 additiveExpression
 	:	multiplicativeExpression                            #addExpressionMult
-	// |	additiveExpression op=ADD multiplicativeExpression  #addExpression
-	// |	additiveExpression op=SUB multiplicativeExpression  #addExpression
+	|	additiveExpression op=ADD multiplicativeExpression  #addExpression
+	|	additiveExpression op=SUB multiplicativeExpression  #addExpression
 	;
 
 multiplicativeExpression

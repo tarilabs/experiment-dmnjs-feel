@@ -7,7 +7,7 @@ var grammarFileName = "FEEL_1_1.g4";
 
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u00038]\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t\u0004",
+    "\u00038i\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t\u0004",
     "\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004\b",
     "\t\b\u0004\t\t\t\u0004\n\t\n\u0004\u000b\t\u000b\u0004\f\t\f\u0004\r",
     "\t\r\u0004\u000e\t\u000e\u0004\u000f\t\u000f\u0004\u0010\t\u0010\u0004",
@@ -15,44 +15,50 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0014\u0003\u0002\u0003\u0002\u0003\u0002\u0003\u0003\u0003\u0003\u0003",
     "\u0004\u0003\u0004\u0003\u0005\u0003\u0005\u0003\u0006\u0003\u0006\u0003",
     "\u0007\u0003\u0007\u0003\b\u0003\b\u0003\t\u0003\t\u0003\t\u0007\t;",
-    "\n\t\f\t\u000e\t>\u000b\t\u0003\n\u0003\n\u0003\u000b\u0003\u000b\u0003",
-    "\f\u0003\f\u0003\r\u0003\r\u0003\u000e\u0003\u000e\u0003\u000f\u0003",
-    "\u000f\u0003\u0010\u0003\u0010\u0003\u0011\u0003\u0011\u0003\u0011\u0003",
-    "\u0011\u0003\u0011\u0003\u0011\u0005\u0011T\n\u0011\u0003\u0012\u0003",
-    "\u0012\u0003\u0012\u0003\u0013\u0003\u0013\u0003\u0014\u0003\u0014\u0003",
-    "\u0014\u0002\u0002\u0015\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014",
-    "\u0016\u0018\u001a\u001c\u001e \"$&\u0002\u0003\u0005\u0002\u0004\u0005",
-    "\u0007\u001622\u0002O\u0002(\u0003\u0002\u0002\u0002\u0004+\u0003\u0002",
-    "\u0002\u0002\u0006-\u0003\u0002\u0002\u0002\b/\u0003\u0002\u0002\u0002",
-    "\n1\u0003\u0002\u0002\u0002\f3\u0003\u0002\u0002\u0002\u000e5\u0003",
-    "\u0002\u0002\u0002\u00107\u0003\u0002\u0002\u0002\u0012?\u0003\u0002",
-    "\u0002\u0002\u0014A\u0003\u0002\u0002\u0002\u0016C\u0003\u0002\u0002",
-    "\u0002\u0018E\u0003\u0002\u0002\u0002\u001aG\u0003\u0002\u0002\u0002",
-    "\u001cI\u0003\u0002\u0002\u0002\u001eK\u0003\u0002\u0002\u0002 S\u0003",
-    "\u0002\u0002\u0002\"U\u0003\u0002\u0002\u0002$X\u0003\u0002\u0002\u0002",
-    "&Z\u0003\u0002\u0002\u0002()\u0005\u0004\u0003\u0002)*\u0007\u0002\u0002",
-    "\u0003*\u0003\u0003\u0002\u0002\u0002+,\u0005\u0006\u0004\u0002,\u0005",
-    "\u0003\u0002\u0002\u0002-.\u0005\b\u0005\u0002.\u0007\u0003\u0002\u0002",
-    "\u0002/0\u0005\n\u0006\u00020\t\u0003\u0002\u0002\u000212\u0005\f\u0007",
-    "\u00022\u000b\u0003\u0002\u0002\u000234\u0005\u000e\b\u00024\r\u0003",
-    "\u0002\u0002\u000256\u0005\u0012\n\u00026\u000f\u0003\u0002\u0002\u0002",
-    "7<\u0005\u0004\u0003\u000289\u0007!\u0002\u00029;\u0005\u0004\u0003",
-    "\u0002:8\u0003\u0002\u0002\u0002;>\u0003\u0002\u0002\u0002<:\u0003\u0002",
-    "\u0002\u0002<=\u0003\u0002\u0002\u0002=\u0011\u0003\u0002\u0002\u0002",
-    "><\u0003\u0002\u0002\u0002?@\u0005\u0014\u000b\u0002@\u0013\u0003\u0002",
-    "\u0002\u0002AB\u0005\u0016\f\u0002B\u0015\u0003\u0002\u0002\u0002CD",
-    "\u0005\u0018\r\u0002D\u0017\u0003\u0002\u0002\u0002EF\u0005\u001a\u000e",
-    "\u0002F\u0019\u0003\u0002\u0002\u0002GH\u0005\u001c\u000f\u0002H\u001b",
-    "\u0003\u0002\u0002\u0002IJ\u0005\u001e\u0010\u0002J\u001d\u0003\u0002",
-    "\u0002\u0002KL\u0005 \u0011\u0002L\u001f\u0003\u0002\u0002\u0002MT\u0007",
-    "\u0018\u0002\u0002NT\u0007\u0019\u0002\u0002OT\u0007\u0003\u0002\u0002",
-    "PT\u0005\"\u0012\u0002QT\u0007\u001a\u0002\u0002RT\u0007\u0014\u0002",
-    "\u0002SM\u0003\u0002\u0002\u0002SN\u0003\u0002\u0002\u0002SO\u0003\u0002",
-    "\u0002\u0002SP\u0003\u0002\u0002\u0002SQ\u0003\u0002\u0002\u0002SR\u0003",
-    "\u0002\u0002\u0002T!\u0003\u0002\u0002\u0002UV\u00073\u0002\u0002VW",
-    "\u0005$\u0013\u0002W#\u0003\u0002\u0002\u0002XY\u0007\u001a\u0002\u0002",
-    "Y%\u0003\u0002\u0002\u0002Z[\t\u0002\u0002\u0002[\'\u0003\u0002\u0002",
-    "\u0002\u0004<S"].join("");
+    "\n\t\f\t\u000e\t>\u000b\t\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003",
+    "\n\u0003\n\u0003\n\u0003\n\u0007\nI\n\n\f\n\u000e\nL\u000b\n\u0003\u000b",
+    "\u0003\u000b\u0003\f\u0003\f\u0003\r\u0003\r\u0003\u000e\u0003\u000e",
+    "\u0003\u000f\u0003\u000f\u0003\u0010\u0003\u0010\u0003\u0011\u0003\u0011",
+    "\u0003\u0011\u0003\u0011\u0003\u0011\u0003\u0011\u0005\u0011`\n\u0011",
+    "\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0013\u0003\u0013\u0003\u0014",
+    "\u0003\u0014\u0003\u0014\u0002\u0003\u0012\u0015\u0002\u0004\u0006\b",
+    "\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \"$&\u0002",
+    "\u0003\u0005\u0002\u0004\u0005\u0007\u001622\u0002]\u0002(\u0003\u0002",
+    "\u0002\u0002\u0004+\u0003\u0002\u0002\u0002\u0006-\u0003\u0002\u0002",
+    "\u0002\b/\u0003\u0002\u0002\u0002\n1\u0003\u0002\u0002\u0002\f3\u0003",
+    "\u0002\u0002\u0002\u000e5\u0003\u0002\u0002\u0002\u00107\u0003\u0002",
+    "\u0002\u0002\u0012?\u0003\u0002\u0002\u0002\u0014M\u0003\u0002\u0002",
+    "\u0002\u0016O\u0003\u0002\u0002\u0002\u0018Q\u0003\u0002\u0002\u0002",
+    "\u001aS\u0003\u0002\u0002\u0002\u001cU\u0003\u0002\u0002\u0002\u001e",
+    "W\u0003\u0002\u0002\u0002 _\u0003\u0002\u0002\u0002\"a\u0003\u0002\u0002",
+    "\u0002$d\u0003\u0002\u0002\u0002&f\u0003\u0002\u0002\u0002()\u0005\u0004",
+    "\u0003\u0002)*\u0007\u0002\u0002\u0003*\u0003\u0003\u0002\u0002\u0002",
+    "+,\u0005\u0006\u0004\u0002,\u0005\u0003\u0002\u0002\u0002-.\u0005\b",
+    "\u0005\u0002.\u0007\u0003\u0002\u0002\u0002/0\u0005\n\u0006\u00020\t",
+    "\u0003\u0002\u0002\u000212\u0005\f\u0007\u00022\u000b\u0003\u0002\u0002",
+    "\u000234\u0005\u000e\b\u00024\r\u0003\u0002\u0002\u000256\u0005\u0012",
+    "\n\u00026\u000f\u0003\u0002\u0002\u00027<\u0005\u0004\u0003\u000289",
+    "\u0007!\u0002\u00029;\u0005\u0004\u0003\u0002:8\u0003\u0002\u0002\u0002",
+    ";>\u0003\u0002\u0002\u0002<:\u0003\u0002\u0002\u0002<=\u0003\u0002\u0002",
+    "\u0002=\u0011\u0003\u0002\u0002\u0002><\u0003\u0002\u0002\u0002?@\b",
+    "\n\u0001\u0002@A\u0005\u0014\u000b\u0002AJ\u0003\u0002\u0002\u0002B",
+    "C\f\u0004\u0002\u0002CD\u0007-\u0002\u0002DI\u0005\u0014\u000b\u0002",
+    "EF\f\u0003\u0002\u0002FG\u0007.\u0002\u0002GI\u0005\u0014\u000b\u0002",
+    "HB\u0003\u0002\u0002\u0002HE\u0003\u0002\u0002\u0002IL\u0003\u0002\u0002",
+    "\u0002JH\u0003\u0002\u0002\u0002JK\u0003\u0002\u0002\u0002K\u0013\u0003",
+    "\u0002\u0002\u0002LJ\u0003\u0002\u0002\u0002MN\u0005\u0016\f\u0002N",
+    "\u0015\u0003\u0002\u0002\u0002OP\u0005\u0018\r\u0002P\u0017\u0003\u0002",
+    "\u0002\u0002QR\u0005\u001a\u000e\u0002R\u0019\u0003\u0002\u0002\u0002",
+    "ST\u0005\u001c\u000f\u0002T\u001b\u0003\u0002\u0002\u0002UV\u0005\u001e",
+    "\u0010\u0002V\u001d\u0003\u0002\u0002\u0002WX\u0005 \u0011\u0002X\u001f",
+    "\u0003\u0002\u0002\u0002Y`\u0007\u0018\u0002\u0002Z`\u0007\u0019\u0002",
+    "\u0002[`\u0007\u0003\u0002\u0002\\`\u0005\"\u0012\u0002]`\u0007\u001a",
+    "\u0002\u0002^`\u0007\u0014\u0002\u0002_Y\u0003\u0002\u0002\u0002_Z\u0003",
+    "\u0002\u0002\u0002_[\u0003\u0002\u0002\u0002_\\\u0003\u0002\u0002\u0002",
+    "_]\u0003\u0002\u0002\u0002_^\u0003\u0002\u0002\u0002`!\u0003\u0002\u0002",
+    "\u0002ab\u00073\u0002\u0002bc\u0005$\u0013\u0002c#\u0003\u0002\u0002",
+    "\u0002de\u0007\u001a\u0002\u0002e%\u0003\u0002\u0002\u0002fg\t\u0002",
+    "\u0002\u0002g\'\u0003\u0002\u0002\u0002\u0006<HJ_"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -652,7 +658,7 @@ FEEL_1_1Parser.prototype.relationalExpression = function() {
         localctx = new RelExpressionAddContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
         this.state = 51;
-        this.additiveExpression();
+        this.additiveExpression(0);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -778,7 +784,6 @@ AdditiveExpressionContext.prototype.copyFrom = function(ctx) {
     antlr4.ParserRuleContext.prototype.copyFrom.call(this, ctx);
 };
 
-
 function AddExpressionMultContext(parser, ctx) {
 	AdditiveExpressionContext.call(this, parser);
     AdditiveExpressionContext.prototype.copyFrom.call(this, ctx);
@@ -802,28 +807,118 @@ AddExpressionMultContext.prototype.accept = function(visitor) {
 };
 
 
+function AddExpressionContext(parser, ctx) {
+	AdditiveExpressionContext.call(this, parser);
+    this.op = null; // Token;
+    AdditiveExpressionContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
 
-FEEL_1_1Parser.AdditiveExpressionContext = AdditiveExpressionContext;
+AddExpressionContext.prototype = Object.create(AdditiveExpressionContext.prototype);
+AddExpressionContext.prototype.constructor = AddExpressionContext;
 
-FEEL_1_1Parser.prototype.additiveExpression = function() {
+FEEL_1_1Parser.AddExpressionContext = AddExpressionContext;
 
-    var localctx = new AdditiveExpressionContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 16, FEEL_1_1Parser.RULE_additiveExpression);
+AddExpressionContext.prototype.additiveExpression = function() {
+    return this.getTypedRuleContext(AdditiveExpressionContext,0);
+};
+
+AddExpressionContext.prototype.multiplicativeExpression = function() {
+    return this.getTypedRuleContext(MultiplicativeExpressionContext,0);
+};
+
+AddExpressionContext.prototype.ADD = function() {
+    return this.getToken(FEEL_1_1Parser.ADD, 0);
+};
+
+AddExpressionContext.prototype.SUB = function() {
+    return this.getToken(FEEL_1_1Parser.SUB, 0);
+};
+AddExpressionContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitAddExpression(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+FEEL_1_1Parser.prototype.additiveExpression = function(_p) {
+	if(_p===undefined) {
+	    _p = 0;
+	}
+    var _parentctx = this._ctx;
+    var _parentState = this.state;
+    var localctx = new AdditiveExpressionContext(this, this._ctx, _parentState);
+    var _prevctx = localctx;
+    var _startState = 16;
+    this.enterRecursionRule(localctx, 16, FEEL_1_1Parser.RULE_additiveExpression, _p);
     try {
-        localctx = new AddExpressionMultContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 61;
+        localctx = new AddExpressionMultContext(this, localctx);
+        this._ctx = localctx;
+        _prevctx = localctx;
+
+        this.state = 62;
         this.multiplicativeExpression();
-    } catch (re) {
-    	if(re instanceof antlr4.error.RecognitionException) {
-	        localctx.exception = re;
-	        this._errHandler.reportError(this, re);
-	        this._errHandler.recover(this, re);
+        this._ctx.stop = this._input.LT(-1);
+        this.state = 72;
+        this._errHandler.sync(this);
+        var _alt = this._interp.adaptivePredict(this._input,2,this._ctx)
+        while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
+            if(_alt===1) {
+                if(this._parseListeners!==null) {
+                    this.triggerExitRuleEvent();
+                }
+                _prevctx = localctx;
+                this.state = 70;
+                this._errHandler.sync(this);
+                var la_ = this._interp.adaptivePredict(this._input,1,this._ctx);
+                switch(la_) {
+                case 1:
+                    localctx = new AddExpressionContext(this, new AdditiveExpressionContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, FEEL_1_1Parser.RULE_additiveExpression);
+                    this.state = 64;
+                    if (!( this.precpred(this._ctx, 2))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 2)");
+                    }
+                    this.state = 65;
+                    localctx.op = this.match(FEEL_1_1Parser.ADD);
+                    this.state = 66;
+                    this.multiplicativeExpression();
+                    break;
+
+                case 2:
+                    localctx = new AddExpressionContext(this, new AdditiveExpressionContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, FEEL_1_1Parser.RULE_additiveExpression);
+                    this.state = 67;
+                    if (!( this.precpred(this._ctx, 1))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 1)");
+                    }
+                    this.state = 68;
+                    localctx.op = this.match(FEEL_1_1Parser.SUB);
+                    this.state = 69;
+                    this.multiplicativeExpression();
+                    break;
+
+                } 
+            }
+            this.state = 74;
+            this._errHandler.sync(this);
+            _alt = this._interp.adaptivePredict(this._input,2,this._ctx);
+        }
+
+    } catch( error) {
+        if(error instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = error;
+	        this._errHandler.reportError(this, error);
+	        this._errHandler.recover(this, error);
 	    } else {
-	    	throw re;
+	    	throw error;
 	    }
     } finally {
-        this.exitRule();
+        this.unrollRecursionContexts(_parentctx)
     }
     return localctx;
 };
@@ -885,7 +980,7 @@ FEEL_1_1Parser.prototype.multiplicativeExpression = function() {
     try {
         localctx = new MultExpressionPowContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 63;
+        this.state = 75;
         this.powerExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -958,7 +1053,7 @@ FEEL_1_1Parser.prototype.powerExpression = function() {
     try {
         localctx = new PowExpressionUnaryContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 65;
+        this.state = 77;
         this.filterPathExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1014,7 +1109,7 @@ FEEL_1_1Parser.prototype.filterPathExpression = function() {
     this.enterRule(localctx, 22, FEEL_1_1Parser.RULE_filterPathExpression);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 67;
+        this.state = 79;
         this.unaryExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1087,7 +1182,7 @@ FEEL_1_1Parser.prototype.unaryExpression = function() {
     try {
         localctx = new NonSignedUnaryExpressionContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 69;
+        this.state = 81;
         this.unaryExpressionNotPlusMinus();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1143,7 +1238,7 @@ FEEL_1_1Parser.prototype.unaryExpressionNotPlusMinus = function() {
     this.enterRule(localctx, 26, FEEL_1_1Parser.RULE_unaryExpressionNotPlusMinus);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 71;
+        this.state = 83;
         this.primary();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1216,7 +1311,7 @@ FEEL_1_1Parser.prototype.primary = function() {
     try {
         localctx = new PrimaryLiteralContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 73;
+        this.state = 85;
         this.literal();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1383,43 +1478,43 @@ FEEL_1_1Parser.prototype.literal = function() {
     var localctx = new LiteralContext(this, this._ctx, this.state);
     this.enterRule(localctx, 30, FEEL_1_1Parser.RULE_literal);
     try {
-        this.state = 81;
+        this.state = 93;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case FEEL_1_1Parser.IntegerLiteral:
             localctx = new NumberLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
-            this.state = 75;
+            this.state = 87;
             this.match(FEEL_1_1Parser.IntegerLiteral);
             break;
         case FEEL_1_1Parser.FloatingPointLiteral:
             localctx = new NumberLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 76;
+            this.state = 88;
             this.match(FEEL_1_1Parser.FloatingPointLiteral);
             break;
         case FEEL_1_1Parser.BooleanLiteral:
             localctx = new BoolLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 3);
-            this.state = 77;
+            this.state = 89;
             this.match(FEEL_1_1Parser.BooleanLiteral);
             break;
         case FEEL_1_1Parser.AT:
             localctx = new AtLiteralLabelContext(this, localctx);
             this.enterOuterAlt(localctx, 4);
-            this.state = 78;
+            this.state = 90;
             this.atLiteral();
             break;
         case FEEL_1_1Parser.StringLiteral:
             localctx = new StringLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 5);
-            this.state = 79;
+            this.state = 91;
             this.match(FEEL_1_1Parser.StringLiteral);
             break;
         case FEEL_1_1Parser.NULL:
             localctx = new NullLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 6);
-            this.state = 80;
+            this.state = 92;
             this.match(FEEL_1_1Parser.NULL);
             break;
         default:
@@ -1483,9 +1578,9 @@ FEEL_1_1Parser.prototype.atLiteral = function() {
     this.enterRule(localctx, 32, FEEL_1_1Parser.RULE_atLiteral);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 83;
+        this.state = 95;
         this.match(FEEL_1_1Parser.AT);
-        this.state = 84;
+        this.state = 96;
         this.atLiteralValue();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1541,7 +1636,7 @@ FEEL_1_1Parser.prototype.atLiteralValue = function() {
     this.enterRule(localctx, 34, FEEL_1_1Parser.RULE_atLiteralValue);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 86;
+        this.state = 98;
         this.match(FEEL_1_1Parser.StringLiteral);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1670,7 +1765,7 @@ FEEL_1_1Parser.prototype.reusableKeywords = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 88;
+        this.state = 100;
         _la = this._input.LA(1);
         if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << FEEL_1_1Parser.FOR) | (1 << FEEL_1_1Parser.RETURN) | (1 << FEEL_1_1Parser.IF) | (1 << FEEL_1_1Parser.THEN) | (1 << FEEL_1_1Parser.ELSE) | (1 << FEEL_1_1Parser.SOME) | (1 << FEEL_1_1Parser.EVERY) | (1 << FEEL_1_1Parser.SATISFIES) | (1 << FEEL_1_1Parser.INSTANCE) | (1 << FEEL_1_1Parser.OF) | (1 << FEEL_1_1Parser.FUNCTION) | (1 << FEEL_1_1Parser.EXTERNAL) | (1 << FEEL_1_1Parser.OR) | (1 << FEEL_1_1Parser.AND) | (1 << FEEL_1_1Parser.BETWEEN) | (1 << FEEL_1_1Parser.NULL) | (1 << FEEL_1_1Parser.TRUE) | (1 << FEEL_1_1Parser.FALSE))) !== 0) || _la===FEEL_1_1Parser.NOT)) {
         this._errHandler.recoverInline(this);
@@ -1691,6 +1786,27 @@ FEEL_1_1Parser.prototype.reusableKeywords = function() {
         this.exitRule();
     }
     return localctx;
+};
+
+
+FEEL_1_1Parser.prototype.sempred = function(localctx, ruleIndex, predIndex) {
+	switch(ruleIndex) {
+	case 8:
+			return this.additiveExpression_sempred(localctx, predIndex);
+    default:
+        throw "No predicate with index:" + ruleIndex;
+   }
+};
+
+FEEL_1_1Parser.prototype.additiveExpression_sempred = function(localctx, predIndex) {
+	switch(predIndex) {
+		case 0:
+			return this.precpred(this._ctx, 2);
+		case 1:
+			return this.precpred(this._ctx, 1);
+		default:
+			throw "No predicate with index:" + predIndex;
+	}
 };
 
 

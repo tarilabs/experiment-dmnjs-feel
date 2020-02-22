@@ -66,6 +66,12 @@ FEEL_1_1Visitor.prototype.visitAddExpressionMult = function(ctx) {
 };
 
 
+// Visit a parse tree produced by FEEL_1_1Parser#addExpression.
+FEEL_1_1Visitor.prototype.visitAddExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by FEEL_1_1Parser#multExpressionPow.
 FEEL_1_1Visitor.prototype.visitMultExpressionPow = function(ctx) {
   return this.visitChildren(ctx);
