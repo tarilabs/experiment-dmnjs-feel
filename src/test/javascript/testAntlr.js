@@ -60,4 +60,8 @@ var cu = tree.accept(new MyVisitor());
 console.log(JSON.stringify(cu));
 
 var feelValue = cu.accept(new ASTNode.ValueVisitor());
-console.log(JSON.stringify(feelValue));
+if (feelValue.isRight()) {
+    console.log(JSON.stringify(feelValue.getRight()));
+} else {
+    console.log(JSON.stringify(feelValue.getLeft()))
+}

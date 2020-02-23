@@ -1,4 +1,5 @@
 import * as Decimal from 'decimal.js';
+import {Either} from './Commons';
 
 export interface FEELValue {
 }
@@ -22,9 +23,9 @@ export class NumberValue implements FEELValue {
         this.value = value;
     }
 
-    static from(value : string) : NumberValue {
+    static from(value : string) : Either<Error, NumberValue> {
         let d = new Decimal.Decimal(value); // TODO will need to handle parse errors.
-        return new NumberValue(d);
+        return Either.ofRight(new NumberValue(d));
     }
 
     sum(value : NumberValue) : NumberValue {

@@ -1,9 +1,10 @@
 "use strict";
 exports.__esModule = true;
-var FEELValue = require("./FEELValue");
+var feelvalue = require("./FEELValue");
+var Commons_1 = require("./Commons");
 var NumberNode = (function () {
     function NumberNode(text) {
-        this.value = FEELValue.NumberValue.from(text);
+        this.value = feelvalue.NumberValue.from(text);
     }
     NumberNode.prototype.accept = function (visitor) {
         return visitor.visitNumber(this);
@@ -29,13 +30,18 @@ var ValueVisitor = (function () {
         return node.value;
     };
     ValueVisitor.prototype.visitSum = function (node) {
-        var left = node.left.accept(this);
-        var right = node.right.accept(this);
-        if (left instanceof FEELValue.NumberValue && right instanceof FEELValue.NumberValue) {
-            return left.sum(right);
+        var lm = node.left.accept(this);
+        var rm = node.right.accept(this);
+        if (lm.isLeft() || rm.isLeft()) {
+            return Commons_1.Either.ofLeft(new Error());
+        }
+        var left = lm.getRight();
+        var right = rm.getRight();
+        if (left instanceof feelvalue.NumberValue && right instanceof feelvalue.NumberValue) {
+            return Commons_1.Either.ofRight(left.sum(right));
         }
         else {
-            return FEELValue.NullValue.value;
+            return Commons_1.Either.ofLeft(new Error("TODO"));
         }
     };
     return ValueVisitor;
