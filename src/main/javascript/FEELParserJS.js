@@ -8,6 +8,10 @@ var MyVisitor = require('../../main-generated/javascript/FEEL_1_1Visitor.js').FE
 var FEELValue = require('../../main-generated/javascript/FEELValue.js');
 var ASTNode = require('../../main-generated/javascript/ASTNode.js');
 
+function log(text) {
+    //console.log(text);
+}
+
 function parse(expression) {
     var chars = new antlr4.InputStream(expression);
     var lexer = new MyGrammarLexer(chars);
@@ -15,10 +19,10 @@ function parse(expression) {
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
     var tree = parser.compilation_unit();
-    // console.log(tree.toStringTree(parser.ruleNames));
+    log(tree.toStringTree(parser.ruleNames));
 
     var cu = tree.accept(new MyVisitor());
-    // console.log(JSON.stringify(cu));
+    log(JSON.stringify(cu));
     return cu;
 }
 exports.parse = parse;
@@ -30,9 +34,6 @@ function evaluate(cu) {
 exports.evaluate = evaluate;
 
 // IMPORTANT: please note this overwrite will be shared:
-function log(text) {
-    // console.log(text);
-}
 MyVisitor.prototype.visit = function(ctx) {
  	if (Array.isArray(ctx)) {
         if (ctx.length > 1) {
