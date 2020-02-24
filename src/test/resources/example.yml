@@ -1,8 +1,11 @@
 ---
 # comment
-expression: 3
-result: 3
+expression: "47"
+result: 47
 ---
 # comment 2
-expression: "4"
-result: 4
+expression: "1+2"
+result: 3
+---
+expression: "0.1+0.1+0.1"
+result: 0.3

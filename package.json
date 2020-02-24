@@ -2,6 +2,8 @@
   "name": "kie-dmnjs-feel",
   "version": "0.0.1-SNAPSHOT",
   "dependencies": {
+    "@types/js-yaml": "^3.12.2",
+    "@types/mocha": "^7.0.1",
     "antlr4": "^4.7.2",
     "decimal.js": "^10.2.0",
     "js-yaml": "^3.13.1",
@@ -9,13 +11,18 @@
     "webpack-cli": "^3.3.7"
   },
   "devDependencies": {
+    "@types/node": "^13.7.4",
     "mocha": "^6.2.0",
     "monaco-editor": "^0.17.1"
   },
   "scripts": {
+    "prepublish": "rm -rf src/main-generated && rm -rf src/test-generated && tsc && tsc --build tsconfig.test.json",
     "test": "mocha"
   },
   "mocha": {
-    "spec": "src/test/javascript/**/*.js"
+    "spec": [
+      "src/test-generated/**/*.js",
+      "src/test/**/*.js"
+    ]
   }
 }

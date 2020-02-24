@@ -1,0 +1,7 @@
+"use strict";
+// test.js
+
+console.log("*** 2 ==== OLD SCHOOLD CONSOLE LOG PROVISIONAL TESTS ***");
+var p = require('../../main/javascript/FEELParserJS');
+
+p.parse("2+2");

@@ -1,4 +1,7 @@
+declare const EitherUUID: unique symbol;
+
 export class Either<L, R> {
+    [EitherUUID]: void;
     private readonly value: L | R;
     private readonly left: boolean;
 

@@ -1,16 +1,14 @@
 {
     "extends": "./tsconfig.base",
     "compilerOptions": {
-        "declaration": true,
-        "outDir": "src/main-generated/javascript"
+        "outDir": "src/test-generated/javascript"
     },
     "include" : [
-        "src/main/**/*",
+        "src/test/**/*",
     ],
     "exclude": [
         "node_modules",
         "**/*.spec.ts",
-        "src/main-generated/**/*",
-        "src/test/**/*"
+        "src/main/**/*"
     ],
 }

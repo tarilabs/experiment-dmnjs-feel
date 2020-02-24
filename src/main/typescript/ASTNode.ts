@@ -1,7 +1,7 @@
 import * as feelvalue from './FEELValue';
 import {Either} from './Commons';
 
-interface ASTNode { 
+export interface ASTNode { 
     accept<T>(visitor: ASTNodeVisitor<T>): T;
 }
 

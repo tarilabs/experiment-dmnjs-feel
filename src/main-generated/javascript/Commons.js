@@ -10,7 +10,7 @@ var Either = (function () {
     };
     Either.prototype.getLeft = function () {
         if (!this.isLeft())
-            throw new Error();
+            throw new Error("This either is not a left");
         return this.value;
     };
     Either.prototype.isRight = function () {
@@ -18,7 +18,7 @@ var Either = (function () {
     };
     Either.prototype.getRight = function () {
         if (!this.isRight())
-            throw new Error();
+            throw new Error("This either is not a right");
         return this.value;
     };
     Either.ofLeft = function (value) {

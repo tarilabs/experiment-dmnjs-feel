@@ -6,6 +6,9 @@ var NullValue = (function () {
     function NullValue() {
     }
     ;
+    NullValue.prototype.toJSONObject = function () {
+        return null;
+    };
     NullValue.value = new NullValue();
     return NullValue;
 }());
@@ -24,6 +27,9 @@ var NumberValue = (function () {
     };
     NumberValue.prototype.sum = function (value) {
         return new NumberValue(this.value.add(value.value));
+    };
+    NumberValue.prototype.toJSONObject = function () {
+        return this.value.toNumber();
     };
     return NumberValue;
 }());
