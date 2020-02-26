@@ -12,7 +12,7 @@ try {
         var _loop_1 = function (ydoc) {
             if (ydoc && ydoc.expression && typeof ydoc.expression == 'string' && ydoc.result) {
                 var casted_1 = ydoc;
-                mocha_1.it("Using: " + JSON.stringify(ydoc), function () {
+                mocha_1.it("" + casted_1.expression + "  = " + casted_1.result, function () {
                     var parsed = x.parse(casted_1.expression);
                     var result = x.evaluate(parsed);
                     if (result.isLeft()) {

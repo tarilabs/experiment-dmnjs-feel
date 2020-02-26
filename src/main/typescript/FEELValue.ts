@@ -40,3 +40,22 @@ export class NumberValue implements FEELValue {
         return this.value.toNumber();
     }
 }
+
+export class StringValue implements FEELValue {
+    readonly value: string;
+    private constructor(value : string) {
+        this.value = value;
+    }
+    
+    static from(value : string) : StringValue {
+        return new StringValue(value);
+    }
+    
+    sum(value : StringValue) : StringValue {
+        return new StringValue(this.value + value.value);
+    }
+
+    toJSONObject(): Object {
+        return this.value;
+    }
+}

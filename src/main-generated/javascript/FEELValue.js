@@ -34,4 +34,20 @@ var NumberValue = (function () {
     return NumberValue;
 }());
 exports.NumberValue = NumberValue;
+var StringValue = (function () {
+    function StringValue(value) {
+        this.value = value;
+    }
+    StringValue.from = function (value) {
+        return new StringValue(value);
+    };
+    StringValue.prototype.sum = function (value) {
+        return new StringValue(this.value + value.value);
+    };
+    StringValue.prototype.toJSONObject = function () {
+        return this.value;
+    };
+    return StringValue;
+}());
+exports.StringValue = StringValue;
 //# sourceMappingURL=FEELValue.js.map

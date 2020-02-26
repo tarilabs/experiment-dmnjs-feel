@@ -17,4 +17,11 @@ export declare class NumberValue implements FEELValue {
     sum(value: NumberValue): NumberValue;
     toJSONObject(): Object;
 }
+export declare class StringValue implements FEELValue {
+    readonly value: string;
+    private constructor();
+    static from(value: string): StringValue;
+    sum(value: StringValue): StringValue;
+    toJSONObject(): Object;
+}
 export {};

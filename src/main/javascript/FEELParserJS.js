@@ -68,4 +68,6 @@ MyVisitor.prototype.visitPrimaryLiteral = function(ctx) {
 MyVisitor.prototype.visitNumberLiteral = function(ctx) {
     return new ASTNode.NumberNode(ctx.getText());
 };
-
+MyVisitor.prototype.visitStringLiteral = function(ctx) {
+    return new ASTNode.StringNode(ctx.getText());
+};

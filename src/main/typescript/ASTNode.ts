@@ -7,6 +7,7 @@ export interface ASTNode {
 
 interface ASTNodeVisitor<T> {
     visitNumber(node: NumberNode): T;
+    visitString(node: StringNode): T;
     visitSum(node: SumNode): T;
 }
 
@@ -19,6 +20,18 @@ export class NumberNode implements ASTNode {
 
     accept<T>(visitor: ASTNodeVisitor<T>) {
         return visitor.visitNumber(this);
+    }
+}
+
+export class StringNode implements ASTNode {
+    readonly value: feelvalue.StringValue;
+
+    constructor(text : string) {
+        this.value = feelvalue.StringValue.from(text.slice(1, -1));
+    }
+
+    accept<T>(visitor: ASTNodeVisitor<T>) {
+        return visitor.visitString(this);
     }
 }
 
@@ -40,6 +53,9 @@ export class ValueVisitor implements ASTNodeVisitor<Either<Error, feelvalue.FEEL
     visitNumber(node: NumberNode): Either<Error, feelvalue.FEELValue> {
         return node.value;
     }
+    visitString(node: StringNode): Either<Error, feelvalue.FEELValue> {
+        return Either.ofRight(node.value);
+    }
     visitSum(node: SumNode): Either<Error, feelvalue.FEELValue> {
         let lm = node.left.accept(this);
         let rm = node.right.accept(this);
@@ -49,6 +65,8 @@ export class ValueVisitor implements ASTNodeVisitor<Either<Error, feelvalue.FEEL
         let left = lm.getRight();
         let right = rm.getRight();
         if (left instanceof feelvalue.NumberValue && right instanceof feelvalue.NumberValue)  {
+            return Either.ofRight(left.sum(right));
+        } else if (left instanceof feelvalue.StringValue && right instanceof feelvalue.StringValue)  {
             return Either.ofRight(left.sum(right));
         } else {
             return Either.ofLeft(new Error("TODO"));

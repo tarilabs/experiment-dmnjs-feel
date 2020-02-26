@@ -17,7 +17,7 @@ try {
       for (const ydoc of doc) {
         if (ydoc && ydoc.expression && typeof ydoc.expression == 'string' && ydoc.result) {
             let casted = <YDoc>ydoc;
-            it("Using: "+JSON.stringify(ydoc), function(){
+            it(""+casted.expression + "  = "+casted.result, function(){
                 let parsed = x.parse(casted.expression);
                 let result = x.evaluate(parsed);
                 if (result.isLeft() ) {

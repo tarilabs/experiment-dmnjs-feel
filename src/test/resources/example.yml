@@ -9,3 +9,9 @@ result: 3
 ---
 expression: "0.1+0.1+0.1"
 result: 0.3
+---
+expression: '"Hello World"'
+result: "Hello World"
+---
+expression: '"Hello, "+"John Doe"'
+result: "Hello, John Doe"
