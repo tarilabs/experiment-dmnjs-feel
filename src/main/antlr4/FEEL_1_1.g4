@@ -8,33 +8,7 @@
  */
 grammar FEEL_1_1;
 
-// @parser::header {
-//     import org.kie.dmn.feel.parser.feel11.ParserHelper;
-//     import org.kie.dmn.feel.parser.feel11.Keywords;
-// }
-
-// @parser::members {
-//     private ParserHelper helper = null;
-    
-//     public void setHelper( ParserHelper helper ) {
-//         this.helper = helper;
-//     }
-
-//     public ParserHelper getHelper() {
-//         return helper;
-//     }
-
-//     private boolean isKeyword( Keywords k ) {
-//         return k.symbol.equals( _input.LT(1).getText() );
-//     }
-
-//     private String getOriginalText( ParserRuleContext ctx ) {
-//         int a = ctx.start.getStartIndex();
-//         int b = ctx.stop.getStopIndex();
-//         Interval interval = new Interval(a,b);
-//         return ctx.getStart().getInputStream().getText(interval);
-//     }
-// }
+// TODO members
 
 /**************************
  *       EXPRESSIONS
@@ -281,6 +255,7 @@ unaryExpression
 	//|   
     unaryExpressionNotPlusMinus              #nonSignedUnaryExpression
     //|	ADD unaryExpressionNotPlusMinus          #signedUnaryExpressionPlus
+    //| unaryExpression parameters #fnInvocation
 	;
 
 unaryExpressionNotPlusMinus
@@ -297,7 +272,7 @@ primary
     // | context                     #primaryContext
     // | LPAREN expression RPAREN          #primaryParens
     // | simplePositiveUnaryTest     #primaryUnaryTest
-    // | qualifiedName parameters?   #primaryName
+    // | qualifiedName    #primaryName
     ;
 
 // #33 - #39
@@ -718,7 +693,8 @@ ZeroToThree
 // This is not in the spec but prevents having to preprocess the input
 fragment
 UnicodeEscape
-    :   '\\' 'u' HexDigit HexDigit HexDigit HexDigit
+    :   '\\' 'U' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit
+    |   '\\' 'u' HexDigit HexDigit HexDigit HexDigit
     ;
 
 // The Null Literal
