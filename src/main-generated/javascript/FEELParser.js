@@ -5,12 +5,33 @@ var MyGrammarLexer = require('../../main-generated/javascript/FEEL_1_1Lexer.js')
 var MyGrammarParser = require('../../main-generated/javascript/FEEL_1_1Parser.js').FEEL_1_1Parser;
 var MyVisitor = require('../../main-generated/javascript/FEEL_1_1Visitor.js').FEEL_1_1Visitor;
 var ASTNode = require("./ASTNode");
+var MockedParserHelper = (function () {
+    function MockedParserHelper() {
+        this.dynamicResolution = 0;
+    }
+    MockedParserHelper.prototype.isDynamicResolution = function () {
+        console.log('isDynamicResolution()');
+        return this.dynamicResolution > 0;
+    };
+    MockedParserHelper.prototype.disableDynamicResolution = function () {
+        console.log('disableDynamicResolution()');
+        if (this.dynamicResolution > 0) {
+            this.dynamicResolution--;
+        }
+    };
+    MockedParserHelper.prototype.enableDynamicResolution = function () {
+        console.log('enableDynamicResolution()');
+        this.dynamicResolution++;
+    };
+    return MockedParserHelper;
+}());
 function parse(expression) {
     var chars = new antlr4.InputStream(expression);
     var lexer = new MyGrammarLexer(chars);
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
+    parser.setHelper(new MockedParserHelper());
     var tree = parser.compilation_unit();
     log(tree.toStringTree(parser.ruleNames));
     var cu = tree.accept(new MyVisitor());
@@ -63,5 +84,28 @@ MyVisitor.prototype.visitNumberLiteral = function (ctx) {
 };
 MyVisitor.prototype.visitStringLiteral = function (ctx) {
     return new ASTNode.StringNode(ctx.getText());
+};
+MyVisitor.prototype.visitInterval = function (ctx) {
+    var start = this.visit(ctx.start);
+    var end = this.visit(ctx.end);
+    var low = ctx.low.text === "[" ? ASTNode.IntervalBoundary.CLOSED : ASTNode.IntervalBoundary.OPEN;
+    var up = ctx.up.text === "]" ? ASTNode.IntervalBoundary.CLOSED : ASTNode.IntervalBoundary.OPEN;
+    return new ASTNode.RangeNode(low, start, end, up);
+};
+MyVisitor.prototype.visitPositiveUnaryTestIneqInterval = function (ctx) {
+    var value = this.visit(ctx.endpoint());
+    var op = ctx.op.text;
+    switch (op) {
+        case ASTNode.UnaryOperator.GT:
+            return new ASTNode.RangeNode(ASTNode.IntervalBoundary.OPEN, value, new ASTNode.NullNode(), ASTNode.IntervalBoundary.OPEN);
+        case ASTNode.UnaryOperator.GTE:
+            return new ASTNode.RangeNode(ASTNode.IntervalBoundary.CLOSED, value, new ASTNode.NullNode(), ASTNode.IntervalBoundary.OPEN);
+        case ASTNode.UnaryOperator.LT:
+            return new ASTNode.RangeNode(ASTNode.IntervalBoundary.OPEN, new ASTNode.NullNode(), value, ASTNode.IntervalBoundary.OPEN);
+        case ASTNode.UnaryOperator.LTE:
+            return new ASTNode.RangeNode(ASTNode.IntervalBoundary.OPEN, new ASTNode.NullNode(), value, ASTNode.IntervalBoundary.CLOSED);
+        default:
+            throw new Error("by the parser rule FEEL grammar rule 7.a for range syntax should not have determined the operator " + op);
+    }
 };
 //# sourceMappingURL=FEELParser.js.map

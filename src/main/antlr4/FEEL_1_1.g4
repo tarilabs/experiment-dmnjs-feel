@@ -8,6 +8,18 @@
  */
 grammar FEEL_1_1;
 
+@parser::members {
+
+this.helper = null;
+this.setHelper = function (helper) {
+    this.helper = helper;
+};
+this.getHelper = function () {
+    return this.helper;
+};
+
+}
+
 // TODO members
 
 /**************************
@@ -267,11 +279,11 @@ primary
     // | forExpression               #primaryForExpression
     // | quantifiedExpression        #primaryQuantifiedExpression
     // | ifExpression                #primaryIfExpression
-    // | interval                    #primaryInterval
+    | interval                    #primaryInterval
     // | list                        #primaryList
     // | context                     #primaryContext
     // | LPAREN expression RPAREN          #primaryParens
-    // | simplePositiveUnaryTest     #primaryUnaryTest
+    | simplePositiveUnaryTest     #primaryUnaryTest
     // | qualifiedName    #primaryName
     ;
 
@@ -303,15 +315,15 @@ BooleanLiteral
  **************************/
 
 // #7
-// simplePositiveUnaryTest
-//     : op=LT  {helper.enableDynamicResolution();}  endpoint {helper.disableDynamicResolution();}   #positiveUnaryTestIneqInterval
-//     | op=GT  {helper.enableDynamicResolution();}  endpoint {helper.disableDynamicResolution();}   #positiveUnaryTestIneqInterval
-//     | op=LE {helper.enableDynamicResolution();}  endpoint {helper.disableDynamicResolution();}   #positiveUnaryTestIneqInterval
-//     | op=GE {helper.enableDynamicResolution();}  endpoint {helper.disableDynamicResolution();}   #positiveUnaryTestIneqInterval
-//     | op=EQUAL  {helper.enableDynamicResolution();}  endpoint {helper.disableDynamicResolution();}   #positiveUnaryTestIneq
-//     | op=NOTEQUAL {helper.enableDynamicResolution();}  endpoint {helper.disableDynamicResolution();}   #positiveUnaryTestIneq
-//     | interval           #positiveUnaryTestInterval
-//     ;
+simplePositiveUnaryTest
+    : op=LT  {this.helper.enableDynamicResolution();}  endpoint {this.helper.disableDynamicResolution();}   #positiveUnaryTestIneqInterval
+    | op=GT  {this.helper.enableDynamicResolution();}  endpoint {this.helper.disableDynamicResolution();}   #positiveUnaryTestIneqInterval
+    | op=LE {this.helper.enableDynamicResolution();}  endpoint {this.helper.disableDynamicResolution();}   #positiveUnaryTestIneqInterval
+    | op=GE {this.helper.enableDynamicResolution();}  endpoint {this.helper.disableDynamicResolution();}   #positiveUnaryTestIneqInterval
+    | op=EQUAL  {this.helper.enableDynamicResolution();}  endpoint {this.helper.disableDynamicResolution();}   #positiveUnaryTestIneq
+    | op=NOTEQUAL {this.helper.enableDynamicResolution();}  endpoint {this.helper.disableDynamicResolution();}   #positiveUnaryTestIneq
+    | interval           #positiveUnaryTestInterval
+    ;
 
 
 // // #13
@@ -327,46 +339,45 @@ BooleanLiteral
 //     | SUB                                          #positiveUnaryTestDash
 //     ;
 
-// // #15
-// positiveUnaryTest
-//     : expression
-//     ;
+// #15
+positiveUnaryTest
+    : expression
+    ;
 
-// // #16
-// positiveUnaryTests
-//     : positiveUnaryTest ( COMMA positiveUnaryTest )*
-//     ;
+// #16
+positiveUnaryTests
+    : positiveUnaryTest ( COMMA positiveUnaryTest )*
+    ;
 
 
-// unaryTestsRoot
-//     : unaryTests EOF
-//     ;
+unaryTestsRoot
+    : unaryTests EOF
+    ;
 
-// // #17 (root for decision tables)
-// unaryTests
-//     :
-//     NOT LPAREN positiveUnaryTests RPAREN #unaryTests_negated
-//     | positiveUnaryTests               #unaryTests_positive
-//     | SUB                              #unaryTests_empty
-//     ;
+// #17 (root for decision tables)
+unaryTests
+    :
+    NOT LPAREN positiveUnaryTests RPAREN #unaryTests_negated
+    | positiveUnaryTests               #unaryTests_positive
+    | SUB                              #unaryTests_empty
+    ;
 
-// // #18
-// endpoint
-//     : additiveExpression
-//     ;
-
-// // #8-#12
-// interval
-//     : low=LPAREN start=endpoint ELIPSIS end=endpoint up=RPAREN
-//     | low=LPAREN start=endpoint ELIPSIS end=endpoint up=LBRACK
-//     | low=LPAREN start=endpoint ELIPSIS end=endpoint up=RBRACK
-//     | low=RBRACK start=endpoint ELIPSIS end=endpoint up=RPAREN
-//     | low=RBRACK start=endpoint ELIPSIS end=endpoint up=LBRACK
-//     | low=RBRACK start=endpoint ELIPSIS end=endpoint up=RBRACK
-//     | low=LBRACK start=endpoint ELIPSIS end=endpoint up=RPAREN
-//     | low=LBRACK start=endpoint ELIPSIS end=endpoint up=LBRACK
-//     | low=LBRACK start=endpoint ELIPSIS end=endpoint up=RBRACK
-//     ;
+// #18
+endpoint
+    : additiveExpression
+    ;
+// #8-#12
+interval
+    : low=LPAREN start=endpoint ELIPSIS end=endpoint up=RPAREN
+    | low=LPAREN start=endpoint ELIPSIS end=endpoint up=LBRACK
+    | low=LPAREN start=endpoint ELIPSIS end=endpoint up=RBRACK
+    | low=RBRACK start=endpoint ELIPSIS end=endpoint up=RPAREN
+    | low=RBRACK start=endpoint ELIPSIS end=endpoint up=LBRACK
+    | low=RBRACK start=endpoint ELIPSIS end=endpoint up=RBRACK
+    | low=LBRACK start=endpoint ELIPSIS end=endpoint up=RPAREN
+    | low=LBRACK start=endpoint ELIPSIS end=endpoint up=LBRACK
+    | low=LBRACK start=endpoint ELIPSIS end=endpoint up=RBRACK
+    ;
 
 // // #20
 // qualifiedName

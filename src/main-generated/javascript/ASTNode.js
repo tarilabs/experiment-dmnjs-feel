@@ -2,6 +2,16 @@
 exports.__esModule = true;
 var feelvalue = require("./FEELValue");
 var Commons_1 = require("./Commons");
+var NullNode = (function () {
+    function NullNode() {
+        this.value = feelvalue.NullValue.value;
+    }
+    NullNode.prototype.accept = function (visitor) {
+        return visitor.visitNull(this);
+    };
+    return NullNode;
+}());
+exports.NullNode = NullNode;
 var NumberNode = (function () {
     function NumberNode(text) {
         this.value = feelvalue.NumberValue.from(text);
@@ -33,9 +43,42 @@ var SumNode = (function () {
     return SumNode;
 }());
 exports.SumNode = SumNode;
+var IntervalBoundary;
+(function (IntervalBoundary) {
+    IntervalBoundary[IntervalBoundary["OPEN"] = 0] = "OPEN";
+    IntervalBoundary[IntervalBoundary["CLOSED"] = 1] = "CLOSED";
+})(IntervalBoundary = exports.IntervalBoundary || (exports.IntervalBoundary = {}));
+var RangeNode = (function () {
+    function RangeNode(lowerBound, start, end, upperBound) {
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
+        this.start = start;
+        this.end = end;
+    }
+    RangeNode.prototype.accept = function (visitor) {
+        return visitor.visitRange(this);
+    };
+    return RangeNode;
+}());
+exports.RangeNode = RangeNode;
+var UnaryOperator;
+(function (UnaryOperator) {
+    UnaryOperator["LTE"] = "<=";
+    UnaryOperator["LT"] = "<";
+    UnaryOperator["GT"] = ">";
+    UnaryOperator["GTE"] = ">=";
+    UnaryOperator["NE"] = "!=";
+    UnaryOperator["EQ"] = "=";
+    UnaryOperator["NOT"] = "not";
+    UnaryOperator["IN"] = "in";
+    UnaryOperator["TEST"] = "test";
+})(UnaryOperator = exports.UnaryOperator || (exports.UnaryOperator = {}));
 var ValueVisitor = (function () {
     function ValueVisitor() {
     }
+    ValueVisitor.prototype.visitNull = function (node) {
+        throw new Error("Method not implemented.");
+    };
     ValueVisitor.prototype.visitNumber = function (node) {
         return node.value;
     };
@@ -59,6 +102,9 @@ var ValueVisitor = (function () {
         else {
             return Commons_1.Either.ofLeft(new Error("TODO"));
         }
+    };
+    ValueVisitor.prototype.visitRange = function (node) {
+        throw new Error("Method not implemented.");
     };
     return ValueVisitor;
 }());

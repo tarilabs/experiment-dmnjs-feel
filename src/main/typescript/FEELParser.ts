@@ -5,8 +5,30 @@ var MyGrammarParser = require('../../main-generated/javascript/FEEL_1_1Parser.js
 var MyVisitor = require('../../main-generated/javascript/FEEL_1_1Visitor.js').FEEL_1_1Visitor;
 
 import * as ASTNode from "./ASTNode";
-import { FEELValue } from "./FEELValue";
+import { FEELValue, NullValue } from "./FEELValue";
 import { Either } from "./Commons";
+
+class MockedParserHelper {
+
+    private dynamicResolution : number = 0;
+
+    public isDynamicResolution() : boolean {
+        console.log('isDynamicResolution()');
+        return this.dynamicResolution > 0;
+    }
+
+    public disableDynamicResolution() {
+        console.log('disableDynamicResolution()');
+        if(this.dynamicResolution > 0) {
+            this.dynamicResolution--;
+        }
+    }
+
+    public enableDynamicResolution() {
+        console.log('enableDynamicResolution()');
+        this.dynamicResolution++;
+    }
+}
 
 export function parse(expression : string) : ASTNode.ASTNode {
     var chars = new antlr4.InputStream(expression);
@@ -14,6 +36,7 @@ export function parse(expression : string) : ASTNode.ASTNode {
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
+    parser.setHelper(new MockedParserHelper());
     var tree = parser.compilation_unit();
     log(tree.toStringTree(parser.ruleNames));
 
@@ -65,3 +88,26 @@ MyVisitor.prototype.visitNumberLiteral = function(ctx : any) {
 MyVisitor.prototype.visitStringLiteral = function(ctx : any) {
    return new ASTNode.StringNode(ctx.getText());
 };
+MyVisitor.prototype.visitInterval = function(ctx : any) {
+    const start = this.visit( ctx.start );
+    const end = this.visit( ctx.end );
+    const low = ctx.low.text=== "[" ? ASTNode.IntervalBoundary.CLOSED : ASTNode.IntervalBoundary.OPEN;
+    const up = ctx.up.text === "]" ? ASTNode.IntervalBoundary.CLOSED : ASTNode.IntervalBoundary.OPEN;
+    return new ASTNode.RangeNode( low, start, end, up );
+}
+MyVisitor.prototype.visitPositiveUnaryTestIneqInterval = function(ctx : any) {
+    const value = this.visit(ctx.endpoint());
+    const op : string = <string> ctx.op.text;
+    switch (op) {
+        case ASTNode.UnaryOperator.GT:
+            return new ASTNode.RangeNode(ASTNode.IntervalBoundary.OPEN, value, new ASTNode.NullNode(), ASTNode.IntervalBoundary.OPEN);
+        case ASTNode.UnaryOperator.GTE:
+            return new ASTNode.RangeNode(ASTNode.IntervalBoundary.CLOSED, value, new ASTNode.NullNode(), ASTNode.IntervalBoundary.OPEN);
+        case ASTNode.UnaryOperator.LT:
+            return new ASTNode.RangeNode(ASTNode.IntervalBoundary.OPEN, new ASTNode.NullNode(), value, ASTNode.IntervalBoundary.OPEN);
+        case ASTNode.UnaryOperator.LTE:
+            return new ASTNode.RangeNode(ASTNode.IntervalBoundary.OPEN, new ASTNode.NullNode(), value, ASTNode.IntervalBoundary.CLOSED);
+        default:
+            throw new Error("by the parser rule FEEL grammar rule 7.a for range syntax should not have determined the operator " + op);
+    }
+}

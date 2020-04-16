@@ -6,9 +6,19 @@ export interface ASTNode {
 }
 
 interface ASTNodeVisitor<T> {
+    visitNull(node: NullNode): T;
     visitNumber(node: NumberNode): T;
     visitString(node: StringNode): T;
     visitSum(node: SumNode): T;
+    visitRange(node: RangeNode): T;
+}
+
+export class NullNode implements ASTNode {
+    readonly value: feelvalue.NullValue = feelvalue.NullValue.value;
+
+    accept<T>(visitor: ASTNodeVisitor<T>) {
+        return visitor.visitNull(this);
+    }
 }
 
 export class NumberNode implements ASTNode {
@@ -49,7 +59,44 @@ export class SumNode implements ASTNode {
     }
 }
 
+export enum IntervalBoundary {
+    OPEN, CLOSED
+}
+
+export class RangeNode implements ASTNode {
+    readonly lowerBound : IntervalBoundary;
+    readonly upperBound : IntervalBoundary;
+    readonly start : ASTNode;
+    readonly end : ASTNode;
+
+    public constructor(lowerBound : IntervalBoundary, start : ASTNode, end : ASTNode, upperBound : IntervalBoundary) {
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
+        this.start = start;
+        this.end = end;
+    }
+
+    accept<T>(visitor: ASTNodeVisitor<T>) : T  {
+        return visitor.visitRange(this);
+    }
+}
+
+export enum UnaryOperator {
+    LTE = "<=" ,
+    LT= "<" ,
+    GT= ">" ,
+    GTE= ">=" ,
+    NE= "!=" ,
+    EQ= "=" ,
+    NOT= "not" ,
+    IN= "in" ,
+    TEST= "test"
+}
+
 export class ValueVisitor implements ASTNodeVisitor<Either<Error, feelvalue.FEELValue>> {
+    visitNull(node: NullNode): Either<Error, feelvalue.FEELValue> {
+        throw new Error("Method not implemented.");
+    }
     visitNumber(node: NumberNode): Either<Error, feelvalue.FEELValue> {
         return node.value;
     }
@@ -71,5 +118,8 @@ export class ValueVisitor implements ASTNodeVisitor<Either<Error, feelvalue.FEEL
         } else {
             return Either.ofLeft(new Error("TODO"));
         }
+    }
+    visitRange(node: RangeNode): Either<Error, feelvalue.FEELValue> {
+        throw new Error("Method not implemented.");
     }
 }

@@ -7,58 +7,147 @@ var grammarFileName = "FEEL_1_1.g4";
 
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u00038i\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t\u0004",
-    "\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004\b",
-    "\t\b\u0004\t\t\t\u0004\n\t\n\u0004\u000b\t\u000b\u0004\f\t\f\u0004\r",
-    "\t\r\u0004\u000e\t\u000e\u0004\u000f\t\u000f\u0004\u0010\t\u0010\u0004",
+    "\u00038\u00eb\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0004\u0004\t",
+    "\u0004\u0004\u0005\t\u0005\u0004\u0006\t\u0006\u0004\u0007\t\u0007\u0004",
+    "\b\t\b\u0004\t\t\t\u0004\n\t\n\u0004\u000b\t\u000b\u0004\f\t\f\u0004",
+    "\r\t\r\u0004\u000e\t\u000e\u0004\u000f\t\u000f\u0004\u0010\t\u0010\u0004",
     "\u0011\t\u0011\u0004\u0012\t\u0012\u0004\u0013\t\u0013\u0004\u0014\t",
-    "\u0014\u0003\u0002\u0003\u0002\u0003\u0002\u0003\u0003\u0003\u0003\u0003",
+    "\u0014\u0004\u0015\t\u0015\u0004\u0016\t\u0016\u0004\u0017\t\u0017\u0004",
+    "\u0018\t\u0018\u0004\u0019\t\u0019\u0004\u001a\t\u001a\u0004\u001b\t",
+    "\u001b\u0003\u0002\u0003\u0002\u0003\u0002\u0003\u0003\u0003\u0003\u0003",
     "\u0004\u0003\u0004\u0003\u0005\u0003\u0005\u0003\u0006\u0003\u0006\u0003",
-    "\u0007\u0003\u0007\u0003\b\u0003\b\u0003\t\u0003\t\u0003\t\u0007\t;",
-    "\n\t\f\t\u000e\t>\u000b\t\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003",
-    "\n\u0003\n\u0003\n\u0003\n\u0007\nI\n\n\f\n\u000e\nL\u000b\n\u0003\u000b",
+    "\u0007\u0003\u0007\u0003\b\u0003\b\u0003\t\u0003\t\u0003\t\u0007\tI",
+    "\n\t\f\t\u000e\tL\u000b\t\u0003\n\u0003\n\u0003\n\u0003\n\u0003\n\u0003",
+    "\n\u0003\n\u0003\n\u0003\n\u0007\nW\n\n\f\n\u000e\nZ\u000b\n\u0003\u000b",
     "\u0003\u000b\u0003\f\u0003\f\u0003\r\u0003\r\u0003\u000e\u0003\u000e",
-    "\u0003\u000f\u0003\u000f\u0003\u0010\u0003\u0010\u0003\u0011\u0003\u0011",
-    "\u0003\u0011\u0003\u0011\u0003\u0011\u0003\u0011\u0005\u0011`\n\u0011",
-    "\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0013\u0003\u0013\u0003\u0014",
-    "\u0003\u0014\u0003\u0014\u0002\u0003\u0012\u0015\u0002\u0004\u0006\b",
-    "\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \"$&\u0002",
-    "\u0003\u0005\u0002\u0004\u0005\u0007\u001622\u0002]\u0002(\u0003\u0002",
-    "\u0002\u0002\u0004+\u0003\u0002\u0002\u0002\u0006-\u0003\u0002\u0002",
-    "\u0002\b/\u0003\u0002\u0002\u0002\n1\u0003\u0002\u0002\u0002\f3\u0003",
-    "\u0002\u0002\u0002\u000e5\u0003\u0002\u0002\u0002\u00107\u0003\u0002",
-    "\u0002\u0002\u0012?\u0003\u0002\u0002\u0002\u0014M\u0003\u0002\u0002",
-    "\u0002\u0016O\u0003\u0002\u0002\u0002\u0018Q\u0003\u0002\u0002\u0002",
-    "\u001aS\u0003\u0002\u0002\u0002\u001cU\u0003\u0002\u0002\u0002\u001e",
-    "W\u0003\u0002\u0002\u0002 _\u0003\u0002\u0002\u0002\"a\u0003\u0002\u0002",
-    "\u0002$d\u0003\u0002\u0002\u0002&f\u0003\u0002\u0002\u0002()\u0005\u0004",
-    "\u0003\u0002)*\u0007\u0002\u0002\u0003*\u0003\u0003\u0002\u0002\u0002",
-    "+,\u0005\u0006\u0004\u0002,\u0005\u0003\u0002\u0002\u0002-.\u0005\b",
-    "\u0005\u0002.\u0007\u0003\u0002\u0002\u0002/0\u0005\n\u0006\u00020\t",
-    "\u0003\u0002\u0002\u000212\u0005\f\u0007\u00022\u000b\u0003\u0002\u0002",
-    "\u000234\u0005\u000e\b\u00024\r\u0003\u0002\u0002\u000256\u0005\u0012",
-    "\n\u00026\u000f\u0003\u0002\u0002\u00027<\u0005\u0004\u0003\u000289",
-    "\u0007!\u0002\u00029;\u0005\u0004\u0003\u0002:8\u0003\u0002\u0002\u0002",
-    ";>\u0003\u0002\u0002\u0002<:\u0003\u0002\u0002\u0002<=\u0003\u0002\u0002",
-    "\u0002=\u0011\u0003\u0002\u0002\u0002><\u0003\u0002\u0002\u0002?@\b",
-    "\n\u0001\u0002@A\u0005\u0014\u000b\u0002AJ\u0003\u0002\u0002\u0002B",
-    "C\f\u0004\u0002\u0002CD\u0007-\u0002\u0002DI\u0005\u0014\u000b\u0002",
-    "EF\f\u0003\u0002\u0002FG\u0007.\u0002\u0002GI\u0005\u0014\u000b\u0002",
-    "HB\u0003\u0002\u0002\u0002HE\u0003\u0002\u0002\u0002IL\u0003\u0002\u0002",
-    "\u0002JH\u0003\u0002\u0002\u0002JK\u0003\u0002\u0002\u0002K\u0013\u0003",
-    "\u0002\u0002\u0002LJ\u0003\u0002\u0002\u0002MN\u0005\u0016\f\u0002N",
-    "\u0015\u0003\u0002\u0002\u0002OP\u0005\u0018\r\u0002P\u0017\u0003\u0002",
-    "\u0002\u0002QR\u0005\u001a\u000e\u0002R\u0019\u0003\u0002\u0002\u0002",
-    "ST\u0005\u001c\u000f\u0002T\u001b\u0003\u0002\u0002\u0002UV\u0005\u001e",
-    "\u0010\u0002V\u001d\u0003\u0002\u0002\u0002WX\u0005 \u0011\u0002X\u001f",
-    "\u0003\u0002\u0002\u0002Y`\u0007\u0018\u0002\u0002Z`\u0007\u0019\u0002",
-    "\u0002[`\u0007\u0003\u0002\u0002\\`\u0005\"\u0012\u0002]`\u0007\u001a",
-    "\u0002\u0002^`\u0007\u0014\u0002\u0002_Y\u0003\u0002\u0002\u0002_Z\u0003",
-    "\u0002\u0002\u0002_[\u0003\u0002\u0002\u0002_\\\u0003\u0002\u0002\u0002",
-    "_]\u0003\u0002\u0002\u0002_^\u0003\u0002\u0002\u0002`!\u0003\u0002\u0002",
-    "\u0002ab\u00073\u0002\u0002bc\u0005$\u0013\u0002c#\u0003\u0002\u0002",
-    "\u0002de\u0007\u001a\u0002\u0002e%\u0003\u0002\u0002\u0002fg\t\u0002",
-    "\u0002\u0002g\'\u0003\u0002\u0002\u0002\u0006<HJ_"].join("");
+    "\u0003\u000f\u0003\u000f\u0003\u0010\u0003\u0010\u0003\u0010\u0005\u0010",
+    "i\n\u0010\u0003\u0011\u0003\u0011\u0003\u0011\u0003\u0011\u0003\u0011",
+    "\u0003\u0011\u0005\u0011q\n\u0011\u0003\u0012\u0003\u0012\u0003\u0012",
+    "\u0003\u0013\u0003\u0013\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014",
+    "\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014",
+    "\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014",
+    "\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014",
+    "\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014\u0003\u0014",
+    "\u0003\u0014\u0003\u0014\u0003\u0014\u0005\u0014\u0097\n\u0014\u0003",
+    "\u0015\u0003\u0015\u0003\u0016\u0003\u0016\u0003\u0016\u0007\u0016\u009e",
+    "\n\u0016\f\u0016\u000e\u0016\u00a1\u000b\u0016\u0003\u0017\u0003\u0017",
+    "\u0003\u0017\u0003\u0018\u0003\u0018\u0003\u0018\u0003\u0018\u0003\u0018",
+    "\u0003\u0018\u0003\u0018\u0005\u0018\u00ad\n\u0018\u0003\u0019\u0003",
+    "\u0019\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003\u001a\u0003",
+    "\u001a\u0005\u001a\u00e7\n\u001a\u0003\u001b\u0003\u001b\u0003\u001b",
+    "\u0002\u0003\u0012\u001c\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014",
+    "\u0016\u0018\u001a\u001c\u001e \"$&(*,.024\u0002\u0003\u0005\u0002\u0004",
+    "\u0005\u0007\u001622\u0002\u00eb\u00026\u0003\u0002\u0002\u0002\u0004",
+    "9\u0003\u0002\u0002\u0002\u0006;\u0003\u0002\u0002\u0002\b=\u0003\u0002",
+    "\u0002\u0002\n?\u0003\u0002\u0002\u0002\fA\u0003\u0002\u0002\u0002\u000e",
+    "C\u0003\u0002\u0002\u0002\u0010E\u0003\u0002\u0002\u0002\u0012M\u0003",
+    "\u0002\u0002\u0002\u0014[\u0003\u0002\u0002\u0002\u0016]\u0003\u0002",
+    "\u0002\u0002\u0018_\u0003\u0002\u0002\u0002\u001aa\u0003\u0002\u0002",
+    "\u0002\u001cc\u0003\u0002\u0002\u0002\u001eh\u0003\u0002\u0002\u0002",
+    " p\u0003\u0002\u0002\u0002\"r\u0003\u0002\u0002\u0002$u\u0003\u0002",
+    "\u0002\u0002&\u0096\u0003\u0002\u0002\u0002(\u0098\u0003\u0002\u0002",
+    "\u0002*\u009a\u0003\u0002\u0002\u0002,\u00a2\u0003\u0002\u0002\u0002",
+    ".\u00ac\u0003\u0002\u0002\u00020\u00ae\u0003\u0002\u0002\u00022\u00e6",
+    "\u0003\u0002\u0002\u00024\u00e8\u0003\u0002\u0002\u000267\u0005\u0004",
+    "\u0003\u000278\u0007\u0002\u0002\u00038\u0003\u0003\u0002\u0002\u0002",
+    "9:\u0005\u0006\u0004\u0002:\u0005\u0003\u0002\u0002\u0002;<\u0005\b",
+    "\u0005\u0002<\u0007\u0003\u0002\u0002\u0002=>\u0005\n\u0006\u0002>\t",
+    "\u0003\u0002\u0002\u0002?@\u0005\f\u0007\u0002@\u000b\u0003\u0002\u0002",
+    "\u0002AB\u0005\u000e\b\u0002B\r\u0003\u0002\u0002\u0002CD\u0005\u0012",
+    "\n\u0002D\u000f\u0003\u0002\u0002\u0002EJ\u0005\u0004\u0003\u0002FG",
+    "\u0007!\u0002\u0002GI\u0005\u0004\u0003\u0002HF\u0003\u0002\u0002\u0002",
+    "IL\u0003\u0002\u0002\u0002JH\u0003\u0002\u0002\u0002JK\u0003\u0002\u0002",
+    "\u0002K\u0011\u0003\u0002\u0002\u0002LJ\u0003\u0002\u0002\u0002MN\b",
+    "\n\u0001\u0002NO\u0005\u0014\u000b\u0002OX\u0003\u0002\u0002\u0002P",
+    "Q\f\u0004\u0002\u0002QR\u0007-\u0002\u0002RW\u0005\u0014\u000b\u0002",
+    "ST\f\u0003\u0002\u0002TU\u0007.\u0002\u0002UW\u0005\u0014\u000b\u0002",
+    "VP\u0003\u0002\u0002\u0002VS\u0003\u0002\u0002\u0002WZ\u0003\u0002\u0002",
+    "\u0002XV\u0003\u0002\u0002\u0002XY\u0003\u0002\u0002\u0002Y\u0013\u0003",
+    "\u0002\u0002\u0002ZX\u0003\u0002\u0002\u0002[\\\u0005\u0016\f\u0002",
+    "\\\u0015\u0003\u0002\u0002\u0002]^\u0005\u0018\r\u0002^\u0017\u0003",
+    "\u0002\u0002\u0002_`\u0005\u001a\u000e\u0002`\u0019\u0003\u0002\u0002",
+    "\u0002ab\u0005\u001c\u000f\u0002b\u001b\u0003\u0002\u0002\u0002cd\u0005",
+    "\u001e\u0010\u0002d\u001d\u0003\u0002\u0002\u0002ei\u0005 \u0011\u0002",
+    "fi\u00052\u001a\u0002gi\u0005&\u0014\u0002he\u0003\u0002\u0002\u0002",
+    "hf\u0003\u0002\u0002\u0002hg\u0003\u0002\u0002\u0002i\u001f\u0003\u0002",
+    "\u0002\u0002jq\u0007\u0018\u0002\u0002kq\u0007\u0019\u0002\u0002lq\u0007",
+    "\u0003\u0002\u0002mq\u0005\"\u0012\u0002nq\u0007\u001a\u0002\u0002o",
+    "q\u0007\u0014\u0002\u0002pj\u0003\u0002\u0002\u0002pk\u0003\u0002\u0002",
+    "\u0002pl\u0003\u0002\u0002\u0002pm\u0003\u0002\u0002\u0002pn\u0003\u0002",
+    "\u0002\u0002po\u0003\u0002\u0002\u0002q!\u0003\u0002\u0002\u0002rs\u0007",
+    "3\u0002\u0002st\u0005$\u0013\u0002t#\u0003\u0002\u0002\u0002uv\u0007",
+    "\u001a\u0002\u0002v%\u0003\u0002\u0002\u0002wx\u0007&\u0002\u0002xy",
+    "\b\u0014\u0001\u0002yz\u00050\u0019\u0002z{\b\u0014\u0001\u0002{\u0097",
+    "\u0003\u0002\u0002\u0002|}\u0007%\u0002\u0002}~\b\u0014\u0001\u0002",
+    "~\u007f\u00050\u0019\u0002\u007f\u0080\b\u0014\u0001\u0002\u0080\u0097",
+    "\u0003\u0002\u0002\u0002\u0081\u0082\u0007\'\u0002\u0002\u0082\u0083",
+    "\b\u0014\u0001\u0002\u0083\u0084\u00050\u0019\u0002\u0084\u0085\b\u0014",
+    "\u0001\u0002\u0085\u0097\u0003\u0002\u0002\u0002\u0086\u0087\u0007(",
+    "\u0002\u0002\u0087\u0088\b\u0014\u0001\u0002\u0088\u0089\u00050\u0019",
+    "\u0002\u0089\u008a\b\u0014\u0001\u0002\u008a\u0097\u0003\u0002\u0002",
+    "\u0002\u008b\u008c\u0007$\u0002\u0002\u008c\u008d\b\u0014\u0001\u0002",
+    "\u008d\u008e\u00050\u0019\u0002\u008e\u008f\b\u0014\u0001\u0002\u008f",
+    "\u0097\u0003\u0002\u0002\u0002\u0090\u0091\u0007)\u0002\u0002\u0091",
+    "\u0092\b\u0014\u0001\u0002\u0092\u0093\u00050\u0019\u0002\u0093\u0094",
+    "\b\u0014\u0001\u0002\u0094\u0097\u0003\u0002\u0002\u0002\u0095\u0097",
+    "\u00052\u001a\u0002\u0096w\u0003\u0002\u0002\u0002\u0096|\u0003\u0002",
+    "\u0002\u0002\u0096\u0081\u0003\u0002\u0002\u0002\u0096\u0086\u0003\u0002",
+    "\u0002\u0002\u0096\u008b\u0003\u0002\u0002\u0002\u0096\u0090\u0003\u0002",
+    "\u0002\u0002\u0096\u0095\u0003\u0002\u0002\u0002\u0097\'\u0003\u0002",
+    "\u0002\u0002\u0098\u0099\u0005\u0004\u0003\u0002\u0099)\u0003\u0002",
+    "\u0002\u0002\u009a\u009f\u0005(\u0015\u0002\u009b\u009c\u0007!\u0002",
+    "\u0002\u009c\u009e\u0005(\u0015\u0002\u009d\u009b\u0003\u0002\u0002",
+    "\u0002\u009e\u00a1\u0003\u0002\u0002\u0002\u009f\u009d\u0003\u0002\u0002",
+    "\u0002\u009f\u00a0\u0003\u0002\u0002\u0002\u00a0+\u0003\u0002\u0002",
+    "\u0002\u00a1\u009f\u0003\u0002\u0002\u0002\u00a2\u00a3\u0005.\u0018",
+    "\u0002\u00a3\u00a4\u0007\u0002\u0002\u0003\u00a4-\u0003\u0002\u0002",
+    "\u0002\u00a5\u00a6\u00072\u0002\u0002\u00a6\u00a7\u0007\u001b\u0002",
+    "\u0002\u00a7\u00a8\u0005*\u0016\u0002\u00a8\u00a9\u0007\u001c\u0002",
+    "\u0002\u00a9\u00ad\u0003\u0002\u0002\u0002\u00aa\u00ad\u0005*\u0016",
+    "\u0002\u00ab\u00ad\u0007.\u0002\u0002\u00ac\u00a5\u0003\u0002\u0002",
+    "\u0002\u00ac\u00aa\u0003\u0002\u0002\u0002\u00ac\u00ab\u0003\u0002\u0002",
+    "\u0002\u00ad/\u0003\u0002\u0002\u0002\u00ae\u00af\u0005\u0012\n\u0002",
+    "\u00af1\u0003\u0002\u0002\u0002\u00b0\u00b1\u0007\u001b\u0002\u0002",
+    "\u00b1\u00b2\u00050\u0019\u0002\u00b2\u00b3\u0007\"\u0002\u0002\u00b3",
+    "\u00b4\u00050\u0019\u0002\u00b4\u00b5\u0007\u001c\u0002\u0002\u00b5",
+    "\u00e7\u0003\u0002\u0002\u0002\u00b6\u00b7\u0007\u001b\u0002\u0002\u00b7",
+    "\u00b8\u00050\u0019\u0002\u00b8\u00b9\u0007\"\u0002\u0002\u00b9\u00ba",
+    "\u00050\u0019\u0002\u00ba\u00bb\u0007\u001f\u0002\u0002\u00bb\u00e7",
+    "\u0003\u0002\u0002\u0002\u00bc\u00bd\u0007\u001b\u0002\u0002\u00bd\u00be",
+    "\u00050\u0019\u0002\u00be\u00bf\u0007\"\u0002\u0002\u00bf\u00c0\u0005",
+    "0\u0019\u0002\u00c0\u00c1\u0007 \u0002\u0002\u00c1\u00e7\u0003\u0002",
+    "\u0002\u0002\u00c2\u00c3\u0007 \u0002\u0002\u00c3\u00c4\u00050\u0019",
+    "\u0002\u00c4\u00c5\u0007\"\u0002\u0002\u00c5\u00c6\u00050\u0019\u0002",
+    "\u00c6\u00c7\u0007\u001c\u0002\u0002\u00c7\u00e7\u0003\u0002\u0002\u0002",
+    "\u00c8\u00c9\u0007 \u0002\u0002\u00c9\u00ca\u00050\u0019\u0002\u00ca",
+    "\u00cb\u0007\"\u0002\u0002\u00cb\u00cc\u00050\u0019\u0002\u00cc\u00cd",
+    "\u0007\u001f\u0002\u0002\u00cd\u00e7\u0003\u0002\u0002\u0002\u00ce\u00cf",
+    "\u0007 \u0002\u0002\u00cf\u00d0\u00050\u0019\u0002\u00d0\u00d1\u0007",
+    "\"\u0002\u0002\u00d1\u00d2\u00050\u0019\u0002\u00d2\u00d3\u0007 \u0002",
+    "\u0002\u00d3\u00e7\u0003\u0002\u0002\u0002\u00d4\u00d5\u0007\u001f\u0002",
+    "\u0002\u00d5\u00d6\u00050\u0019\u0002\u00d6\u00d7\u0007\"\u0002\u0002",
+    "\u00d7\u00d8\u00050\u0019\u0002\u00d8\u00d9\u0007\u001c\u0002\u0002",
+    "\u00d9\u00e7\u0003\u0002\u0002\u0002\u00da\u00db\u0007\u001f\u0002\u0002",
+    "\u00db\u00dc\u00050\u0019\u0002\u00dc\u00dd\u0007\"\u0002\u0002\u00dd",
+    "\u00de\u00050\u0019\u0002\u00de\u00df\u0007\u001f\u0002\u0002\u00df",
+    "\u00e7\u0003\u0002\u0002\u0002\u00e0\u00e1\u0007\u001f\u0002\u0002\u00e1",
+    "\u00e2\u00050\u0019\u0002\u00e2\u00e3\u0007\"\u0002\u0002\u00e3\u00e4",
+    "\u00050\u0019\u0002\u00e4\u00e5\u0007 \u0002\u0002\u00e5\u00e7\u0003",
+    "\u0002\u0002\u0002\u00e6\u00b0\u0003\u0002\u0002\u0002\u00e6\u00b6\u0003",
+    "\u0002\u0002\u0002\u00e6\u00bc\u0003\u0002\u0002\u0002\u00e6\u00c2\u0003",
+    "\u0002\u0002\u0002\u00e6\u00c8\u0003\u0002\u0002\u0002\u00e6\u00ce\u0003",
+    "\u0002\u0002\u0002\u00e6\u00d4\u0003\u0002\u0002\u0002\u00e6\u00da\u0003",
+    "\u0002\u0002\u0002\u00e6\u00e0\u0003\u0002\u0002\u0002\u00e73\u0003",
+    "\u0002\u0002\u0002\u00e8\u00e9\t\u0002\u0002\u0002\u00e95\u0003\u0002",
+    "\u0002\u0002\u000bJVXhp\u0096\u009f\u00ac\u00e6"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -93,6 +182,8 @@ var ruleNames =  [ "compilation_unit", "expression", "textualExpression",
                    "additiveExpression", "multiplicativeExpression", "powerExpression", 
                    "filterPathExpression", "unaryExpression", "unaryExpressionNotPlusMinus", 
                    "primary", "literal", "atLiteral", "atLiteralValue", 
+                   "simplePositiveUnaryTest", "positiveUnaryTest", "positiveUnaryTests", 
+                   "unaryTestsRoot", "unaryTests", "endpoint", "interval", 
                    "reusableKeywords" ];
 
 function FEEL_1_1Parser (input) {
@@ -101,6 +192,17 @@ function FEEL_1_1Parser (input) {
     this.ruleNames = ruleNames;
     this.literalNames = literalNames;
     this.symbolicNames = symbolicNames;
+
+
+	this.helper = null;
+	this.setHelper = function (helper) {
+	    this.helper = helper;
+	};
+	this.getHelper = function () {
+	    return this.helper;
+	};
+
+
     return this;
 }
 
@@ -187,7 +289,14 @@ FEEL_1_1Parser.RULE_primary = 14;
 FEEL_1_1Parser.RULE_literal = 15;
 FEEL_1_1Parser.RULE_atLiteral = 16;
 FEEL_1_1Parser.RULE_atLiteralValue = 17;
-FEEL_1_1Parser.RULE_reusableKeywords = 18;
+FEEL_1_1Parser.RULE_simplePositiveUnaryTest = 18;
+FEEL_1_1Parser.RULE_positiveUnaryTest = 19;
+FEEL_1_1Parser.RULE_positiveUnaryTests = 20;
+FEEL_1_1Parser.RULE_unaryTestsRoot = 21;
+FEEL_1_1Parser.RULE_unaryTests = 22;
+FEEL_1_1Parser.RULE_endpoint = 23;
+FEEL_1_1Parser.RULE_interval = 24;
+FEEL_1_1Parser.RULE_reusableKeywords = 25;
 
 
 function Compilation_unitContext(parser, parent, invokingState) {
@@ -233,9 +342,9 @@ FEEL_1_1Parser.prototype.compilation_unit = function() {
     this.enterRule(localctx, 0, FEEL_1_1Parser.RULE_compilation_unit);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 38;
+        this.state = 52;
         this.expression();
-        this.state = 39;
+        this.state = 53;
         this.match(FEEL_1_1Parser.EOF);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -309,7 +418,7 @@ FEEL_1_1Parser.prototype.expression = function() {
     try {
         localctx = new ExpressionTextualContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 41;
+        this.state = 55;
         localctx.expr = this.textualExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -365,7 +474,7 @@ FEEL_1_1Parser.prototype.textualExpression = function() {
     this.enterRule(localctx, 4, FEEL_1_1Parser.RULE_textualExpression);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 43;
+        this.state = 57;
         this.conditionalOrExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -438,7 +547,7 @@ FEEL_1_1Parser.prototype.conditionalOrExpression = function() {
     try {
         localctx = new CondOrAndContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 45;
+        this.state = 59;
         this.conditionalAndExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -511,7 +620,7 @@ FEEL_1_1Parser.prototype.conditionalAndExpression = function() {
     try {
         localctx = new CondAndCompContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 47;
+        this.state = 61;
         this.comparisonExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -584,7 +693,7 @@ FEEL_1_1Parser.prototype.comparisonExpression = function() {
     try {
         localctx = new CompExpressionRelContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 49;
+        this.state = 63;
         this.relationalExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -657,7 +766,7 @@ FEEL_1_1Parser.prototype.relationalExpression = function() {
     try {
         localctx = new RelExpressionAddContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 51;
+        this.state = 65;
         this.additiveExpression(0);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -733,17 +842,17 @@ FEEL_1_1Parser.prototype.expressionList = function() {
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 53;
+        this.state = 67;
         this.expression();
-        this.state = 58;
+        this.state = 72;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         while(_la===FEEL_1_1Parser.COMMA) {
-            this.state = 54;
+            this.state = 68;
             this.match(FEEL_1_1Parser.COMMA);
-            this.state = 55;
+            this.state = 69;
             this.expression();
-            this.state = 60;
+            this.state = 74;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
         }
@@ -860,10 +969,10 @@ FEEL_1_1Parser.prototype.additiveExpression = function(_p) {
         this._ctx = localctx;
         _prevctx = localctx;
 
-        this.state = 62;
+        this.state = 76;
         this.multiplicativeExpression();
         this._ctx.stop = this._input.LT(-1);
-        this.state = 72;
+        this.state = 86;
         this._errHandler.sync(this);
         var _alt = this._interp.adaptivePredict(this._input,2,this._ctx)
         while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
@@ -872,39 +981,39 @@ FEEL_1_1Parser.prototype.additiveExpression = function(_p) {
                     this.triggerExitRuleEvent();
                 }
                 _prevctx = localctx;
-                this.state = 70;
+                this.state = 84;
                 this._errHandler.sync(this);
                 var la_ = this._interp.adaptivePredict(this._input,1,this._ctx);
                 switch(la_) {
                 case 1:
                     localctx = new AddExpressionContext(this, new AdditiveExpressionContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, FEEL_1_1Parser.RULE_additiveExpression);
-                    this.state = 64;
+                    this.state = 78;
                     if (!( this.precpred(this._ctx, 2))) {
                         throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 2)");
                     }
-                    this.state = 65;
+                    this.state = 79;
                     localctx.op = this.match(FEEL_1_1Parser.ADD);
-                    this.state = 66;
+                    this.state = 80;
                     this.multiplicativeExpression();
                     break;
 
                 case 2:
                     localctx = new AddExpressionContext(this, new AdditiveExpressionContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, FEEL_1_1Parser.RULE_additiveExpression);
-                    this.state = 67;
+                    this.state = 81;
                     if (!( this.precpred(this._ctx, 1))) {
                         throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 1)");
                     }
-                    this.state = 68;
+                    this.state = 82;
                     localctx.op = this.match(FEEL_1_1Parser.SUB);
-                    this.state = 69;
+                    this.state = 83;
                     this.multiplicativeExpression();
                     break;
 
                 } 
             }
-            this.state = 74;
+            this.state = 88;
             this._errHandler.sync(this);
             _alt = this._interp.adaptivePredict(this._input,2,this._ctx);
         }
@@ -980,7 +1089,7 @@ FEEL_1_1Parser.prototype.multiplicativeExpression = function() {
     try {
         localctx = new MultExpressionPowContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 75;
+        this.state = 89;
         this.powerExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1053,7 +1162,7 @@ FEEL_1_1Parser.prototype.powerExpression = function() {
     try {
         localctx = new PowExpressionUnaryContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 77;
+        this.state = 91;
         this.filterPathExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1109,7 +1218,7 @@ FEEL_1_1Parser.prototype.filterPathExpression = function() {
     this.enterRule(localctx, 22, FEEL_1_1Parser.RULE_filterPathExpression);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 79;
+        this.state = 93;
         this.unaryExpression();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1182,7 +1291,7 @@ FEEL_1_1Parser.prototype.unaryExpression = function() {
     try {
         localctx = new NonSignedUnaryExpressionContext(this, localctx);
         this.enterOuterAlt(localctx, 1);
-        this.state = 81;
+        this.state = 95;
         this.unaryExpressionNotPlusMinus();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1238,7 +1347,7 @@ FEEL_1_1Parser.prototype.unaryExpressionNotPlusMinus = function() {
     this.enterRule(localctx, 26, FEEL_1_1Parser.RULE_unaryExpressionNotPlusMinus);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 83;
+        this.state = 97;
         this.primary();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1278,6 +1387,52 @@ PrimaryContext.prototype.copyFrom = function(ctx) {
 };
 
 
+function PrimaryIntervalContext(parser, ctx) {
+	PrimaryContext.call(this, parser);
+    PrimaryContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+PrimaryIntervalContext.prototype = Object.create(PrimaryContext.prototype);
+PrimaryIntervalContext.prototype.constructor = PrimaryIntervalContext;
+
+FEEL_1_1Parser.PrimaryIntervalContext = PrimaryIntervalContext;
+
+PrimaryIntervalContext.prototype.interval = function() {
+    return this.getTypedRuleContext(IntervalContext,0);
+};
+PrimaryIntervalContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitPrimaryInterval(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+function PrimaryUnaryTestContext(parser, ctx) {
+	PrimaryContext.call(this, parser);
+    PrimaryContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+PrimaryUnaryTestContext.prototype = Object.create(PrimaryContext.prototype);
+PrimaryUnaryTestContext.prototype.constructor = PrimaryUnaryTestContext;
+
+FEEL_1_1Parser.PrimaryUnaryTestContext = PrimaryUnaryTestContext;
+
+PrimaryUnaryTestContext.prototype.simplePositiveUnaryTest = function() {
+    return this.getTypedRuleContext(SimplePositiveUnaryTestContext,0);
+};
+PrimaryUnaryTestContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitPrimaryUnaryTest(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
 function PrimaryLiteralContext(parser, ctx) {
 	PrimaryContext.call(this, parser);
     PrimaryContext.prototype.copyFrom.call(this, ctx);
@@ -1309,10 +1464,32 @@ FEEL_1_1Parser.prototype.primary = function() {
     var localctx = new PrimaryContext(this, this._ctx, this.state);
     this.enterRule(localctx, 28, FEEL_1_1Parser.RULE_primary);
     try {
-        localctx = new PrimaryLiteralContext(this, localctx);
-        this.enterOuterAlt(localctx, 1);
-        this.state = 85;
-        this.literal();
+        this.state = 102;
+        this._errHandler.sync(this);
+        var la_ = this._interp.adaptivePredict(this._input,3,this._ctx);
+        switch(la_) {
+        case 1:
+            localctx = new PrimaryLiteralContext(this, localctx);
+            this.enterOuterAlt(localctx, 1);
+            this.state = 99;
+            this.literal();
+            break;
+
+        case 2:
+            localctx = new PrimaryIntervalContext(this, localctx);
+            this.enterOuterAlt(localctx, 2);
+            this.state = 100;
+            this.interval();
+            break;
+
+        case 3:
+            localctx = new PrimaryUnaryTestContext(this, localctx);
+            this.enterOuterAlt(localctx, 3);
+            this.state = 101;
+            this.simplePositiveUnaryTest();
+            break;
+
+        }
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -1478,43 +1655,43 @@ FEEL_1_1Parser.prototype.literal = function() {
     var localctx = new LiteralContext(this, this._ctx, this.state);
     this.enterRule(localctx, 30, FEEL_1_1Parser.RULE_literal);
     try {
-        this.state = 93;
+        this.state = 110;
         this._errHandler.sync(this);
         switch(this._input.LA(1)) {
         case FEEL_1_1Parser.IntegerLiteral:
             localctx = new NumberLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
-            this.state = 87;
+            this.state = 104;
             this.match(FEEL_1_1Parser.IntegerLiteral);
             break;
         case FEEL_1_1Parser.FloatingPointLiteral:
             localctx = new NumberLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
-            this.state = 88;
+            this.state = 105;
             this.match(FEEL_1_1Parser.FloatingPointLiteral);
             break;
         case FEEL_1_1Parser.BooleanLiteral:
             localctx = new BoolLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 3);
-            this.state = 89;
+            this.state = 106;
             this.match(FEEL_1_1Parser.BooleanLiteral);
             break;
         case FEEL_1_1Parser.AT:
             localctx = new AtLiteralLabelContext(this, localctx);
             this.enterOuterAlt(localctx, 4);
-            this.state = 90;
+            this.state = 107;
             this.atLiteral();
             break;
         case FEEL_1_1Parser.StringLiteral:
             localctx = new StringLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 5);
-            this.state = 91;
+            this.state = 108;
             this.match(FEEL_1_1Parser.StringLiteral);
             break;
         case FEEL_1_1Parser.NULL:
             localctx = new NullLiteralContext(this, localctx);
             this.enterOuterAlt(localctx, 6);
-            this.state = 92;
+            this.state = 109;
             this.match(FEEL_1_1Parser.NULL);
             break;
         default:
@@ -1578,9 +1755,9 @@ FEEL_1_1Parser.prototype.atLiteral = function() {
     this.enterRule(localctx, 32, FEEL_1_1Parser.RULE_atLiteral);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 95;
+        this.state = 112;
         this.match(FEEL_1_1Parser.AT);
-        this.state = 96;
+        this.state = 113;
         this.atLiteralValue();
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
@@ -1636,8 +1813,887 @@ FEEL_1_1Parser.prototype.atLiteralValue = function() {
     this.enterRule(localctx, 34, FEEL_1_1Parser.RULE_atLiteralValue);
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 98;
+        this.state = 115;
         this.match(FEEL_1_1Parser.StringLiteral);
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+
+function SimplePositiveUnaryTestContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = FEEL_1_1Parser.RULE_simplePositiveUnaryTest;
+    return this;
+}
+
+SimplePositiveUnaryTestContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+SimplePositiveUnaryTestContext.prototype.constructor = SimplePositiveUnaryTestContext;
+
+
+ 
+SimplePositiveUnaryTestContext.prototype.copyFrom = function(ctx) {
+    antlr4.ParserRuleContext.prototype.copyFrom.call(this, ctx);
+};
+
+
+function PositiveUnaryTestIntervalContext(parser, ctx) {
+	SimplePositiveUnaryTestContext.call(this, parser);
+    SimplePositiveUnaryTestContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+PositiveUnaryTestIntervalContext.prototype = Object.create(SimplePositiveUnaryTestContext.prototype);
+PositiveUnaryTestIntervalContext.prototype.constructor = PositiveUnaryTestIntervalContext;
+
+FEEL_1_1Parser.PositiveUnaryTestIntervalContext = PositiveUnaryTestIntervalContext;
+
+PositiveUnaryTestIntervalContext.prototype.interval = function() {
+    return this.getTypedRuleContext(IntervalContext,0);
+};
+PositiveUnaryTestIntervalContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitPositiveUnaryTestInterval(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+function PositiveUnaryTestIneqContext(parser, ctx) {
+	SimplePositiveUnaryTestContext.call(this, parser);
+    this.op = null; // Token;
+    SimplePositiveUnaryTestContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+PositiveUnaryTestIneqContext.prototype = Object.create(SimplePositiveUnaryTestContext.prototype);
+PositiveUnaryTestIneqContext.prototype.constructor = PositiveUnaryTestIneqContext;
+
+FEEL_1_1Parser.PositiveUnaryTestIneqContext = PositiveUnaryTestIneqContext;
+
+PositiveUnaryTestIneqContext.prototype.endpoint = function() {
+    return this.getTypedRuleContext(EndpointContext,0);
+};
+
+PositiveUnaryTestIneqContext.prototype.EQUAL = function() {
+    return this.getToken(FEEL_1_1Parser.EQUAL, 0);
+};
+
+PositiveUnaryTestIneqContext.prototype.NOTEQUAL = function() {
+    return this.getToken(FEEL_1_1Parser.NOTEQUAL, 0);
+};
+PositiveUnaryTestIneqContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitPositiveUnaryTestIneq(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+function PositiveUnaryTestIneqIntervalContext(parser, ctx) {
+	SimplePositiveUnaryTestContext.call(this, parser);
+    this.op = null; // Token;
+    SimplePositiveUnaryTestContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+PositiveUnaryTestIneqIntervalContext.prototype = Object.create(SimplePositiveUnaryTestContext.prototype);
+PositiveUnaryTestIneqIntervalContext.prototype.constructor = PositiveUnaryTestIneqIntervalContext;
+
+FEEL_1_1Parser.PositiveUnaryTestIneqIntervalContext = PositiveUnaryTestIneqIntervalContext;
+
+PositiveUnaryTestIneqIntervalContext.prototype.endpoint = function() {
+    return this.getTypedRuleContext(EndpointContext,0);
+};
+
+PositiveUnaryTestIneqIntervalContext.prototype.LT = function() {
+    return this.getToken(FEEL_1_1Parser.LT, 0);
+};
+
+PositiveUnaryTestIneqIntervalContext.prototype.GT = function() {
+    return this.getToken(FEEL_1_1Parser.GT, 0);
+};
+
+PositiveUnaryTestIneqIntervalContext.prototype.LE = function() {
+    return this.getToken(FEEL_1_1Parser.LE, 0);
+};
+
+PositiveUnaryTestIneqIntervalContext.prototype.GE = function() {
+    return this.getToken(FEEL_1_1Parser.GE, 0);
+};
+PositiveUnaryTestIneqIntervalContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitPositiveUnaryTestIneqInterval(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+FEEL_1_1Parser.SimplePositiveUnaryTestContext = SimplePositiveUnaryTestContext;
+
+FEEL_1_1Parser.prototype.simplePositiveUnaryTest = function() {
+
+    var localctx = new SimplePositiveUnaryTestContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 36, FEEL_1_1Parser.RULE_simplePositiveUnaryTest);
+    try {
+        this.state = 148;
+        this._errHandler.sync(this);
+        switch(this._input.LA(1)) {
+        case FEEL_1_1Parser.LT:
+            localctx = new PositiveUnaryTestIneqIntervalContext(this, localctx);
+            this.enterOuterAlt(localctx, 1);
+            this.state = 117;
+            localctx.op = this.match(FEEL_1_1Parser.LT);
+            this.helper.enableDynamicResolution();
+            this.state = 119;
+            this.endpoint();
+            this.helper.disableDynamicResolution();
+            break;
+        case FEEL_1_1Parser.GT:
+            localctx = new PositiveUnaryTestIneqIntervalContext(this, localctx);
+            this.enterOuterAlt(localctx, 2);
+            this.state = 122;
+            localctx.op = this.match(FEEL_1_1Parser.GT);
+            this.helper.enableDynamicResolution();
+            this.state = 124;
+            this.endpoint();
+            this.helper.disableDynamicResolution();
+            break;
+        case FEEL_1_1Parser.LE:
+            localctx = new PositiveUnaryTestIneqIntervalContext(this, localctx);
+            this.enterOuterAlt(localctx, 3);
+            this.state = 127;
+            localctx.op = this.match(FEEL_1_1Parser.LE);
+            this.helper.enableDynamicResolution();
+            this.state = 129;
+            this.endpoint();
+            this.helper.disableDynamicResolution();
+            break;
+        case FEEL_1_1Parser.GE:
+            localctx = new PositiveUnaryTestIneqIntervalContext(this, localctx);
+            this.enterOuterAlt(localctx, 4);
+            this.state = 132;
+            localctx.op = this.match(FEEL_1_1Parser.GE);
+            this.helper.enableDynamicResolution();
+            this.state = 134;
+            this.endpoint();
+            this.helper.disableDynamicResolution();
+            break;
+        case FEEL_1_1Parser.EQUAL:
+            localctx = new PositiveUnaryTestIneqContext(this, localctx);
+            this.enterOuterAlt(localctx, 5);
+            this.state = 137;
+            localctx.op = this.match(FEEL_1_1Parser.EQUAL);
+            this.helper.enableDynamicResolution();
+            this.state = 139;
+            this.endpoint();
+            this.helper.disableDynamicResolution();
+            break;
+        case FEEL_1_1Parser.NOTEQUAL:
+            localctx = new PositiveUnaryTestIneqContext(this, localctx);
+            this.enterOuterAlt(localctx, 6);
+            this.state = 142;
+            localctx.op = this.match(FEEL_1_1Parser.NOTEQUAL);
+            this.helper.enableDynamicResolution();
+            this.state = 144;
+            this.endpoint();
+            this.helper.disableDynamicResolution();
+            break;
+        case FEEL_1_1Parser.LPAREN:
+        case FEEL_1_1Parser.LBRACK:
+        case FEEL_1_1Parser.RBRACK:
+            localctx = new PositiveUnaryTestIntervalContext(this, localctx);
+            this.enterOuterAlt(localctx, 7);
+            this.state = 147;
+            this.interval();
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
+        }
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+
+function PositiveUnaryTestContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = FEEL_1_1Parser.RULE_positiveUnaryTest;
+    return this;
+}
+
+PositiveUnaryTestContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+PositiveUnaryTestContext.prototype.constructor = PositiveUnaryTestContext;
+
+PositiveUnaryTestContext.prototype.expression = function() {
+    return this.getTypedRuleContext(ExpressionContext,0);
+};
+
+PositiveUnaryTestContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitPositiveUnaryTest(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+FEEL_1_1Parser.PositiveUnaryTestContext = PositiveUnaryTestContext;
+
+FEEL_1_1Parser.prototype.positiveUnaryTest = function() {
+
+    var localctx = new PositiveUnaryTestContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 38, FEEL_1_1Parser.RULE_positiveUnaryTest);
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 150;
+        this.expression();
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+
+function PositiveUnaryTestsContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = FEEL_1_1Parser.RULE_positiveUnaryTests;
+    return this;
+}
+
+PositiveUnaryTestsContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+PositiveUnaryTestsContext.prototype.constructor = PositiveUnaryTestsContext;
+
+PositiveUnaryTestsContext.prototype.positiveUnaryTest = function(i) {
+    if(i===undefined) {
+        i = null;
+    }
+    if(i===null) {
+        return this.getTypedRuleContexts(PositiveUnaryTestContext);
+    } else {
+        return this.getTypedRuleContext(PositiveUnaryTestContext,i);
+    }
+};
+
+PositiveUnaryTestsContext.prototype.COMMA = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
+        return this.getTokens(FEEL_1_1Parser.COMMA);
+    } else {
+        return this.getToken(FEEL_1_1Parser.COMMA, i);
+    }
+};
+
+
+PositiveUnaryTestsContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitPositiveUnaryTests(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+FEEL_1_1Parser.PositiveUnaryTestsContext = PositiveUnaryTestsContext;
+
+FEEL_1_1Parser.prototype.positiveUnaryTests = function() {
+
+    var localctx = new PositiveUnaryTestsContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 40, FEEL_1_1Parser.RULE_positiveUnaryTests);
+    var _la = 0; // Token type
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 152;
+        this.positiveUnaryTest();
+        this.state = 157;
+        this._errHandler.sync(this);
+        _la = this._input.LA(1);
+        while(_la===FEEL_1_1Parser.COMMA) {
+            this.state = 153;
+            this.match(FEEL_1_1Parser.COMMA);
+            this.state = 154;
+            this.positiveUnaryTest();
+            this.state = 159;
+            this._errHandler.sync(this);
+            _la = this._input.LA(1);
+        }
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+
+function UnaryTestsRootContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = FEEL_1_1Parser.RULE_unaryTestsRoot;
+    return this;
+}
+
+UnaryTestsRootContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+UnaryTestsRootContext.prototype.constructor = UnaryTestsRootContext;
+
+UnaryTestsRootContext.prototype.unaryTests = function() {
+    return this.getTypedRuleContext(UnaryTestsContext,0);
+};
+
+UnaryTestsRootContext.prototype.EOF = function() {
+    return this.getToken(FEEL_1_1Parser.EOF, 0);
+};
+
+UnaryTestsRootContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitUnaryTestsRoot(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+FEEL_1_1Parser.UnaryTestsRootContext = UnaryTestsRootContext;
+
+FEEL_1_1Parser.prototype.unaryTestsRoot = function() {
+
+    var localctx = new UnaryTestsRootContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 42, FEEL_1_1Parser.RULE_unaryTestsRoot);
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 160;
+        this.unaryTests();
+        this.state = 161;
+        this.match(FEEL_1_1Parser.EOF);
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+
+function UnaryTestsContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = FEEL_1_1Parser.RULE_unaryTests;
+    return this;
+}
+
+UnaryTestsContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+UnaryTestsContext.prototype.constructor = UnaryTestsContext;
+
+
+ 
+UnaryTestsContext.prototype.copyFrom = function(ctx) {
+    antlr4.ParserRuleContext.prototype.copyFrom.call(this, ctx);
+};
+
+
+function UnaryTests_emptyContext(parser, ctx) {
+	UnaryTestsContext.call(this, parser);
+    UnaryTestsContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+UnaryTests_emptyContext.prototype = Object.create(UnaryTestsContext.prototype);
+UnaryTests_emptyContext.prototype.constructor = UnaryTests_emptyContext;
+
+FEEL_1_1Parser.UnaryTests_emptyContext = UnaryTests_emptyContext;
+
+UnaryTests_emptyContext.prototype.SUB = function() {
+    return this.getToken(FEEL_1_1Parser.SUB, 0);
+};
+UnaryTests_emptyContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitUnaryTests_empty(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+function UnaryTests_positiveContext(parser, ctx) {
+	UnaryTestsContext.call(this, parser);
+    UnaryTestsContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+UnaryTests_positiveContext.prototype = Object.create(UnaryTestsContext.prototype);
+UnaryTests_positiveContext.prototype.constructor = UnaryTests_positiveContext;
+
+FEEL_1_1Parser.UnaryTests_positiveContext = UnaryTests_positiveContext;
+
+UnaryTests_positiveContext.prototype.positiveUnaryTests = function() {
+    return this.getTypedRuleContext(PositiveUnaryTestsContext,0);
+};
+UnaryTests_positiveContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitUnaryTests_positive(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+function UnaryTests_negatedContext(parser, ctx) {
+	UnaryTestsContext.call(this, parser);
+    UnaryTestsContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+UnaryTests_negatedContext.prototype = Object.create(UnaryTestsContext.prototype);
+UnaryTests_negatedContext.prototype.constructor = UnaryTests_negatedContext;
+
+FEEL_1_1Parser.UnaryTests_negatedContext = UnaryTests_negatedContext;
+
+UnaryTests_negatedContext.prototype.NOT = function() {
+    return this.getToken(FEEL_1_1Parser.NOT, 0);
+};
+
+UnaryTests_negatedContext.prototype.LPAREN = function() {
+    return this.getToken(FEEL_1_1Parser.LPAREN, 0);
+};
+
+UnaryTests_negatedContext.prototype.positiveUnaryTests = function() {
+    return this.getTypedRuleContext(PositiveUnaryTestsContext,0);
+};
+
+UnaryTests_negatedContext.prototype.RPAREN = function() {
+    return this.getToken(FEEL_1_1Parser.RPAREN, 0);
+};
+UnaryTests_negatedContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitUnaryTests_negated(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+FEEL_1_1Parser.UnaryTestsContext = UnaryTestsContext;
+
+FEEL_1_1Parser.prototype.unaryTests = function() {
+
+    var localctx = new UnaryTestsContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 44, FEEL_1_1Parser.RULE_unaryTests);
+    try {
+        this.state = 170;
+        this._errHandler.sync(this);
+        switch(this._input.LA(1)) {
+        case FEEL_1_1Parser.NOT:
+            localctx = new UnaryTests_negatedContext(this, localctx);
+            this.enterOuterAlt(localctx, 1);
+            this.state = 163;
+            this.match(FEEL_1_1Parser.NOT);
+            this.state = 164;
+            this.match(FEEL_1_1Parser.LPAREN);
+            this.state = 165;
+            this.positiveUnaryTests();
+            this.state = 166;
+            this.match(FEEL_1_1Parser.RPAREN);
+            break;
+        case FEEL_1_1Parser.BooleanLiteral:
+        case FEEL_1_1Parser.NULL:
+        case FEEL_1_1Parser.IntegerLiteral:
+        case FEEL_1_1Parser.FloatingPointLiteral:
+        case FEEL_1_1Parser.StringLiteral:
+        case FEEL_1_1Parser.LPAREN:
+        case FEEL_1_1Parser.LBRACK:
+        case FEEL_1_1Parser.RBRACK:
+        case FEEL_1_1Parser.EQUAL:
+        case FEEL_1_1Parser.GT:
+        case FEEL_1_1Parser.LT:
+        case FEEL_1_1Parser.LE:
+        case FEEL_1_1Parser.GE:
+        case FEEL_1_1Parser.NOTEQUAL:
+        case FEEL_1_1Parser.AT:
+            localctx = new UnaryTests_positiveContext(this, localctx);
+            this.enterOuterAlt(localctx, 2);
+            this.state = 168;
+            this.positiveUnaryTests();
+            break;
+        case FEEL_1_1Parser.SUB:
+            localctx = new UnaryTests_emptyContext(this, localctx);
+            this.enterOuterAlt(localctx, 3);
+            this.state = 169;
+            this.match(FEEL_1_1Parser.SUB);
+            break;
+        default:
+            throw new antlr4.error.NoViableAltException(this);
+        }
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+
+function EndpointContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = FEEL_1_1Parser.RULE_endpoint;
+    return this;
+}
+
+EndpointContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+EndpointContext.prototype.constructor = EndpointContext;
+
+EndpointContext.prototype.additiveExpression = function() {
+    return this.getTypedRuleContext(AdditiveExpressionContext,0);
+};
+
+EndpointContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitEndpoint(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+FEEL_1_1Parser.EndpointContext = EndpointContext;
+
+FEEL_1_1Parser.prototype.endpoint = function() {
+
+    var localctx = new EndpointContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 46, FEEL_1_1Parser.RULE_endpoint);
+    try {
+        this.enterOuterAlt(localctx, 1);
+        this.state = 172;
+        this.additiveExpression(0);
+    } catch (re) {
+    	if(re instanceof antlr4.error.RecognitionException) {
+	        localctx.exception = re;
+	        this._errHandler.reportError(this, re);
+	        this._errHandler.recover(this, re);
+	    } else {
+	    	throw re;
+	    }
+    } finally {
+        this.exitRule();
+    }
+    return localctx;
+};
+
+
+function IntervalContext(parser, parent, invokingState) {
+	if(parent===undefined) {
+	    parent = null;
+	}
+	if(invokingState===undefined || invokingState===null) {
+		invokingState = -1;
+	}
+	antlr4.ParserRuleContext.call(this, parent, invokingState);
+    this.parser = parser;
+    this.ruleIndex = FEEL_1_1Parser.RULE_interval;
+    this.low = null; // Token
+    this.start = null; // EndpointContext
+    this.end = null; // EndpointContext
+    this.up = null; // Token
+    return this;
+}
+
+IntervalContext.prototype = Object.create(antlr4.ParserRuleContext.prototype);
+IntervalContext.prototype.constructor = IntervalContext;
+
+IntervalContext.prototype.ELIPSIS = function() {
+    return this.getToken(FEEL_1_1Parser.ELIPSIS, 0);
+};
+
+IntervalContext.prototype.LPAREN = function() {
+    return this.getToken(FEEL_1_1Parser.LPAREN, 0);
+};
+
+IntervalContext.prototype.endpoint = function(i) {
+    if(i===undefined) {
+        i = null;
+    }
+    if(i===null) {
+        return this.getTypedRuleContexts(EndpointContext);
+    } else {
+        return this.getTypedRuleContext(EndpointContext,i);
+    }
+};
+
+IntervalContext.prototype.RPAREN = function() {
+    return this.getToken(FEEL_1_1Parser.RPAREN, 0);
+};
+
+IntervalContext.prototype.LBRACK = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
+        return this.getTokens(FEEL_1_1Parser.LBRACK);
+    } else {
+        return this.getToken(FEEL_1_1Parser.LBRACK, i);
+    }
+};
+
+
+IntervalContext.prototype.RBRACK = function(i) {
+	if(i===undefined) {
+		i = null;
+	}
+    if(i===null) {
+        return this.getTokens(FEEL_1_1Parser.RBRACK);
+    } else {
+        return this.getToken(FEEL_1_1Parser.RBRACK, i);
+    }
+};
+
+
+IntervalContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof FEEL_1_1Visitor ) {
+        return visitor.visitInterval(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+
+
+FEEL_1_1Parser.IntervalContext = IntervalContext;
+
+FEEL_1_1Parser.prototype.interval = function() {
+
+    var localctx = new IntervalContext(this, this._ctx, this.state);
+    this.enterRule(localctx, 48, FEEL_1_1Parser.RULE_interval);
+    try {
+        this.state = 228;
+        this._errHandler.sync(this);
+        var la_ = this._interp.adaptivePredict(this._input,8,this._ctx);
+        switch(la_) {
+        case 1:
+            this.enterOuterAlt(localctx, 1);
+            this.state = 174;
+            localctx.low = this.match(FEEL_1_1Parser.LPAREN);
+            this.state = 175;
+            localctx.start = this.endpoint();
+            this.state = 176;
+            this.match(FEEL_1_1Parser.ELIPSIS);
+            this.state = 177;
+            localctx.end = this.endpoint();
+            this.state = 178;
+            localctx.up = this.match(FEEL_1_1Parser.RPAREN);
+            break;
+
+        case 2:
+            this.enterOuterAlt(localctx, 2);
+            this.state = 180;
+            localctx.low = this.match(FEEL_1_1Parser.LPAREN);
+            this.state = 181;
+            localctx.start = this.endpoint();
+            this.state = 182;
+            this.match(FEEL_1_1Parser.ELIPSIS);
+            this.state = 183;
+            localctx.end = this.endpoint();
+            this.state = 184;
+            localctx.up = this.match(FEEL_1_1Parser.LBRACK);
+            break;
+
+        case 3:
+            this.enterOuterAlt(localctx, 3);
+            this.state = 186;
+            localctx.low = this.match(FEEL_1_1Parser.LPAREN);
+            this.state = 187;
+            localctx.start = this.endpoint();
+            this.state = 188;
+            this.match(FEEL_1_1Parser.ELIPSIS);
+            this.state = 189;
+            localctx.end = this.endpoint();
+            this.state = 190;
+            localctx.up = this.match(FEEL_1_1Parser.RBRACK);
+            break;
+
+        case 4:
+            this.enterOuterAlt(localctx, 4);
+            this.state = 192;
+            localctx.low = this.match(FEEL_1_1Parser.RBRACK);
+            this.state = 193;
+            localctx.start = this.endpoint();
+            this.state = 194;
+            this.match(FEEL_1_1Parser.ELIPSIS);
+            this.state = 195;
+            localctx.end = this.endpoint();
+            this.state = 196;
+            localctx.up = this.match(FEEL_1_1Parser.RPAREN);
+            break;
+
+        case 5:
+            this.enterOuterAlt(localctx, 5);
+            this.state = 198;
+            localctx.low = this.match(FEEL_1_1Parser.RBRACK);
+            this.state = 199;
+            localctx.start = this.endpoint();
+            this.state = 200;
+            this.match(FEEL_1_1Parser.ELIPSIS);
+            this.state = 201;
+            localctx.end = this.endpoint();
+            this.state = 202;
+            localctx.up = this.match(FEEL_1_1Parser.LBRACK);
+            break;
+
+        case 6:
+            this.enterOuterAlt(localctx, 6);
+            this.state = 204;
+            localctx.low = this.match(FEEL_1_1Parser.RBRACK);
+            this.state = 205;
+            localctx.start = this.endpoint();
+            this.state = 206;
+            this.match(FEEL_1_1Parser.ELIPSIS);
+            this.state = 207;
+            localctx.end = this.endpoint();
+            this.state = 208;
+            localctx.up = this.match(FEEL_1_1Parser.RBRACK);
+            break;
+
+        case 7:
+            this.enterOuterAlt(localctx, 7);
+            this.state = 210;
+            localctx.low = this.match(FEEL_1_1Parser.LBRACK);
+            this.state = 211;
+            localctx.start = this.endpoint();
+            this.state = 212;
+            this.match(FEEL_1_1Parser.ELIPSIS);
+            this.state = 213;
+            localctx.end = this.endpoint();
+            this.state = 214;
+            localctx.up = this.match(FEEL_1_1Parser.RPAREN);
+            break;
+
+        case 8:
+            this.enterOuterAlt(localctx, 8);
+            this.state = 216;
+            localctx.low = this.match(FEEL_1_1Parser.LBRACK);
+            this.state = 217;
+            localctx.start = this.endpoint();
+            this.state = 218;
+            this.match(FEEL_1_1Parser.ELIPSIS);
+            this.state = 219;
+            localctx.end = this.endpoint();
+            this.state = 220;
+            localctx.up = this.match(FEEL_1_1Parser.LBRACK);
+            break;
+
+        case 9:
+            this.enterOuterAlt(localctx, 9);
+            this.state = 222;
+            localctx.low = this.match(FEEL_1_1Parser.LBRACK);
+            this.state = 223;
+            localctx.start = this.endpoint();
+            this.state = 224;
+            this.match(FEEL_1_1Parser.ELIPSIS);
+            this.state = 225;
+            localctx.end = this.endpoint();
+            this.state = 226;
+            localctx.up = this.match(FEEL_1_1Parser.RBRACK);
+            break;
+
+        }
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -1761,11 +2817,11 @@ FEEL_1_1Parser.ReusableKeywordsContext = ReusableKeywordsContext;
 FEEL_1_1Parser.prototype.reusableKeywords = function() {
 
     var localctx = new ReusableKeywordsContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 36, FEEL_1_1Parser.RULE_reusableKeywords);
+    this.enterRule(localctx, 50, FEEL_1_1Parser.RULE_reusableKeywords);
     var _la = 0; // Token type
     try {
         this.enterOuterAlt(localctx, 1);
-        this.state = 100;
+        this.state = 230;
         _la = this._input.LA(1);
         if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << FEEL_1_1Parser.FOR) | (1 << FEEL_1_1Parser.RETURN) | (1 << FEEL_1_1Parser.IF) | (1 << FEEL_1_1Parser.THEN) | (1 << FEEL_1_1Parser.ELSE) | (1 << FEEL_1_1Parser.SOME) | (1 << FEEL_1_1Parser.EVERY) | (1 << FEEL_1_1Parser.SATISFIES) | (1 << FEEL_1_1Parser.INSTANCE) | (1 << FEEL_1_1Parser.OF) | (1 << FEEL_1_1Parser.FUNCTION) | (1 << FEEL_1_1Parser.EXTERNAL) | (1 << FEEL_1_1Parser.OR) | (1 << FEEL_1_1Parser.AND) | (1 << FEEL_1_1Parser.BETWEEN) | (1 << FEEL_1_1Parser.NULL) | (1 << FEEL_1_1Parser.TRUE) | (1 << FEEL_1_1Parser.FALSE))) !== 0) || _la===FEEL_1_1Parser.NOT)) {
         this._errHandler.recoverInline(this);
