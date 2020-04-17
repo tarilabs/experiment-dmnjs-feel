@@ -30,6 +30,96 @@ FEEL_1_1Visitor.prototype.visitTextualExpression = function(ctx) {
 };
 
 
+// Visit a parse tree produced by FEEL_1_1Parser#parametersEmpty.
+FEEL_1_1Visitor.prototype.visitParametersEmpty = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#parametersPositional.
+FEEL_1_1Visitor.prototype.visitParametersPositional = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#positionalParameters.
+FEEL_1_1Visitor.prototype.visitPositionalParameters = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#forExpression.
+FEEL_1_1Visitor.prototype.visitForExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#iterationContexts.
+FEEL_1_1Visitor.prototype.visitIterationContexts = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#iterationContext.
+FEEL_1_1Visitor.prototype.visitIterationContext = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#ifExpression.
+FEEL_1_1Visitor.prototype.visitIfExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#quantExprSome.
+FEEL_1_1Visitor.prototype.visitQuantExprSome = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#quantExprEvery.
+FEEL_1_1Visitor.prototype.visitQuantExprEvery = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#list.
+FEEL_1_1Visitor.prototype.visitList = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#nameDefinitionTokens.
+FEEL_1_1Visitor.prototype.visitNameDefinitionTokens = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#iterationNameDefinition.
+FEEL_1_1Visitor.prototype.visitIterationNameDefinition = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#iterationNameDefinitionTokens.
+FEEL_1_1Visitor.prototype.visitIterationNameDefinitionTokens = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#additionalNameSymbol.
+FEEL_1_1Visitor.prototype.visitAdditionalNameSymbol = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#condOr.
+FEEL_1_1Visitor.prototype.visitCondOr = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by FEEL_1_1Parser#condOrAnd.
 FEEL_1_1Visitor.prototype.visitCondOrAnd = function(ctx) {
   return this.visitChildren(ctx);
@@ -42,8 +132,38 @@ FEEL_1_1Visitor.prototype.visitCondAndComp = function(ctx) {
 };
 
 
+// Visit a parse tree produced by FEEL_1_1Parser#condAnd.
+FEEL_1_1Visitor.prototype.visitCondAnd = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#compExpression.
+FEEL_1_1Visitor.prototype.visitCompExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by FEEL_1_1Parser#compExpressionRel.
 FEEL_1_1Visitor.prototype.visitCompExpressionRel = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#relExpressionBetween.
+FEEL_1_1Visitor.prototype.visitRelExpressionBetween = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#relExpressionValue.
+FEEL_1_1Visitor.prototype.visitRelExpressionValue = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#relExpressionTestList.
+FEEL_1_1Visitor.prototype.visitRelExpressionTestList = function(ctx) {
   return this.visitChildren(ctx);
 };
 
@@ -78,14 +198,44 @@ FEEL_1_1Visitor.prototype.visitMultExpressionPow = function(ctx) {
 };
 
 
+// Visit a parse tree produced by FEEL_1_1Parser#multExpression.
+FEEL_1_1Visitor.prototype.visitMultExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by FEEL_1_1Parser#powExpressionUnary.
 FEEL_1_1Visitor.prototype.visitPowExpressionUnary = function(ctx) {
   return this.visitChildren(ctx);
 };
 
 
+// Visit a parse tree produced by FEEL_1_1Parser#powExpression.
+FEEL_1_1Visitor.prototype.visitPowExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by FEEL_1_1Parser#filterPathExpression.
 FEEL_1_1Visitor.prototype.visitFilterPathExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#signedUnaryExpressionPlus.
+FEEL_1_1Visitor.prototype.visitSignedUnaryExpressionPlus = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#signedUnaryExpressionMinus.
+FEEL_1_1Visitor.prototype.visitSignedUnaryExpressionMinus = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#fnInvocation.
+FEEL_1_1Visitor.prototype.visitFnInvocation = function(ctx) {
   return this.visitChildren(ctx);
 };
 
@@ -108,8 +258,38 @@ FEEL_1_1Visitor.prototype.visitPrimaryLiteral = function(ctx) {
 };
 
 
+// Visit a parse tree produced by FEEL_1_1Parser#primaryForExpression.
+FEEL_1_1Visitor.prototype.visitPrimaryForExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#primaryQuantifiedExpression.
+FEEL_1_1Visitor.prototype.visitPrimaryQuantifiedExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#primaryIfExpression.
+FEEL_1_1Visitor.prototype.visitPrimaryIfExpression = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by FEEL_1_1Parser#primaryInterval.
 FEEL_1_1Visitor.prototype.visitPrimaryInterval = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#primaryList.
+FEEL_1_1Visitor.prototype.visitPrimaryList = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#primaryParens.
+FEEL_1_1Visitor.prototype.visitPrimaryParens = function(ctx) {
   return this.visitChildren(ctx);
 };
 
@@ -176,6 +356,30 @@ FEEL_1_1Visitor.prototype.visitPositiveUnaryTestIneq = function(ctx) {
 
 // Visit a parse tree produced by FEEL_1_1Parser#positiveUnaryTestInterval.
 FEEL_1_1Visitor.prototype.visitPositiveUnaryTestInterval = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#simplePositiveUnaryTests.
+FEEL_1_1Visitor.prototype.visitSimplePositiveUnaryTests = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#positiveSimplePositiveUnaryTests.
+FEEL_1_1Visitor.prototype.visitPositiveSimplePositiveUnaryTests = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#negatedSimplePositiveUnaryTests.
+FEEL_1_1Visitor.prototype.visitNegatedSimplePositiveUnaryTests = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#positiveUnaryTestDash.
+FEEL_1_1Visitor.prototype.visitPositiveUnaryTestDash = function(ctx) {
   return this.visitChildren(ctx);
 };
 

@@ -23,6 +23,24 @@ var MockedParserHelper = (function () {
         console.log('enableDynamicResolution()');
         this.dynamicResolution++;
     };
+    MockedParserHelper.prototype.pushScope = function () {
+        console.log('pushScope()');
+    };
+    MockedParserHelper.prototype.popScope = function () {
+        console.log('popScope()');
+    };
+    MockedParserHelper.prototype.recoverScope = function () {
+        console.log('recoverScope()');
+    };
+    MockedParserHelper.prototype.dismissScope = function () {
+        console.log('dismissScope()');
+    };
+    MockedParserHelper.prototype.defineVariable = function (ctx) {
+        console.log('defineVariable( ' + ctx);
+    };
+    MockedParserHelper.prototype.isFeatDMN12EnhancedForLoopEnabled = function () {
+        return true;
+    };
     return MockedParserHelper;
 }());
 function parse(expression) {

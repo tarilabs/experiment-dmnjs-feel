@@ -42,11 +42,11 @@ textualExpression
     ;
 
 // #41
-// parameters
-//     : LPAREN RPAREN                       #parametersEmpty
-//     | LPAREN namedParameters RPAREN       #parametersNamed
-//     | LPAREN positionalParameters RPAREN  #parametersPositional
-//     ;
+parameters
+    : LPAREN RPAREN                       #parametersEmpty
+    //| LPAREN namedParameters RPAREN       #parametersNamed
+    | LPAREN positionalParameters RPAREN  #parametersPositional
+    ;
 
 // // #42 #43
 // namedParameters
@@ -57,47 +57,47 @@ textualExpression
 //     : name=nameDefinition COLON value=expression
 //     ;
 
-// // #44
-// positionalParameters
-//     : expression ( COMMA expression )*
-//     ;
+// #44
+positionalParameters
+    : expression ( COMMA expression )*
+    ;
 
-// // #46
-// forExpression
-// @init {
-//     helper.pushScope();
-// }
-// @after {
-//     helper.popScope();
-// }
-//     : FOR iterationContexts RETURN {helper.enableDynamicResolution();} expression {helper.disableDynamicResolution();}
-//     ;
+// #46
+forExpression
+@init {
+    this.helper.pushScope();
+}
+@after {
+    this.helper.popScope();
+}
+    : FOR iterationContexts RETURN {this.helper.enableDynamicResolution();} expression {this.helper.disableDynamicResolution();}
+    ;
 
-// iterationContexts
-//     : iterationContext ( COMMA iterationContext )*
-//     ;
+iterationContexts
+    : iterationContext ( COMMA iterationContext )*
+    ;
 
-// iterationContext
-//     : {helper.isFeatDMN12EnhancedForLoopEnabled()}? iterationNameDefinition IN expression '..' expression
-//     | iterationNameDefinition IN expression
-//     ;
+iterationContext
+    : {this.helper.isFeatDMN12EnhancedForLoopEnabled()}? iterationNameDefinition IN expression '..' expression
+    | iterationNameDefinition IN expression
+    ;
     
-// // #47
-// ifExpression
-//     : IF c=expression THEN t=expression ELSE e=expression
-//     ;
+// #47
+ifExpression
+    : IF c=expression THEN t=expression ELSE e=expression
+    ;
 
-// // #48
-// quantifiedExpression
-// @init {
-//     helper.pushScope();
-// }
-// @after {
-//     helper.popScope();
-// }
-//     : SOME iterationContexts SATISFIES {helper.enableDynamicResolution();} expression {helper.disableDynamicResolution();}    #quantExprSome
-//     | EVERY iterationContexts SATISFIES {helper.enableDynamicResolution();} expression {helper.disableDynamicResolution();}   #quantExprEvery
-//     ;
+// #48
+quantifiedExpression
+@init {
+    this.helper.pushScope();
+}
+@after {
+    this.helper.popScope();
+}
+    : SOME iterationContexts SATISFIES {this.helper.enableDynamicResolution();} expression {this.helper.disableDynamicResolution();}    #quantExprSome
+    | EVERY iterationContexts SATISFIES {this.helper.enableDynamicResolution();} expression {this.helper.disableDynamicResolution();}   #quantExprEvery
+    ;
 
 // // #54
 // type
@@ -114,11 +114,11 @@ textualExpression
 //     | qualifiedName                                                                                                   #qnType
 //     ;
 
-// // #56
-// list
-//     : LBRACK RBRACK
-//     | LBRACK expressionList RBRACK
-//     ;
+// #56
+list
+    : LBRACK RBRACK
+    | LBRACK expressionList RBRACK
+    ;
 
 // // #57
 // functionDefinition
@@ -177,62 +177,62 @@ textualExpression
 //     : nameDefinition EOF
 //     ;
 
-// nameDefinitionTokens
-//     : Identifier
-//         ( Identifier
-//         | additionalNameSymbol
-//         | IntegerLiteral
-//         | FloatingPointLiteral
-//         | reusableKeywords
-//         | IN
-//         )*
-//     ;
+nameDefinitionTokens
+    : Identifier
+        ( Identifier
+        | additionalNameSymbol
+        | IntegerLiteral
+        | FloatingPointLiteral
+        | reusableKeywords
+        | IN
+        )*
+    ;
 
-// iterationNameDefinition
-//     : iterationNameDefinitionTokens { helper.defineVariable( $iterationNameDefinitionTokens.ctx ); }
-//     ;
+iterationNameDefinition
+    : iterationNameDefinitionTokens { this.helper.defineVariable( $iterationNameDefinitionTokens.ctx ); }
+    ;
 
-// iterationNameDefinitionTokens
-//     : Identifier
-//         ( Identifier
-//         | additionalNameSymbol
-//         | IntegerLiteral
-//         | FloatingPointLiteral
-//         | reusableKeywords
-//         )*
-//     ;
+ iterationNameDefinitionTokens
+     : Identifier
+         ( Identifier
+         | additionalNameSymbol
+         | IntegerLiteral
+         | FloatingPointLiteral
+         | reusableKeywords
+         )*
+     ;
 
 
-// additionalNameSymbol
-//     : //( '.' | '/' | '-' | '\'' | '+' | '*' )
-//     DOT | DIV | SUB | ADD | MUL | QUOTE
-//     ;
+additionalNameSymbol
+    : //( '.' | '/' | '-' | '\'' | '+' | '*' )
+    DOT | DIV | SUB | ADD | MUL | QUOTE
+    ;
 
 conditionalOrExpression
 	:	conditionalAndExpression                                                 #condOrAnd
-// 	|	left=conditionalOrExpression op=OR right=conditionalAndExpression    #condOr
+ 	|	left=conditionalOrExpression op=OR right=conditionalAndExpression    #condOr
 	;
 
 conditionalAndExpression
 	:	comparisonExpression                                                   #condAndComp
-//	|	left=conditionalAndExpression op=AND right=comparisonExpression      #condAnd
+	|	left=conditionalAndExpression op=AND right=comparisonExpression      #condAnd
 	;
 
 comparisonExpression
 	:	relationalExpression                                                                   #compExpressionRel
-	// |   left=comparisonExpression op=(LT |
-    //                                   GT |
-    //                                   LE |
-    //                                   GE |
-    //                                   EQUAL |
-    //                                   NOTEQUAL) right=relationalExpression   #compExpression
+	|   left=comparisonExpression op=(LT |
+                                      GT |
+                                      LE |
+                                      GE |
+                                      EQUAL |
+                                      NOTEQUAL) right=relationalExpression   #compExpression
 	;
 
 relationalExpression
 	:	additiveExpression                                                                           #relExpressionAdd
-	// |	val=relationalExpression BETWEEN start=additiveExpression AND end=additiveExpression   #relExpressionBetween
-	// |   val=relationalExpression IN LPAREN positiveUnaryTests RPAREN                                     #relExpressionTestList
-    // |   val=relationalExpression IN expression                                                   #relExpressionValue        // includes simpleUnaryTest
+	|	val=relationalExpression BETWEEN start=additiveExpression AND end=additiveExpression   #relExpressionBetween
+	|   val=relationalExpression IN LPAREN positiveUnaryTests RPAREN                                     #relExpressionTestList
+    |   val=relationalExpression IN expression                                                   #relExpressionValue        // includes simpleUnaryTest
     // |   val=relationalExpression INSTANCE OF type                                            #relExpressionInstanceOf
 	;
 
@@ -248,26 +248,25 @@ additiveExpression
 
 multiplicativeExpression
 	:	powerExpression                                              #multExpressionPow
-//	|	multiplicativeExpression op=( MUL | DIV ) powerExpression    #multExpression
+    |	multiplicativeExpression op=( MUL | DIV ) powerExpression    #multExpression
 	;
 
 powerExpression
     :   filterPathExpression                           #powExpressionUnary
-    // |   powerExpression op=POW filterPathExpression   #powExpression
+    |   powerExpression op=POW filterPathExpression   #powExpression
     ;
 
 filterPathExpression
     :   unaryExpression
-    // |   filterPathExpression LBRACK {helper.enableDynamicResolution();} filter=expression {helper.disableDynamicResolution();} RBRACK
+    |   filterPathExpression LBRACK {this.helper.enableDynamicResolution();} filter=expression {this.helper.disableDynamicResolution();} RBRACK
     // |   filterPathExpression DOT {helper.enableDynamicResolution();} qualifiedName {helper.disableDynamicResolution();}
     ;
 
 unaryExpression
-	:	// SUB unaryExpression                      #signedUnaryExpressionMinus
-	//|   
-    unaryExpressionNotPlusMinus              #nonSignedUnaryExpression
-    //|	ADD unaryExpressionNotPlusMinus          #signedUnaryExpressionPlus
-    //| unaryExpression parameters #fnInvocation
+	:	SUB unaryExpression                      #signedUnaryExpressionMinus
+	|   unaryExpressionNotPlusMinus              #nonSignedUnaryExpression
+    |	ADD unaryExpressionNotPlusMinus          #signedUnaryExpressionPlus
+    | unaryExpression parameters #fnInvocation
 	;
 
 unaryExpressionNotPlusMinus
@@ -276,13 +275,13 @@ unaryExpressionNotPlusMinus
 
 primary
     : literal                     #primaryLiteral
-    // | forExpression               #primaryForExpression
-    // | quantifiedExpression        #primaryQuantifiedExpression
-    // | ifExpression                #primaryIfExpression
+    | forExpression               #primaryForExpression
+    | quantifiedExpression        #primaryQuantifiedExpression
+    | ifExpression                #primaryIfExpression
     | interval                    #primaryInterval
-    // | list                        #primaryList
+    | list                        #primaryList
     // | context                     #primaryContext
-    // | LPAREN expression RPAREN          #primaryParens
+    | LPAREN expression RPAREN          #primaryParens
     | simplePositiveUnaryTest     #primaryUnaryTest
     // | qualifiedName    #primaryName
     ;
@@ -326,18 +325,18 @@ simplePositiveUnaryTest
     ;
 
 
-// // #13
-// simplePositiveUnaryTests
-//     : simplePositiveUnaryTest ( COMMA simplePositiveUnaryTest )*
-//     ;
+// #13
+simplePositiveUnaryTests
+    : simplePositiveUnaryTest ( COMMA simplePositiveUnaryTest )*
+    ;
 
-
-// // #14
-// simpleUnaryTests
-//     : simplePositiveUnaryTests                     #positiveSimplePositiveUnaryTests
-//     | NOT LPAREN simplePositiveUnaryTests RPAREN     #negatedSimplePositiveUnaryTests
-//     | SUB                                          #positiveUnaryTestDash
-//     ;
+    
+// #14
+simpleUnaryTests
+    : simplePositiveUnaryTests                     #positiveSimplePositiveUnaryTests
+    | NOT LPAREN simplePositiveUnaryTests RPAREN     #negatedSimplePositiveUnaryTests
+    | SUB                                          #positiveUnaryTestDash
+    ;
 
 // #15
 positiveUnaryTest
@@ -366,6 +365,7 @@ unaryTests
 endpoint
     : additiveExpression
     ;
+
 // #8-#12
 interval
     : low=LPAREN start=endpoint ELIPSIS end=endpoint up=RPAREN

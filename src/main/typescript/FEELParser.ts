@@ -17,16 +17,40 @@ class MockedParserHelper {
         return this.dynamicResolution > 0;
     }
 
-    public disableDynamicResolution() {
+    public disableDynamicResolution() : void {
         console.log('disableDynamicResolution()');
         if(this.dynamicResolution > 0) {
             this.dynamicResolution--;
         }
     }
 
-    public enableDynamicResolution() {
+    public enableDynamicResolution() : void {
         console.log('enableDynamicResolution()');
         this.dynamicResolution++;
+    }
+
+    public pushScope() : void {
+        console.log('pushScope()');
+    }
+
+    public popScope() : void {
+        console.log('popScope()');
+    }
+
+    public recoverScope() : void {
+        console.log('recoverScope()');
+    }
+
+    public dismissScope() : void {
+        console.log('dismissScope()');
+    }
+
+    public defineVariable(ctx : any) : void {
+        console.log('defineVariable( ' + ctx);
+    }
+
+    public isFeatDMN12EnhancedForLoopEnabled() : boolean {
+        return true;
     }
 }
 
