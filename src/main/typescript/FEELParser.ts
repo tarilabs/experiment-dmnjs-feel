@@ -59,6 +59,10 @@ class MockedParserHelper {
         console.log("startVariable( "+startToken);
     }
 
+    public definetVariable(nameDefinitionTokensCtx : any) : void {
+        console.log("definetVariable( "+nameDefinitionTokensCtx);
+    }
+
     // TODO this could be made static, but check how to call from JS...
     public getOriginalText(  ctx : antlr4.ParserRuleContext ) : string {
         const a = ctx.start.start;

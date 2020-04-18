@@ -36,8 +36,26 @@ FEEL_1_1Visitor.prototype.visitParametersEmpty = function(ctx) {
 };
 
 
+// Visit a parse tree produced by FEEL_1_1Parser#parametersNamed.
+FEEL_1_1Visitor.prototype.visitParametersNamed = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by FEEL_1_1Parser#parametersPositional.
 FEEL_1_1Visitor.prototype.visitParametersPositional = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#namedParameters.
+FEEL_1_1Visitor.prototype.visitNamedParameters = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#namedParameter.
+FEEL_1_1Visitor.prototype.visitNamedParameter = function(ctx) {
   return this.visitChildren(ctx);
 };
 
@@ -86,6 +104,18 @@ FEEL_1_1Visitor.prototype.visitQuantExprEvery = function(ctx) {
 
 // Visit a parse tree produced by FEEL_1_1Parser#list.
 FEEL_1_1Visitor.prototype.visitList = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#nameDefinition.
+FEEL_1_1Visitor.prototype.visitNameDefinition = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#nameDefinitionWithEOF.
+FEEL_1_1Visitor.prototype.visitNameDefinitionWithEOF = function(ctx) {
   return this.visitChildren(ctx);
 };
 

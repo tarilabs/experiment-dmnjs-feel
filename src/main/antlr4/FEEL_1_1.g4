@@ -42,18 +42,18 @@ textualExpression
 // #41
 parameters
     : LPAREN RPAREN                       #parametersEmpty
-    //| LPAREN namedParameters RPAREN       #parametersNamed
+    | LPAREN namedParameters RPAREN       #parametersNamed
     | LPAREN positionalParameters RPAREN  #parametersPositional
     ;
 
-// // #42 #43
-// namedParameters
-//     : namedParameter (COMMA namedParameter)*
-//     ;
+// #42 #43
+namedParameters
+    : namedParameter (COMMA namedParameter)*
+    ;
 
-// namedParameter
-//     : name=nameDefinition COLON value=expression
-//     ;
+namedParameter
+    : name=nameDefinition COLON value=expression
+    ;
 
 // #44
 positionalParameters
@@ -167,13 +167,13 @@ list
 //     | StringLiteral    #keyString
 //     ;
 
-// nameDefinition
-//     : nameDefinitionTokens { helper.defineVariable( $nameDefinitionTokens.ctx ); }
-//     ;
-    
-// nameDefinitionWithEOF
-//     : nameDefinition EOF
-//     ;
+nameDefinition
+    : nameDefinitionTokens { this.helper.defineVariable( $nameDefinitionTokens.ctx ); }
+    ;
+ 
+nameDefinitionWithEOF
+    : nameDefinition EOF
+    ;
 
 nameDefinitionTokens
     : Identifier
@@ -257,7 +257,7 @@ powerExpression
 filterPathExpression
     :   unaryExpression
     |   filterPathExpression LBRACK {this.helper.enableDynamicResolution();} filter=expression {this.helper.disableDynamicResolution();} RBRACK
-    // |   filterPathExpression DOT {helper.enableDynamicResolution();} qualifiedName {helper.disableDynamicResolution();}
+    |   filterPathExpression DOT {this.helper.enableDynamicResolution();} qualifiedName {this.helper.disableDynamicResolution();}
     ;
 
 unaryExpression

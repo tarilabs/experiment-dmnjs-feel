@@ -45,6 +45,9 @@ var MockedParserHelper = (function () {
     MockedParserHelper.prototype.startVariable = function (startToken) {
         console.log("startVariable( " + startToken);
     };
+    MockedParserHelper.prototype.definetVariable = function (nameDefinitionTokensCtx) {
+        console.log("definetVariable( " + nameDefinitionTokensCtx);
+    };
     MockedParserHelper.prototype.getOriginalText = function (ctx) {
         var a = ctx.start.start;
         var b = ctx.stop.stop;
