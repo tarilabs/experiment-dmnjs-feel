@@ -13,19 +13,16 @@ class MockedParserHelper {
     private dynamicResolution : number = 0;
 
     public isDynamicResolution() : boolean {
-        console.log('isDynamicResolution()');
         return this.dynamicResolution > 0;
     }
 
     public disableDynamicResolution() : void {
-        console.log('disableDynamicResolution()');
         if(this.dynamicResolution > 0) {
             this.dynamicResolution--;
         }
     }
 
     public enableDynamicResolution() : void {
-        console.log('enableDynamicResolution()');
         this.dynamicResolution++;
     }
 
@@ -52,6 +49,30 @@ class MockedParserHelper {
     public isFeatDMN12EnhancedForLoopEnabled() : boolean {
         return true;
     }
+
+    public followUp(lt1 : any, localctx : any) : boolean {
+        console.log('followUp( ' + lt1 + ', '  +localctx + " ) : FALSE");
+        return false;
+    }
+
+    public startVariable(startToken : any) : void {
+        console.log("startVariable( "+startToken);
+    }
+
+    // TODO this could be made static, but check how to call from JS...
+    public getOriginalText(  ctx : antlr4.ParserRuleContext ) : string {
+        const a = ctx.start.start;
+        const b = ctx.stop.stop;
+        // const interval = new antlr4.Interval(a,b);
+        const text = ctx.start.getInputStream().getText(a, b); // difference b/w Java and JS Antlr's API.
+        return text;
+    }
+
+    public validateVariable(n1 : any, qn : Array<string>, name : string ) {
+        console.log("validateVariable( "+n1+", "+qn+", "+name);
+        const varName = qn.join(".");
+        console.log("TODO ERROR Unknown variable "+varName);
+    }
 }
 
 export function parse(expression : string) : ASTNode.ASTNode {
@@ -60,7 +81,8 @@ export function parse(expression : string) : ASTNode.ASTNode {
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
-    parser.setHelper(new MockedParserHelper());
+    const helper = new MockedParserHelper();
+    parser.setHelper(helper);
     var tree = parser.compilation_unit();
     log(tree.toStringTree(parser.ruleNames));
 

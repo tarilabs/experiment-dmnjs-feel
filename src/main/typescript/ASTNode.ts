@@ -95,7 +95,7 @@ export enum UnaryOperator {
 
 export class ValueVisitor implements ASTNodeVisitor<Either<Error, feelvalue.FEELValue>> {
     visitNull(node: NullNode): Either<Error, feelvalue.FEELValue> {
-        throw new Error("Method not implemented.");
+        return Either.ofLeft(Error("Method not implemented."));
     }
     visitNumber(node: NumberNode): Either<Error, feelvalue.FEELValue> {
         return node.value;
@@ -120,6 +120,6 @@ export class ValueVisitor implements ASTNodeVisitor<Either<Error, feelvalue.FEEL
         }
     }
     visitRange(node: RangeNode): Either<Error, feelvalue.FEELValue> {
-        throw new Error("Method not implemented.");
+        return Either.ofLeft(Error("Method not implemented."));
     }
 }

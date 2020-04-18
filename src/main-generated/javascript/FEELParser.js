@@ -10,17 +10,14 @@ var MockedParserHelper = (function () {
         this.dynamicResolution = 0;
     }
     MockedParserHelper.prototype.isDynamicResolution = function () {
-        console.log('isDynamicResolution()');
         return this.dynamicResolution > 0;
     };
     MockedParserHelper.prototype.disableDynamicResolution = function () {
-        console.log('disableDynamicResolution()');
         if (this.dynamicResolution > 0) {
             this.dynamicResolution--;
         }
     };
     MockedParserHelper.prototype.enableDynamicResolution = function () {
-        console.log('enableDynamicResolution()');
         this.dynamicResolution++;
     };
     MockedParserHelper.prototype.pushScope = function () {
@@ -41,6 +38,24 @@ var MockedParserHelper = (function () {
     MockedParserHelper.prototype.isFeatDMN12EnhancedForLoopEnabled = function () {
         return true;
     };
+    MockedParserHelper.prototype.followUp = function (lt1, localctx) {
+        console.log('followUp( ' + lt1 + ', ' + localctx + " ) : FALSE");
+        return false;
+    };
+    MockedParserHelper.prototype.startVariable = function (startToken) {
+        console.log("startVariable( " + startToken);
+    };
+    MockedParserHelper.prototype.getOriginalText = function (ctx) {
+        var a = ctx.start.start;
+        var b = ctx.stop.stop;
+        var text = ctx.start.getInputStream().getText(a, b);
+        return text;
+    };
+    MockedParserHelper.prototype.validateVariable = function (n1, qn, name) {
+        console.log("validateVariable( " + n1 + ", " + qn + ", " + name);
+        var varName = qn.join(".");
+        console.log("TODO ERROR Unknown variable " + varName);
+    };
     return MockedParserHelper;
 }());
 function parse(expression) {
@@ -49,7 +64,8 @@ function parse(expression) {
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
-    parser.setHelper(new MockedParserHelper());
+    var helper = new MockedParserHelper();
+    parser.setHelper(helper);
     var tree = parser.compilation_unit();
     log(tree.toStringTree(parser.ruleNames));
     var cu = tree.accept(new MyVisitor());

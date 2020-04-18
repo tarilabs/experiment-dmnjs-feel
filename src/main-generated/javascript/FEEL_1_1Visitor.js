@@ -300,6 +300,12 @@ FEEL_1_1Visitor.prototype.visitPrimaryUnaryTest = function(ctx) {
 };
 
 
+// Visit a parse tree produced by FEEL_1_1Parser#primaryName.
+FEEL_1_1Visitor.prototype.visitPrimaryName = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by FEEL_1_1Parser#numberLiteral.
 FEEL_1_1Visitor.prototype.visitNumberLiteral = function(ctx) {
   return this.visitChildren(ctx);
@@ -428,6 +434,24 @@ FEEL_1_1Visitor.prototype.visitEndpoint = function(ctx) {
 
 // Visit a parse tree produced by FEEL_1_1Parser#interval.
 FEEL_1_1Visitor.prototype.visitInterval = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#qualifiedName.
+FEEL_1_1Visitor.prototype.visitQualifiedName = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#nameRef.
+FEEL_1_1Visitor.prototype.visitNameRef = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by FEEL_1_1Parser#nameRefOtherToken.
+FEEL_1_1Visitor.prototype.visitNameRefOtherToken = function(ctx) {
   return this.visitChildren(ctx);
 };
 

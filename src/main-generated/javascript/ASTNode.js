@@ -77,7 +77,7 @@ var ValueVisitor = (function () {
     function ValueVisitor() {
     }
     ValueVisitor.prototype.visitNull = function (node) {
-        throw new Error("Method not implemented.");
+        return Commons_1.Either.ofLeft(Error("Method not implemented."));
     };
     ValueVisitor.prototype.visitNumber = function (node) {
         return node.value;
@@ -104,7 +104,7 @@ var ValueVisitor = (function () {
         }
     };
     ValueVisitor.prototype.visitRange = function (node) {
-        throw new Error("Method not implemented.");
+        return Commons_1.Either.ofLeft(Error("Method not implemented."));
     };
     return ValueVisitor;
 }());

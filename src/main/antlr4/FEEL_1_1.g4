@@ -20,8 +20,6 @@ this.getHelper = function () {
 
 }
 
-// TODO members
-
 /**************************
  *       EXPRESSIONS
  **************************/
@@ -283,7 +281,7 @@ primary
     // | context                     #primaryContext
     | LPAREN expression RPAREN          #primaryParens
     | simplePositiveUnaryTest     #primaryUnaryTest
-    // | qualifiedName    #primaryName
+    | qualifiedName    #primaryName
     ;
 
 // #33 - #39
@@ -379,35 +377,36 @@ interval
     | low=LBRACK start=endpoint ELIPSIS end=endpoint up=RBRACK
     ;
 
-// // #20
-// qualifiedName
-// @init {
-//     String name = null;
-//     int count = 0;
-//     java.util.List<String> qn = new java.util.ArrayList<String>();
-// }
-// @after {
-//     for( int i = 0; i < count; i++ )
-//         helper.dismissScope();
-// }
-//     : n1=nameRef { name = getOriginalText( $n1.ctx ); qn.add( name ); helper.validateVariable( $n1.ctx, qn, name ); }
-//         ( DOT
-//             {helper.recoverScope( name ); count++;}
-//             n2=nameRef
-//             {name=getOriginalText( $n2.ctx );  qn.add( name ); helper.validateVariable( $n1.ctx, qn, name ); }
-//         )*
-//     ;
+// #20
+qualifiedName
+@init {
+    var name = null;
+    var count = 0;
+    var qn = ([]);
+}
+@after {
+    for (var i = 0; i < count; i++) {
+        this.helper.dismissScope();
+    }
+}
+    : n1=nameRef { name = this.helper.getOriginalText( $n1.ctx ); qn.push( name ); this.helper.validateVariable( $n1.ctx, qn, name ); }
+        ( DOT
+            {this.helper.recoverScope( name ); count++;}
+            n2=nameRef
+            {name=this.helper.getOriginalText( $n2.ctx );  qn.push( name ); this.helper.validateVariable( $n1.ctx, qn, name ); }
+        )*
+    ;
 
-// nameRef
-//     : ( st=Identifier { helper.startVariable( $st ); }
-//        | not_st=NOT { helper.startVariable( $not_st ); }
-//        )  nameRefOtherToken*
-//     ;
+nameRef
+    : ( st=Identifier { this.helper.startVariable( $st ); }
+       | not_st=NOT { this.helper.startVariable( $not_st ); }
+       )  nameRefOtherToken*
+    ;
 
-// nameRefOtherToken
-//     : { helper.followUp( _input.LT(1), _localctx==null ) }?
-//         ~(LPAREN|RPAREN|LBRACK|RBRACK|LBRACE|RBRACE|LT|GT|EQUAL|BANG|COMMA)
-//     ;
+nameRefOtherToken
+    : { this.helper.followUp( this._input.LT(1), localctx===null ) }? // difference b/w Java and JS Antlr's API: localctx without _
+        ~(LPAREN|RPAREN|LBRACK|RBRACK|LBRACE|RBRACE|LT|GT|EQUAL|BANG|COMMA)
+    ;
 
 /********************************
  *      KEYWORDS

@@ -6,3 +6,6 @@ console.log(parsed);
 
 parsed = x.parse("[1..2)");
 console.log(parsed);
+
+parsed = x.parse("my customer");
+console.log(parsed);
