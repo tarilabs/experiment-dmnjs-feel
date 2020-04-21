@@ -34,9 +34,8 @@ expression
 
 // #2
 textualExpression
-    : //functionDefinition
-    //| 
-    conditionalOrExpression
+    : functionDefinition
+    | conditionalOrExpression
     ;
 
 // #41
@@ -97,20 +96,20 @@ quantifiedExpression
     | EVERY iterationContexts SATISFIES {this.helper.enableDynamicResolution();} expression {this.helper.disableDynamicResolution();}   #quantExprEvery
     ;
 
-// // #54
-// type
-// @init {
-//     helper.pushTypeScope();
-// }
-// @after {
-//     helper.popScope();
-// }
-//     : sk=Identifier {$sk.getText().equals("list");} LT type GT                                                        #listType
-//     | sk=Identifier {$sk.getText().equals("context");} LT Identifier COLON type ( COMMA Identifier COLON type )* GT   #contextType
-//     | FUNCTION                                                                                                        #qnType
-//     | FUNCTION LT type ( COMMA type )* GT RARROW type                                                                 #functionType
-//     | qualifiedName                                                                                                   #qnType
-//     ;
+// #54
+type
+@init {
+    this.helper.pushTypeScope();
+}
+@after {
+    this.helper.popScope();
+}
+    : sk=Identifier {$sk.text === "list"}? LT type GT                                                        #listType
+    | sk=Identifier {$sk.text === "context"}? LT Identifier COLON type ( COMMA Identifier COLON type )* GT   #contextType
+    | FUNCTION                                                                                                        #qnType
+    | FUNCTION LT type ( COMMA type )* GT RARROW type                                                                 #functionType
+    | qualifiedName                                                                                                   #qnType
+    ;
 
 // #56
 list
@@ -118,54 +117,54 @@ list
     | LBRACK expressionList RBRACK
     ;
 
-// // #57
-// functionDefinition
-// @init {
-//     helper.pushScope();
-// }
-// @after {
-//     helper.popScope();
-// }
-//     : FUNCTION LPAREN formalParameters? RPAREN external=EXTERNAL? {helper.enableDynamicResolution();} body=expression {helper.disableDynamicResolution();}
-//     ;
+// #57
+functionDefinition
+@init {
+    this.helper.pushScope();
+}
+@after {
+    this.helper.popScope();
+}
+    : FUNCTION LPAREN formalParameters? RPAREN external=EXTERNAL? {this.helper.enableDynamicResolution();} body=expression {this.helper.disableDynamicResolution();}
+    ;
 
-// formalParameters
-//     : formalParameter ( COMMA formalParameter )*
-//     ;
+formalParameters
+    : formalParameter ( COMMA formalParameter )*
+    ;
 
-// // #58
-// formalParameter
-//     : nameDefinition COLON type
-//     | nameDefinition
-//     ;
+// #58
+formalParameter
+    : nameDefinition COLON type
+    | nameDefinition
+    ;
 
-// // #59
-// context
-// @init {
-//     helper.pushScope();
-// }
-// @after {
-//     helper.popScope();
-// }
-//     : LBRACE RBRACE
-//     | LBRACE contextEntries RBRACE
-//     ;
+// #59
+context
+@init {
+    this.helper.pushScope();
+}
+@after {
+    this.helper.popScope();
+}
+    : LBRACE RBRACE
+    | LBRACE contextEntries RBRACE
+    ;
 
-// contextEntries
-//     : contextEntry ( COMMA contextEntry )*
-//     ;
+contextEntries
+    : contextEntry ( COMMA contextEntry )*
+    ;
 
-// // #60
-// contextEntry
-//     : key { helper.pushName( $key.ctx ); }
-//       COLON expression { helper.popName(); helper.defineVariable( $key.ctx ); }
-//     ;
+// #60
+contextEntry
+    : key { this.helper.pushName( $key.ctx ); }
+      COLON expression { this.helper.popName(); this.helper.defineVariable( $key.ctx ); }
+    ;
 
-// // #61
-// key
-//     : nameDefinition   #keyName
-//     | StringLiteral    #keyString
-//     ;
+// #61
+key
+    : nameDefinition   #keyName
+    | StringLiteral    #keyString
+    ;
 
 nameDefinition
     : nameDefinitionTokens { this.helper.defineVariable( $nameDefinitionTokens.ctx ); }
@@ -231,7 +230,7 @@ relationalExpression
 	|	val=relationalExpression BETWEEN start=additiveExpression AND end=additiveExpression   #relExpressionBetween
 	|   val=relationalExpression IN LPAREN positiveUnaryTests RPAREN                                     #relExpressionTestList
     |   val=relationalExpression IN expression                                                   #relExpressionValue        // includes simpleUnaryTest
-    // |   val=relationalExpression INSTANCE OF type                                            #relExpressionInstanceOf
+    |   val=relationalExpression INSTANCE OF type                                            #relExpressionInstanceOf
 	;
 
 expressionList
@@ -268,7 +267,7 @@ unaryExpression
 	;
 
 unaryExpressionNotPlusMinus
-	: primary // primary (DOT {helper.recoverScope();helper.enableDynamicResolution();} qualifiedName parameters? {helper.disableDynamicResolution();helper.dismissScope();} )?   #uenpmPrimary
+	: primary (DOT {this.helper.recoverScope();this.helper.enableDynamicResolution();} qualifiedName parameters? {this.helper.disableDynamicResolution();this.helper.dismissScope();} )?   #uenpmPrimary
 	;
 
 primary
@@ -278,7 +277,7 @@ primary
     | ifExpression                #primaryIfExpression
     | interval                    #primaryInterval
     | list                        #primaryList
-    // | context                     #primaryContext
+    | context                     #primaryContext
     | LPAREN expression RPAREN          #primaryParens
     | simplePositiveUnaryTest     #primaryUnaryTest
     | qualifiedName    #primaryName

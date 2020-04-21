@@ -20,11 +20,20 @@ var MockedParserHelper = (function () {
     MockedParserHelper.prototype.enableDynamicResolution = function () {
         this.dynamicResolution++;
     };
+    MockedParserHelper.prototype.pushTypeScope = function () {
+        console.log('pushTypeScope()');
+    };
     MockedParserHelper.prototype.pushScope = function () {
         console.log('pushScope()');
     };
     MockedParserHelper.prototype.popScope = function () {
         console.log('popScope()');
+    };
+    MockedParserHelper.prototype.pushName = function (ctx) {
+        console.log('pushName(' + this.getOriginalText(ctx));
+    };
+    MockedParserHelper.prototype.popName = function () {
+        console.log('popName()');
     };
     MockedParserHelper.prototype.recoverScope = function () {
         console.log('recoverScope()');
@@ -33,20 +42,17 @@ var MockedParserHelper = (function () {
         console.log('dismissScope()');
     };
     MockedParserHelper.prototype.defineVariable = function (ctx) {
-        console.log('defineVariable( ' + ctx);
+        console.log('defineVariable( ' + this.getOriginalText(ctx));
     };
     MockedParserHelper.prototype.isFeatDMN12EnhancedForLoopEnabled = function () {
         return true;
     };
     MockedParserHelper.prototype.followUp = function (lt1, localctx) {
-        console.log('followUp( ' + lt1 + ', ' + localctx + " ) : FALSE");
+        console.log('followUp( ' + lt1.text + ', ' + localctx + " ) : FALSE");
         return false;
     };
     MockedParserHelper.prototype.startVariable = function (startToken) {
-        console.log("startVariable( " + startToken);
-    };
-    MockedParserHelper.prototype.definetVariable = function (nameDefinitionTokensCtx) {
-        console.log("definetVariable( " + nameDefinitionTokensCtx);
+        console.log("startVariable( " + startToken.text);
     };
     MockedParserHelper.prototype.getOriginalText = function (ctx) {
         var a = ctx.start.start;
@@ -55,7 +61,7 @@ var MockedParserHelper = (function () {
         return text;
     };
     MockedParserHelper.prototype.validateVariable = function (n1, qn, name) {
-        console.log("validateVariable( " + n1 + ", " + qn + ", " + name);
+        console.log("validateVariable( " + this.getOriginalText(n1) + ", " + qn + ", " + name);
         var varName = qn.join(".");
         console.log("TODO ERROR Unknown variable " + varName);
     };

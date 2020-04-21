@@ -9,3 +9,6 @@ console.log(parsed);
 
 parsed = x.parse("my customer");
 console.log(parsed);
+
+parsed = x.parse('{a : "x"}.a');
+console.log(parsed);

@@ -26,12 +26,24 @@ class MockedParserHelper {
         this.dynamicResolution++;
     }
 
+    public pushTypeScope() : void {
+        console.log('pushTypeScope()');
+    }
+
     public pushScope() : void {
         console.log('pushScope()');
     }
 
     public popScope() : void {
         console.log('popScope()');
+    }
+
+    public pushName(ctx : antlr4.ParserRuleContext) : void {
+        console.log('pushName(' +this.getOriginalText(ctx));
+    }
+
+    public popName() : void {
+        console.log('popName()');
     }
 
     public recoverScope() : void {
@@ -42,25 +54,21 @@ class MockedParserHelper {
         console.log('dismissScope()');
     }
 
-    public defineVariable(ctx : any) : void {
-        console.log('defineVariable( ' + ctx);
+    public defineVariable(ctx : antlr4.ParserRuleContext) : void {
+        console.log('defineVariable( ' + this.getOriginalText(ctx));
     }
 
     public isFeatDMN12EnhancedForLoopEnabled() : boolean {
         return true;
     }
 
-    public followUp(lt1 : any, localctx : any) : boolean {
-        console.log('followUp( ' + lt1 + ', '  +localctx + " ) : FALSE");
+    public followUp(lt1 : antlr4.Token, localctx : any) : boolean {
+        console.log('followUp( ' + lt1.text + ', '  +localctx + " ) : FALSE");
         return false;
     }
 
-    public startVariable(startToken : any) : void {
-        console.log("startVariable( "+startToken);
-    }
-
-    public definetVariable(nameDefinitionTokensCtx : any) : void {
-        console.log("definetVariable( "+nameDefinitionTokensCtx);
+    public startVariable(startToken : antlr4.Token) : void {
+        console.log("startVariable( "+startToken.text);
     }
 
     // TODO this could be made static, but check how to call from JS...
@@ -72,8 +80,8 @@ class MockedParserHelper {
         return text;
     }
 
-    public validateVariable(n1 : any, qn : Array<string>, name : string ) {
-        console.log("validateVariable( "+n1+", "+qn+", "+name);
+    public validateVariable(n1 : antlr4.ParserRuleContext, qn : Array<string>, name : string ) {
+        console.log("validateVariable( "+this.getOriginalText(n1)+", "+qn+", "+name);
         const varName = qn.join(".");
         console.log("TODO ERROR Unknown variable "+varName);
     }
