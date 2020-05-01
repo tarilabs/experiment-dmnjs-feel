@@ -89,7 +89,7 @@ class MockedParserHelper {
 }
 
 export function parse(expression : string) : ASTNode.ASTNode {
-    var chars = new antlr4.InputStream(expression);
+    var chars = new antlr4.InputStream(expression, true);
     var lexer = new MyGrammarLexer(chars);
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
@@ -120,7 +120,7 @@ export function checkVariableName(source: string ): Array<any>  {
     if( source == null || source.length==0 ) {
         return ["INVALID_VARIABLE_NAME_EMPTY"];
     }
-    let input = new antlr4.InputStream(source);
+    let input = new antlr4.InputStream(source, true);
     let lexer = new MyGrammarLexer(input);
     let tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);

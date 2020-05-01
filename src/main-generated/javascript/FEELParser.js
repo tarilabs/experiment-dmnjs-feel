@@ -68,7 +68,7 @@ var MockedParserHelper = (function () {
     return MockedParserHelper;
 }());
 function parse(expression) {
-    var chars = new antlr4.InputStream(expression);
+    var chars = new antlr4.InputStream(expression, true);
     var lexer = new MyGrammarLexer(chars);
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
@@ -97,7 +97,7 @@ function checkVariableName(source) {
     if (source == null || source.length == 0) {
         return ["INVALID_VARIABLE_NAME_EMPTY"];
     }
-    var input = new antlr4.InputStream(source);
+    var input = new antlr4.InputStream(source, true);
     var lexer = new MyGrammarLexer(input);
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
