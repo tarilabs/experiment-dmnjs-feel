@@ -8,9 +8,20 @@ import * as ASTNode from "./ASTNode";
 import { FEELValue, NullValue } from "./FEELValue";
 import { Either } from "./Commons";
 import { ErrorListener } from 'antlr4/error/ErrorListener';
+import { EvalHelper } from './EvalHelper';
+import { Scope, VariableSymbol } from './Scope';
+
+const REUSABLE_KEYWORDS = ([
+    "for", "return", "if", "then", "else", "some", "every", "satisfies", "instance", "of",
+    "function", "external", "or", "and", "between", "not", "null", "true", "false"
+]);
+const DIGITS_PATTERN = new RegExp( "[0-9]*" );
 
 class MockedParserHelper {
 
+    private eventsManager: any = 123; // TODO eventsmanager currently not needed
+    private currentScope: Scope = new Scope("<local>");
+    private currentName: string[] = ([]);
     private dynamicResolution : number = 0;
 
     public isDynamicResolution() : boolean {
@@ -28,48 +39,71 @@ class MockedParserHelper {
     }
 
     public pushTypeScope() : void {
-        console.log('pushTypeScope()');
+        console.log('TODO pushTypeScope()');
     }
 
     public pushScope() : void {
-        console.log('pushScope()');
+        console.log('TODO pushScope()');
     }
 
     public popScope() : void {
-        console.log('popScope()');
+        console.log('TODO popScope()');
     }
 
     public pushName(ctx : antlr4.ParserRuleContext) : void {
-        console.log('pushName(' +this.getOriginalText(ctx));
+        this.currentName.push(this.getName(ctx));
+    }
+
+    private getName(ctx : antlr4.ParserRuleContext): string {
+        let key = this.getOriginalText(ctx);
+        if (ctx instanceof MyGrammarParser.KeyStringContext) {
+            key = EvalHelper.unescapeString(key);
+        }
+        return key;
     }
 
     public popName() : void {
-        console.log('popName()');
+        this.currentName.pop();
     }
 
     public recoverScope() : void {
-        console.log('recoverScope()');
+        console.log('TODO recoverScope()');
     }
 
     public dismissScope() : void {
-        console.log('dismissScope()');
+        console.log('TODO dismissScope()');
     }
 
     public defineVariable(ctx : antlr4.ParserRuleContext) : void {
-        console.log('defineVariable( ' + this.getOriginalText(ctx));
+        const v = new VariableSymbol( this.getName(ctx), undefined );
+        this.currentScope.define( v );
+    }
+
+    public defineVariableExternally(variable: string, type?: any) {
+        log("defining custom type symbol: "+variable);
+        const v = new VariableSymbol( variable, type );
+        this.currentScope.define( v );
     }
 
     public isFeatDMN12EnhancedForLoopEnabled() : boolean {
         return true;
     }
 
-    public followUp(lt1 : antlr4.Token, localctx : any) : boolean {
-        console.log('followUp( ' + lt1.text + ', '  +localctx + " ) : FALSE");
-        return false;
+    public followUp(t : antlr4.Token, isPredict : boolean) : boolean {
+        const dynamicResolutionResult = this.isDynamicResolution() && isVariableNamePartValid( t.text, this.currentScope );
+        const follow = dynamicResolutionResult || this.currentScope.followUp( t.text, isPredict );
+        // in case isPredict == false, will need to followUp in the currentScope, so that the TokenTree currentNode is updated as per expectations,
+        // this is because the `follow` variable above, in the case of short-circuited on `dynamicResolutionResult`,
+        // would skip performing any necessary update in the second part of the || predicate
+        if (dynamicResolutionResult && !isPredict) {
+            this.currentScope.followUp(t.text, isPredict);
+        }
+        return follow;
     }
 
-    public startVariable(startToken : antlr4.Token) : void {
-        console.log("startVariable( "+startToken.text);
+    public startVariable(t : antlr4.Token) : void {
+        log("startVariable( "+ t.text);
+        this.currentScope.start( t.text );
     }
 
     // TODO this could be made static, but check how to call from JS...
@@ -82,19 +116,44 @@ class MockedParserHelper {
     }
 
     public validateVariable(n1 : antlr4.ParserRuleContext, qn : Array<string>, name : string ) {
-        console.log("validateVariable( "+this.getOriginalText(n1)+", "+qn+", "+name);
-        const varName = qn.join(".");
-        console.log("TODO ERROR Unknown variable "+varName);
+        if( this.eventsManager != null && !this.isDynamicResolution() ) {
+            if( this.currentScope.childScopes.has( name ) == false && this.currentScope.resolve( name ) == null ) {
+                // report error
+                console.log("validateVariable( "+this.getOriginalText(n1)+", "+qn+", "+name);
+                const varName = qn.join(".");
+                console.log("TODO ERROR Unknown variable "+varName);
+            } else {
+                console.log("SUCCESS!! TODO validateVariable( "+this.getOriginalText(n1)+", "+qn+", "+name); // TODO provisional
+            }
+        }
     }
 }
 
-export function parse(expression : string) : ASTNode.ASTNode {
+/**
+ * Either namePart is a string of digits, or it must be a valid name itself 
+ */
+function isVariableNamePartValid( namePart: string, scope: Scope ): boolean {
+    if ( DIGITS_PATTERN.test(namePart) ) {
+        return true;
+    }
+    if ( REUSABLE_KEYWORDS.includes(namePart) ) {
+        return scope.followUp(namePart, true);
+    }
+    return isVariableNameValid(namePart);
+}
+
+export function parse(expression : string, simpleSymbols?: string[]) : ASTNode.ASTNode {
     var chars = new antlr4.InputStream(expression, true);
     var lexer = new MyGrammarLexer(chars);
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
     const helper = new MockedParserHelper();
+    if (simpleSymbols){
+        for (const s of simpleSymbols) {
+            helper.defineVariableExternally(s);
+        }
+    }
     parser.setHelper(helper);
     var tree = parser.compilation_unit();
     log(tree.toStringTree(parser.ruleNames));

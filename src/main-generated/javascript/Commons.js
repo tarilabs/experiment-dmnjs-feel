@@ -56,9 +56,15 @@ var TokenTree = (function () {
         }
     };
     TokenTree.prototype.start = function (t) {
+        console.log("start(" + t);
+        console.log(this);
         this.currentNode = this.findToken(this.root, t);
+        console.log(this);
+        console.log("-");
     };
     TokenTree.prototype.followUp = function (t, commit) {
+        console.log("followUp(" + t, ", " + commit);
+        console.log(this);
         if (this.currentNode == null) {
             return false;
         }
@@ -66,6 +72,8 @@ var TokenTree = (function () {
         if (commit) {
             this.currentNode = node;
         }
+        console.log(node != null);
+        console.log("-");
         return node != null;
     };
     TokenTree.prototype.findToken = function (current, t) {

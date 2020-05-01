@@ -5,8 +5,18 @@ var MyGrammarLexer = require('../../main-generated/javascript/FEEL_1_1Lexer.js')
 var MyGrammarParser = require('../../main-generated/javascript/FEEL_1_1Parser.js').FEEL_1_1Parser;
 var MyVisitor = require('../../main-generated/javascript/FEEL_1_1Visitor.js').FEEL_1_1Visitor;
 var ASTNode = require("./ASTNode");
+var EvalHelper_1 = require("./EvalHelper");
+var Scope_1 = require("./Scope");
+var REUSABLE_KEYWORDS = ([
+    "for", "return", "if", "then", "else", "some", "every", "satisfies", "instance", "of",
+    "function", "external", "or", "and", "between", "not", "null", "true", "false"
+]);
+var DIGITS_PATTERN = new RegExp("[0-9]*");
 var MockedParserHelper = (function () {
     function MockedParserHelper() {
+        this.eventsManager = 123;
+        this.currentScope = new Scope_1.Scope("<local>");
+        this.currentName = ([]);
         this.dynamicResolution = 0;
     }
     MockedParserHelper.prototype.isDynamicResolution = function () {
@@ -21,38 +31,56 @@ var MockedParserHelper = (function () {
         this.dynamicResolution++;
     };
     MockedParserHelper.prototype.pushTypeScope = function () {
-        console.log('pushTypeScope()');
+        console.log('TODO pushTypeScope()');
     };
     MockedParserHelper.prototype.pushScope = function () {
-        console.log('pushScope()');
+        console.log('TODO pushScope()');
     };
     MockedParserHelper.prototype.popScope = function () {
-        console.log('popScope()');
+        console.log('TODO popScope()');
     };
     MockedParserHelper.prototype.pushName = function (ctx) {
-        console.log('pushName(' + this.getOriginalText(ctx));
+        this.currentName.push(this.getName(ctx));
+    };
+    MockedParserHelper.prototype.getName = function (ctx) {
+        var key = this.getOriginalText(ctx);
+        if (ctx instanceof MyGrammarParser.KeyStringContext) {
+            key = EvalHelper_1.EvalHelper.unescapeString(key);
+        }
+        return key;
     };
     MockedParserHelper.prototype.popName = function () {
-        console.log('popName()');
+        this.currentName.pop();
     };
     MockedParserHelper.prototype.recoverScope = function () {
-        console.log('recoverScope()');
+        console.log('TODO recoverScope()');
     };
     MockedParserHelper.prototype.dismissScope = function () {
-        console.log('dismissScope()');
+        console.log('TODO dismissScope()');
     };
     MockedParserHelper.prototype.defineVariable = function (ctx) {
-        console.log('defineVariable( ' + this.getOriginalText(ctx));
+        var v = new Scope_1.VariableSymbol(this.getName(ctx), undefined);
+        this.currentScope.define(v);
+    };
+    MockedParserHelper.prototype.defineVariableExternally = function (variable, type) {
+        log("defining custom type symbol: " + variable);
+        var v = new Scope_1.VariableSymbol(variable, type);
+        this.currentScope.define(v);
     };
     MockedParserHelper.prototype.isFeatDMN12EnhancedForLoopEnabled = function () {
         return true;
     };
-    MockedParserHelper.prototype.followUp = function (lt1, localctx) {
-        console.log('followUp( ' + lt1.text + ', ' + localctx + " ) : FALSE");
-        return false;
+    MockedParserHelper.prototype.followUp = function (t, isPredict) {
+        var dynamicResolutionResult = this.isDynamicResolution() && isVariableNamePartValid(t.text, this.currentScope);
+        var follow = dynamicResolutionResult || this.currentScope.followUp(t.text, isPredict);
+        if (dynamicResolutionResult && !isPredict) {
+            this.currentScope.followUp(t.text, isPredict);
+        }
+        return follow;
     };
-    MockedParserHelper.prototype.startVariable = function (startToken) {
-        console.log("startVariable( " + startToken.text);
+    MockedParserHelper.prototype.startVariable = function (t) {
+        log("startVariable( " + t.text);
+        this.currentScope.start(t.text);
     };
     MockedParserHelper.prototype.getOriginalText = function (ctx) {
         var a = ctx.start.start;
@@ -61,19 +89,41 @@ var MockedParserHelper = (function () {
         return text;
     };
     MockedParserHelper.prototype.validateVariable = function (n1, qn, name) {
-        console.log("validateVariable( " + this.getOriginalText(n1) + ", " + qn + ", " + name);
-        var varName = qn.join(".");
-        console.log("TODO ERROR Unknown variable " + varName);
+        if (this.eventsManager != null && !this.isDynamicResolution()) {
+            if (this.currentScope.childScopes.has(name) == false && this.currentScope.resolve(name) == null) {
+                console.log("validateVariable( " + this.getOriginalText(n1) + ", " + qn + ", " + name);
+                var varName = qn.join(".");
+                console.log("TODO ERROR Unknown variable " + varName);
+            }
+            else {
+                console.log("SUCCESS!! TODO validateVariable( " + this.getOriginalText(n1) + ", " + qn + ", " + name);
+            }
+        }
     };
     return MockedParserHelper;
 }());
-function parse(expression) {
+function isVariableNamePartValid(namePart, scope) {
+    if (DIGITS_PATTERN.test(namePart)) {
+        return true;
+    }
+    if (REUSABLE_KEYWORDS.includes(namePart)) {
+        return scope.followUp(namePart, true);
+    }
+    return isVariableNameValid(namePart);
+}
+function parse(expression, simpleSymbols) {
     var chars = new antlr4.InputStream(expression, true);
     var lexer = new MyGrammarLexer(chars);
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
     var helper = new MockedParserHelper();
+    if (simpleSymbols) {
+        for (var _i = 0, simpleSymbols_1 = simpleSymbols; _i < simpleSymbols_1.length; _i++) {
+            var s = simpleSymbols_1[_i];
+            helper.defineVariableExternally(s);
+        }
+    }
     parser.setHelper(helper);
     var tree = parser.compilation_unit();
     log(tree.toStringTree(parser.ruleNames));

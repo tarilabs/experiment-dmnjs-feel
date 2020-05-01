@@ -70,10 +70,16 @@ export class TokenTree {
     }
 
     public start(t : string) {
+        console.log("start(" + t);
+        console.log(this);
         this.currentNode = this.findToken(this.root, t);
+        console.log(this);
+        console.log("-");
     }
 
     public followUp(t : string, commit : boolean) : boolean {
+        console.log("followUp(" + t, ", "+commit);
+        console.log(this);
         if(this.currentNode == null) {
             return false;
         }
@@ -81,6 +87,8 @@ export class TokenTree {
         if(commit) {
             this.currentNode = node;
         }
+        console.log(node!= null);
+        console.log("-");
         return node != null;
     }
 

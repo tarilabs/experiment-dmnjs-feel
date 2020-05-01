@@ -3,7 +3,7 @@ import * as ASTNode from "./ASTNode";
 import { FEELValue } from "./FEELValue";
 import { Either } from "./Commons";
 import { ErrorListener } from 'antlr4/error/ErrorListener';
-export declare function parse(expression: string): ASTNode.ASTNode;
+export declare function parse(expression: string, simpleSymbols?: string[]): ASTNode.ASTNode;
 export declare function evaluate(cu: ASTNode.ASTNode): Either<Error, FEELValue>;
 export declare function isVariableNameValid(source: string): boolean;
 export declare function checkVariableName(source: string): Array<any>;
