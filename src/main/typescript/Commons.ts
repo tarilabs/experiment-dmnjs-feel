@@ -35,3 +35,61 @@ export class Either<L, R> {
         return new Either<L, R>(value, false);
     }
 }
+
+class Node {
+    readonly token : string | null;
+    readonly parent : Node | null;
+    readonly children : Array<Node>;
+
+    public constructor(token : string | null, parent : Node | null)  {
+        this.token = token;
+        this.parent = parent;
+        this.children = new Array();
+    }
+}
+
+export class TokenTree {
+    /*private*/ root : Node;
+    /*private*/ currentNode : Node | null;
+
+    public constructor() {
+        this.root = new Node(null, null);
+        this.currentNode = null;
+    }
+
+    public addName(tokens : Array<string>) {
+        let current : Node = this.root;
+        for (const t of tokens) {
+            let next : Node | null = this.findToken(current, t);
+            if(next == null) {
+                next = new Node(t, current);
+                current.children.push(next);
+            }
+            current = next;
+        }
+    }
+
+    public start(t : string) {
+        this.currentNode = this.findToken(this.root, t);
+    }
+
+    public followUp(t : string, commit : boolean) : boolean {
+        if(this.currentNode == null) {
+            return false;
+        }
+        let node : Node | null = this.findToken(this.currentNode, t);
+        if(commit) {
+            this.currentNode = node;
+        }
+        return node != null;
+    }
+
+    findToken(current : Node, t : string) : Node | null {
+        for (const n of current.children) {
+            if( n.token === t ) {
+                return n;
+            }
+        }
+        return null;
+    }
+}
