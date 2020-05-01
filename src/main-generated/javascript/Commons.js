@@ -30,4 +30,54 @@ var Either = (function () {
     return Either;
 }());
 exports.Either = Either;
+var Node = (function () {
+    function Node(token, parent) {
+        this.token = token;
+        this.parent = parent;
+        this.children = new Array();
+    }
+    return Node;
+}());
+var TokenTree = (function () {
+    function TokenTree() {
+        this.root = new Node(null, null);
+        this.currentNode = null;
+    }
+    TokenTree.prototype.addName = function (tokens) {
+        var current = this.root;
+        for (var _i = 0, tokens_1 = tokens; _i < tokens_1.length; _i++) {
+            var t = tokens_1[_i];
+            var next = this.findToken(current, t);
+            if (next == null) {
+                next = new Node(t, current);
+                current.children.push(next);
+            }
+            current = next;
+        }
+    };
+    TokenTree.prototype.start = function (t) {
+        this.currentNode = this.findToken(this.root, t);
+    };
+    TokenTree.prototype.followUp = function (t, commit) {
+        if (this.currentNode == null) {
+            return false;
+        }
+        var node = this.findToken(this.currentNode, t);
+        if (commit) {
+            this.currentNode = node;
+        }
+        return node != null;
+    };
+    TokenTree.prototype.findToken = function (current, t) {
+        for (var _i = 0, _a = current.children; _i < _a.length; _i++) {
+            var n = _a[_i];
+            if (n.token === t) {
+                return n;
+            }
+        }
+        return null;
+    };
+    return TokenTree;
+}());
+exports.TokenTree = TokenTree;
 //# sourceMappingURL=Commons.js.map

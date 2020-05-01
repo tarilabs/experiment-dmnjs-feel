@@ -89,6 +89,56 @@ function evaluate(cu) {
 exports.evaluate = evaluate;
 function log(text) {
 }
+function isVariableNameValid(source) {
+    return checkVariableName(source).length == 0;
+}
+exports.isVariableNameValid = isVariableNameValid;
+function checkVariableName(source) {
+    if (source == null || source.length == 0) {
+        return ["INVALID_VARIABLE_NAME_EMPTY"];
+    }
+    var input = new antlr4.InputStream(source);
+    var lexer = new MyGrammarLexer(input);
+    var tokens = new antlr4.CommonTokenStream(lexer);
+    var parser = new MyGrammarParser(tokens);
+    parser.buildParseTrees = true;
+    var helper = new MockedParserHelper();
+    parser.setHelper(helper);
+    var aParser = parser;
+    var errorChecker = new FEELParserErrorListener(null);
+    aParser.removeErrorListeners();
+    aParser.addErrorListener(errorChecker);
+    var nameDef = parser.nameDefinitionWithEOF();
+    if (!errorChecker.hasErrors() &&
+        nameDef != null &&
+        source.trim() == (parser.getHelper().getOriginalText(nameDef))) {
+        return ([]);
+    }
+    return errorChecker.getErrors();
+}
+exports.checkVariableName = checkVariableName;
+var FEELParserErrorListener = (function () {
+    function FEELParserErrorListener(unused) {
+        this.msg = ([]);
+    }
+    FEELParserErrorListener.prototype.hasErrors = function () {
+        return this.msg.length > 0;
+    };
+    FEELParserErrorListener.prototype.getErrors = function () {
+        return this.msg;
+    };
+    FEELParserErrorListener.prototype.syntaxError = function (recognizer, offendingSymbol, line, column, msg, e) {
+        this.msg.push(msg);
+    };
+    FEELParserErrorListener.prototype.reportAmbiguity = function (recognizer, dfa, startIndex, stopIndex, exact, ambigAlts, configs) {
+    };
+    FEELParserErrorListener.prototype.reportAttemptingFullContext = function (recognizer, dfa, startIndex, stopIndex, conflictingAlts, configs) {
+    };
+    FEELParserErrorListener.prototype.reportContextSensitivity = function (recognizer, dfa, startIndex, stopIndex, conflictingAlts, configs) {
+    };
+    return FEELParserErrorListener;
+}());
+exports.FEELParserErrorListener = FEELParserErrorListener;
 MyVisitor.prototype.visit = function (ctx) {
     var _this = this;
     if (Array.isArray(ctx)) {

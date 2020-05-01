@@ -7,6 +7,7 @@ var MyVisitor = require('../../main-generated/javascript/FEEL_1_1Visitor.js').FE
 import * as ASTNode from "./ASTNode";
 import { FEELValue, NullValue } from "./FEELValue";
 import { Either } from "./Commons";
+import { ErrorListener } from 'antlr4/error/ErrorListener';
 
 class MockedParserHelper {
 
@@ -110,6 +111,62 @@ export function evaluate(cu : ASTNode.ASTNode) : Either<Error, FEELValue> {
 function log(text : any) {
     //console.log(text);
 }
+
+export function isVariableNameValid(source: string): boolean {
+    return checkVariableName( source ).length == 0;
+}
+
+export function checkVariableName(source: string ): Array<any>  {
+    if( source == null || source.length==0 ) {
+        return ["INVALID_VARIABLE_NAME_EMPTY"];
+    }
+    let input = new antlr4.InputStream(source);
+    let lexer = new MyGrammarLexer(input);
+    let tokens = new antlr4.CommonTokenStream(lexer);
+    var parser = new MyGrammarParser(tokens);
+    parser.buildParseTrees = true;
+    const helper = new MockedParserHelper();
+    parser.setHelper(helper);
+    const aParser = <antlr4.Parser>parser;
+    // TODO: antlr JS reporting for failed grammar predicate? aParser.setErrorHandler( new FEELErrorHandler() );
+    const errorChecker: FEELParserErrorListener = new FEELParserErrorListener( null );
+    aParser.removeErrorListeners(); // removes the error listener that prints to the console
+    aParser.addErrorListener( errorChecker );
+    const nameDef = parser.nameDefinitionWithEOF(); // be sure to align below parser.getRuleInvocationStack().contains("nameDefinition...
+
+    if( ! errorChecker.hasErrors() &&
+        nameDef != null &&
+        source.trim() == ( parser.getHelper().getOriginalText( nameDef ) ) ) {
+        return ([]);
+    }
+    return errorChecker.getErrors();
+}
+export class FEELParserErrorListener implements ErrorListener {
+    readonly msg: any[] = ([]);
+    public constructor(unused: null) {
+        
+    }
+    hasErrors(): boolean {
+        return this.msg.length > 0;
+    }
+    getErrors(): any[] {
+        return this.msg;
+    }
+    syntaxError(recognizer: antlr4.Recognizer, offendingSymbol: antlr4.Token, line: number, column: number, msg: string, e: any): void {
+        this.msg.push(msg);
+    }
+    reportAmbiguity(recognizer: antlr4.Recognizer, dfa: any, startIndex: number, stopIndex: number, exact: any, ambigAlts: any, configs: any): void {
+        // do nothing.
+    }
+    reportAttemptingFullContext(recognizer: antlr4.Recognizer, dfa: any, startIndex: number, stopIndex: number, conflictingAlts: any, configs: any): void {
+        // do nothing.
+    }
+    reportContextSensitivity(recognizer: antlr4.Recognizer, dfa: any, startIndex: number, stopIndex: number, conflictingAlts: any, configs: any): void {
+        // do nothing.
+    }
+}
+
+
 // IMPORTANT: please note this overwrite will be shared:
 MyVisitor.prototype.visit = function(ctx : any) {
     if (Array.isArray(ctx)) {
