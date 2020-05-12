@@ -6,7 +6,7 @@ var MyVisitor = require('../../main-generated/javascript/FEEL_1_1Visitor.js').FE
 
 import * as ASTNode from "./ASTNode";
 import { FEELValue, NullValue } from "./FEELValue";
-import { Either } from "./Commons";
+import { Either, SyntaxErrorEvent, Severity, FEELEvent } from "./Commons";
 import { ErrorListener } from 'antlr4/error/ErrorListener';
 import { EvalHelper } from './EvalHelper';
 import { Scope, VariableSymbol } from './Scope';
@@ -142,7 +142,7 @@ function isVariableNamePartValid( namePart: string, scope: Scope ): boolean {
     return isVariableNameValid(namePart);
 }
 
-export function parse(expression : string, simpleSymbols?: string[]) : ASTNode.ASTNode {
+export function parse(expression : string, simpleSymbols?: string[], errorListener?: FEELParserErrorListener) : ASTNode.ASTNode {
     var chars = new antlr4.InputStream(expression, true);
     var lexer = new MyGrammarLexer(chars);
     var tokens = new antlr4.CommonTokenStream(lexer);
@@ -155,6 +155,11 @@ export function parse(expression : string, simpleSymbols?: string[]) : ASTNode.A
         }
     }
     parser.setHelper(helper);
+    const aParser = <antlr4.Parser>parser;
+    // TODO: antlr JS reporting for failed grammar predicate? aParser.setErrorHandler( new FEELErrorHandler() );
+    const errorChecker: FEELParserErrorListener = errorListener != null ? errorListener : new FEELParserErrorListener( null );
+    aParser.removeErrorListeners(); // removes the error listener that prints to the console
+    aParser.addErrorListener( errorChecker );
     var tree = parser.compilation_unit();
     log(tree.toStringTree(parser.ruleNames));
 
@@ -201,18 +206,33 @@ export function checkVariableName(source: string ): Array<any>  {
     return errorChecker.getErrors();
 }
 export class FEELParserErrorListener implements ErrorListener {
-    readonly msg: any[] = ([]);
+    readonly msg: FEELEvent[] = [];
     public constructor(unused: null) {
         
     }
     hasErrors(): boolean {
         return this.msg.length > 0;
     }
-    getErrors(): any[] {
+    getErrors(): FEELEvent[] {
         return this.msg;
     }
     syntaxError(recognizer: antlr4.Recognizer, offendingSymbol: antlr4.Token, line: number, column: number, msg: string, e: any): void {
-        this.msg.push(msg);
+        const tokenIndex = offendingSymbol.tokenIndex;
+        const parser = <antlr4.Parser> recognizer;
+        let error : FEELEvent;
+        const ruleStack : string[] = parser.getRuleInvocationStack(null);
+        const tokenStream = <antlr4.CommonTokenStream> parser.getTokenStream();
+        if (ruleStack.indexOf("nameDefinitionWithEOF") >= 0) {
+            error = new SyntaxErrorEvent(Severity.ERROR, "INVALID_VARIABLE_NAME/NAMESTART: "+offendingSymbol.text, e, line, column, offendingSymbol);
+        } else if (offendingSymbol.text === "}" && tokenIndex > 1 && tokenStream.get(tokenIndex-1).text === ":") {
+            error = new SyntaxErrorEvent(Severity.ERROR, "Missing expression: "+tokenStream.get(tokenIndex-2).text , e, line, column, offendingSymbol);
+        } else if (e != null && ruleStack[ruleStack.length - 1] === "ifExpression") {
+            console.log("TODO: "+e);
+            error = new SyntaxErrorEvent(Severity.ERROR, "Syntax error: "+offendingSymbol.text, e, line, column, offendingSymbol);
+        } else {
+            error = new SyntaxErrorEvent(Severity.ERROR, "Syntax error: "+offendingSymbol.text, e, line, column, offendingSymbol);
+        }
+        this.msg.push(error);
     }
     reportAmbiguity(recognizer: antlr4.Recognizer, dfa: any, startIndex: number, stopIndex: number, exact: any, ambigAlts: any, configs: any): void {
         // do nothing.

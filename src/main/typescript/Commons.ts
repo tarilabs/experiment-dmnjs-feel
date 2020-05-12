@@ -101,3 +101,163 @@ export class TokenTree {
         return null;
     }
 }
+
+export enum Severity {
+    TRACE, INFO, WARN, ERROR
+}
+
+export interface FEELEvent {
+    /**
+     * Returns the severity of the event
+     * 
+     * @return
+     * @return {FEELEvent.Severity}
+     */
+    getSeverity() : Severity;
+
+    /**
+     * Returns a human readable message about the event
+     * 
+     * @return
+     * @return {string}
+     */
+    getMessage() : string;
+
+    /**
+     * In case the event relates to an exception, returns
+     * the caught Throwable
+     * 
+     * @return
+     * @return {Error}
+     */
+    getSourceException() : Error;
+
+    /**
+     * In case the event refers to the source code, returns
+     * the line in the source code where the event was generated
+     * or -1 if it does not refer to a source code line.
+     * 
+     * The line is 1-based. I.e., the first line is 1,
+     * second line is 2, etc.
+     * 
+     * @return
+     * @return {number}
+     */
+    getLine() : number;
+
+    /**
+     * In case the event refers to the source code, returns
+     * the character in the line of the the source code where
+     * the event was generated or -1 if it does not refer to a
+     * source code character.
+     * 
+     * The column is 0-based. I.e. the first character in the
+     * line is 0, the second is 1, and so on.
+     * 
+     * @return
+     * @return {number}
+     */
+    getColumn() : number;
+
+    /**
+     * In case the event refers to a symbol in the source code,
+     * this method returns the offending symbol, as an ANTLR
+     * CommonToken instance. Otherwise, it returns null.
+     * 
+     * @return
+     * @return {*}
+     */
+    getOffendingSymbol() : any;
+}
+
+export class FEELEventBase implements FEELEvent {
+    /*private*/ severity : Severity;
+
+    /*private*/ message : string;
+
+    /*private*/ sourceException : Error;
+
+    public constructor(severity : Severity, message : string, sourceException : Error) {
+        this.severity = severity;
+        this.message = message;
+        this.sourceException = sourceException;
+    }
+
+    /**
+     * 
+     * @return {FEELEvent.Severity}
+     */
+    public getSeverity() : Severity {
+        return this.severity;
+    }
+
+    /**
+     * 
+     * @return {string}
+     */
+    public getMessage() : string {
+        return this.message;
+    }
+
+    /**
+     * 
+     * @return {Error}
+     */
+    public getSourceException() : Error {
+        return this.sourceException;
+    }
+
+    /**
+     * 
+     * @return {number}
+     */
+    public getLine() : number {
+        return -1;
+    }
+
+    /**
+     * 
+     * @return {number}
+     */
+    public getColumn() : number {
+        return -1;
+    }
+
+    /**
+     * 
+     * @return {*}
+     */
+    public getOffendingSymbol() : any {
+        return null;
+    }
+}
+
+export class SyntaxErrorEvent extends FEELEventBase implements FEELEvent {
+    /*private*/ line : number;
+
+    /*private*/ column : number;
+
+    /*private*/ offendingSymbol : any;
+
+    public constructor(severity : Severity, msg : string, e : Error, line : number, charPositionInLine : number, offendingSymbol : any) {
+        super(severity, msg, e);
+        this.line = 0;
+        this.column = 0;
+        this.offendingSymbol = null;
+        this.line = line;
+        this.column = charPositionInLine;
+        this.offendingSymbol = offendingSymbol;
+    }
+
+    public getLine() : number {
+        return this.line;
+    }
+
+    public getColumn() : number {
+        return this.column;
+    }
+
+    public getOffendingSymbol() : any {
+        return this.offendingSymbol;
+    }
+}

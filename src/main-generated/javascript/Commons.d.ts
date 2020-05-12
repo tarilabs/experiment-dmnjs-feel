@@ -26,4 +26,39 @@ export declare class TokenTree {
     followUp(t: string, commit: boolean): boolean;
     findToken(current: Node, t: string): Node | null;
 }
+export declare enum Severity {
+    TRACE = 0,
+    INFO = 1,
+    WARN = 2,
+    ERROR = 3
+}
+export interface FEELEvent {
+    getSeverity(): Severity;
+    getMessage(): string;
+    getSourceException(): Error;
+    getLine(): number;
+    getColumn(): number;
+    getOffendingSymbol(): any;
+}
+export declare class FEELEventBase implements FEELEvent {
+    severity: Severity;
+    message: string;
+    sourceException: Error;
+    constructor(severity: Severity, message: string, sourceException: Error);
+    getSeverity(): Severity;
+    getMessage(): string;
+    getSourceException(): Error;
+    getLine(): number;
+    getColumn(): number;
+    getOffendingSymbol(): any;
+}
+export declare class SyntaxErrorEvent extends FEELEventBase implements FEELEvent {
+    line: number;
+    column: number;
+    offendingSymbol: any;
+    constructor(severity: Severity, msg: string, e: Error, line: number, charPositionInLine: number, offendingSymbol: any);
+    getLine(): number;
+    getColumn(): number;
+    getOffendingSymbol(): any;
+}
 export {};

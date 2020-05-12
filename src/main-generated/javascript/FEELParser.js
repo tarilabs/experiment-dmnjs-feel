@@ -5,6 +5,7 @@ var MyGrammarLexer = require('../../main-generated/javascript/FEEL_1_1Lexer.js')
 var MyGrammarParser = require('../../main-generated/javascript/FEEL_1_1Parser.js').FEEL_1_1Parser;
 var MyVisitor = require('../../main-generated/javascript/FEEL_1_1Visitor.js').FEEL_1_1Visitor;
 var ASTNode = require("./ASTNode");
+var Commons_1 = require("./Commons");
 var EvalHelper_1 = require("./EvalHelper");
 var Scope_1 = require("./Scope");
 var REUSABLE_KEYWORDS = ([
@@ -111,7 +112,7 @@ function isVariableNamePartValid(namePart, scope) {
     }
     return isVariableNameValid(namePart);
 }
-function parse(expression, simpleSymbols) {
+function parse(expression, simpleSymbols, errorListener) {
     var chars = new antlr4.InputStream(expression, true);
     var lexer = new MyGrammarLexer(chars);
     var tokens = new antlr4.CommonTokenStream(lexer);
@@ -125,6 +126,10 @@ function parse(expression, simpleSymbols) {
         }
     }
     parser.setHelper(helper);
+    var aParser = parser;
+    var errorChecker = errorListener != null ? errorListener : new FEELParserErrorListener(null);
+    aParser.removeErrorListeners();
+    aParser.addErrorListener(errorChecker);
     var tree = parser.compilation_unit();
     log(tree.toStringTree(parser.ruleNames));
     var cu = tree.accept(new MyVisitor());
@@ -169,7 +174,7 @@ function checkVariableName(source) {
 exports.checkVariableName = checkVariableName;
 var FEELParserErrorListener = (function () {
     function FEELParserErrorListener(unused) {
-        this.msg = ([]);
+        this.msg = [];
     }
     FEELParserErrorListener.prototype.hasErrors = function () {
         return this.msg.length > 0;
@@ -178,7 +183,25 @@ var FEELParserErrorListener = (function () {
         return this.msg;
     };
     FEELParserErrorListener.prototype.syntaxError = function (recognizer, offendingSymbol, line, column, msg, e) {
-        this.msg.push(msg);
+        var tokenIndex = offendingSymbol.tokenIndex;
+        var parser = recognizer;
+        var error;
+        var ruleStack = parser.getRuleInvocationStack(null);
+        var tokenStream = parser.getTokenStream();
+        if (ruleStack.indexOf("nameDefinitionWithEOF") >= 0) {
+            error = new Commons_1.SyntaxErrorEvent(Commons_1.Severity.ERROR, "INVALID_VARIABLE_NAME/NAMESTART: " + offendingSymbol.text, e, line, column, offendingSymbol);
+        }
+        else if (offendingSymbol.text === "}" && tokenIndex > 1 && tokenStream.get(tokenIndex - 1).text === ":") {
+            error = new Commons_1.SyntaxErrorEvent(Commons_1.Severity.ERROR, "Missing expression: " + tokenStream.get(tokenIndex - 2).text, e, line, column, offendingSymbol);
+        }
+        else if (e != null && ruleStack[ruleStack.length - 1] === "ifExpression") {
+            console.log("TODO: " + e);
+            error = new Commons_1.SyntaxErrorEvent(Commons_1.Severity.ERROR, "Syntax error: " + offendingSymbol.text, e, line, column, offendingSymbol);
+        }
+        else {
+            error = new Commons_1.SyntaxErrorEvent(Commons_1.Severity.ERROR, "Syntax error: " + offendingSymbol.text, e, line, column, offendingSymbol);
+        }
+        this.msg.push(error);
     };
     FEELParserErrorListener.prototype.reportAmbiguity = function (recognizer, dfa, startIndex, stopIndex, exact, ambigAlts, configs) {
     };
