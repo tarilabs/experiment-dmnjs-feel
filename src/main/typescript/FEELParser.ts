@@ -6,7 +6,7 @@ var MyVisitor = require('../../main-generated/javascript/FEEL_1_1Visitor.js').FE
 
 import * as ASTNode from "./ASTNode";
 import { FEELValue, NullValue } from "./FEELValue";
-import { Either, SyntaxErrorEvent, Severity, FEELEvent } from "./Commons";
+import { Either, SyntaxErrorEvent, Severity, FEELEvent, FEELEventBase } from "./Commons";
 import { ErrorListener } from 'antlr4/error/ErrorListener';
 import { EvalHelper } from './EvalHelper';
 import { Scope, VariableSymbol } from './Scope';
@@ -19,10 +19,14 @@ const DIGITS_PATTERN = new RegExp( "[0-9]*" );
 
 class MockedParserHelper {
 
-    private eventsManager: any = 123; // TODO eventsmanager currently not needed
+    private eventsManager: FEELParserErrorListener;
     private currentScope: Scope = new Scope("<local>");
     private currentName: string[] = ([]);
     private dynamicResolution : number = 0;
+
+    constructor(listener : FEELParserErrorListener) {
+        this.eventsManager = listener;
+    }
 
     public isDynamicResolution() : boolean {
         return this.dynamicResolution > 0;
@@ -122,6 +126,7 @@ class MockedParserHelper {
                 console.log("validateVariable( "+this.getOriginalText(n1)+", "+qn+", "+name);
                 const varName = qn.join(".");
                 console.log("TODO ERROR Unknown variable "+varName);
+                this.eventsManager.getErrors().push(new FEELEventBase(Severity.ERROR, "Unknown variable "+varName, new Error()));
             } else {
                 console.log("SUCCESS!! TODO validateVariable( "+this.getOriginalText(n1)+", "+qn+", "+name); // TODO provisional
             }
@@ -148,7 +153,8 @@ export function parse(expression : string, simpleSymbols?: string[], errorListen
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
-    const helper = new MockedParserHelper();
+    const errorChecker: FEELParserErrorListener = errorListener != null ? errorListener : new FEELParserErrorListener( null );
+    const helper = new MockedParserHelper(errorChecker);
     if (simpleSymbols){
         for (const s of simpleSymbols) {
             helper.defineVariableExternally(s);
@@ -157,7 +163,6 @@ export function parse(expression : string, simpleSymbols?: string[], errorListen
     parser.setHelper(helper);
     const aParser = <antlr4.Parser>parser;
     // TODO: antlr JS reporting for failed grammar predicate? aParser.setErrorHandler( new FEELErrorHandler() );
-    const errorChecker: FEELParserErrorListener = errorListener != null ? errorListener : new FEELParserErrorListener( null );
     aParser.removeErrorListeners(); // removes the error listener that prints to the console
     aParser.addErrorListener( errorChecker );
     var tree = parser.compilation_unit();
@@ -189,11 +194,11 @@ export function checkVariableName(source: string ): Array<any>  {
     let tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
-    const helper = new MockedParserHelper();
+    const errorChecker: FEELParserErrorListener = new FEELParserErrorListener( null );
+    const helper = new MockedParserHelper(errorChecker);
     parser.setHelper(helper);
     const aParser = <antlr4.Parser>parser;
     // TODO: antlr JS reporting for failed grammar predicate? aParser.setErrorHandler( new FEELErrorHandler() );
-    const errorChecker: FEELParserErrorListener = new FEELParserErrorListener( null );
     aParser.removeErrorListeners(); // removes the error listener that prints to the console
     aParser.addErrorListener( errorChecker );
     const nameDef = parser.nameDefinitionWithEOF(); // be sure to align below parser.getRuleInvocationStack().contains("nameDefinition...

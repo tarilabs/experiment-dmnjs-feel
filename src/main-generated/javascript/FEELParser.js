@@ -14,11 +14,11 @@ var REUSABLE_KEYWORDS = ([
 ]);
 var DIGITS_PATTERN = new RegExp("[0-9]*");
 var MockedParserHelper = (function () {
-    function MockedParserHelper() {
-        this.eventsManager = 123;
+    function MockedParserHelper(listener) {
         this.currentScope = new Scope_1.Scope("<local>");
         this.currentName = ([]);
         this.dynamicResolution = 0;
+        this.eventsManager = listener;
     }
     MockedParserHelper.prototype.isDynamicResolution = function () {
         return this.dynamicResolution > 0;
@@ -95,6 +95,7 @@ var MockedParserHelper = (function () {
                 console.log("validateVariable( " + this.getOriginalText(n1) + ", " + qn + ", " + name);
                 var varName = qn.join(".");
                 console.log("TODO ERROR Unknown variable " + varName);
+                this.eventsManager.getErrors().push(new Commons_1.FEELEventBase(Commons_1.Severity.ERROR, "Unknown variable " + varName, new Error()));
             }
             else {
                 console.log("SUCCESS!! TODO validateVariable( " + this.getOriginalText(n1) + ", " + qn + ", " + name);
@@ -118,7 +119,8 @@ function parse(expression, simpleSymbols, errorListener) {
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
-    var helper = new MockedParserHelper();
+    var errorChecker = errorListener != null ? errorListener : new FEELParserErrorListener(null);
+    var helper = new MockedParserHelper(errorChecker);
     if (simpleSymbols) {
         for (var _i = 0, simpleSymbols_1 = simpleSymbols; _i < simpleSymbols_1.length; _i++) {
             var s = simpleSymbols_1[_i];
@@ -127,7 +129,6 @@ function parse(expression, simpleSymbols, errorListener) {
     }
     parser.setHelper(helper);
     var aParser = parser;
-    var errorChecker = errorListener != null ? errorListener : new FEELParserErrorListener(null);
     aParser.removeErrorListeners();
     aParser.addErrorListener(errorChecker);
     var tree = parser.compilation_unit();
@@ -157,10 +158,10 @@ function checkVariableName(source) {
     var tokens = new antlr4.CommonTokenStream(lexer);
     var parser = new MyGrammarParser(tokens);
     parser.buildParseTrees = true;
-    var helper = new MockedParserHelper();
+    var errorChecker = new FEELParserErrorListener(null);
+    var helper = new MockedParserHelper(errorChecker);
     parser.setHelper(helper);
     var aParser = parser;
-    var errorChecker = new FEELParserErrorListener(null);
     aParser.removeErrorListeners();
     aParser.addErrorListener(errorChecker);
     var nameDef = parser.nameDefinitionWithEOF();

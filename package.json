@@ -14,10 +14,13 @@
   "devDependencies": {
     "@types/node": "^13.7.4",
     "mocha": "^6.2.0",
-    "monaco-editor": "^0.17.1"
+    "monaco-editor": "^0.17.1",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
   },
   "scripts": {
     "prepublish": "rm -rf src/main-generated && rm -rf src/test-generated && tsc && tsc --build tsconfig.test.json",
+    "wp": "webpack",
     "test": "mocha"
   },
   "mocha": {
